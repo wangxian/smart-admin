@@ -5,7 +5,7 @@
 -->
 <Configuration status="INFO" monitorInterval="30">
     <Properties>
-        <Property name="log-path">/home/logs/smart-admin/dev/logs</Property>
+        <Property name="log-path">/Users/wangxian/java/smart-admin/logs</Property>
     </Properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">

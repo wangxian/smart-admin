@@ -17,14 +17,15 @@
       <FormItem>
         <Button :loading="btnLoading" @click="login" long type="primary">登录</Button>
       </FormItem>
-      <div class="other-way">
-        <p class="inline" style="float:left">其他方式登陆(账号：demo/123456   demo1/123456)</p>
-        <div class="inline align" style="float:right">
-          <img alt class="marginLeft" src="../../../assets/images/login-taobao.png" />
-          <img alt class="marginLeft" src="../../../assets/images/login-alipay.png" />
-          <img alt class="marginLeft" src="../../../assets/images/login-sina.png" />
-        </div>
-      </div>
+
+      <!--<div class="other-way">-->
+      <!--  <p class="inline" style="float:left">其他方式登陆(账号：demo/123456   demo1/123456)</p>-->
+      <!--  <div class="inline align" style="float:right">-->
+      <!--    <img alt class="marginLeft" src="../../../assets/images/login-taobao.png" />-->
+      <!--    <img alt class="marginLeft" src="../../../assets/images/login-alipay.png" />-->
+      <!--    <img alt class="marginLeft" src="../../../assets/images/login-sina.png" />-->
+      <!--  </div>-->
+      <!--</div>-->
     </Form>
   </div>
 </template>
@@ -63,7 +64,7 @@ export default {
       formData: {
         code: '',
         codeUuid: '',
-        loginName: 'demo',
+        loginName: 'sa',
         loginPwd: '123456'
       },
       codeUrl: ''
@@ -114,7 +115,7 @@ export default {
           phone: loginInfo.phone,
           isSuperMan: loginInfo.isSuperMan
         });
-        //设置权限
+        // 设置权限
         this.$store.commit('setUserPrivilege', loginInfo.privilegeList);
         this.btnLoading = false;
         // 跳转到首页
@@ -122,7 +123,6 @@ export default {
           name: this.$config.homeName
         });
       } catch (e) {
-        //TODO zhuoda sentry
         console.error(e);
         this.btnLoading = false;
         this.verificationCode();

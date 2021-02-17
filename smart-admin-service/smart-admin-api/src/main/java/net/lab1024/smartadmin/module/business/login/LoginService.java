@@ -84,22 +84,27 @@ public class LoginService {
      */
     public ResponseDTO<LoginDetailVO> login(@Valid EmployeeLoginFormDTO loginForm, HttpServletRequest request) {
         String redisVerificationCode = redisValueOperations.get(loginForm.getCodeUuid());
+
         //增加删除已使用的验证码方式 频繁登录
         redisValueOperations.getOperations().delete(loginForm.getCodeUuid());
         if (StringUtils.isEmpty(redisVerificationCode)) {
             return ResponseDTO.wrap(EmployeeResponseCodeConst.VERIFICATION_CODE_INVALID);
         }
+
         if (!redisVerificationCode.equalsIgnoreCase(loginForm.getCode())) {
             return ResponseDTO.wrap(EmployeeResponseCodeConst.VERIFICATION_CODE_INVALID);
         }
+
         String loginPwd = SmartDigestUtil.encryptPassword(CommonConst.Password.SALT_FORMAT, loginForm.getLoginPwd());
         EmployeeDTO employeeDTO = employeeDao.login(loginForm.getLoginName(), loginPwd);
         if (null == employeeDTO) {
             return ResponseDTO.wrap(EmployeeResponseCodeConst.LOGIN_FAILED);
         }
+
         if (EmployeeStatusEnum.DISABLED.equalsValue(employeeDTO.getIsDisabled())) {
             return ResponseDTO.wrap(EmployeeResponseCodeConst.IS_DISABLED);
         }
+
         //jwt token赋值
         String compactJws = loginTokenService.generateToken(employeeDTO);
 

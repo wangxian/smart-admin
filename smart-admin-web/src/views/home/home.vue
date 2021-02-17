@@ -151,4 +151,5 @@ export default {
 .count-style {
   font-size: 50px;
 }
+.ivu-col { width: 100%; }
 </style>
