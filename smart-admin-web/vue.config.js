@@ -5,6 +5,7 @@ const resolve = dir => {
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const productionGzipExtensions = ['js', 'css'];
+
 // 项目部署基础
 // 默认情况下，我们假设你的应用将被部署在域的根目录下,
 // 例如：https://www.my-app.com/
@@ -24,6 +25,7 @@ module.exports = {
   // https://www.foobar.com/my-app/
   // then change this to '/my-app/'
   publicPath,
+
   // tweak internal webpack configuration.
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
   // 如果你不需要使用eslint，把lintOnSave设为false即可
@@ -40,15 +42,18 @@ module.exports = {
       .loader('babel-loader')
       .end();
     config.resolve.alias
-      .set('@', resolve('src')) // key,value自行定义，比如.set('@@', resolve('src/components'))
+      // key,value自行定义，比如.set('@@', resolve('src/components'))
+      .set('@', resolve('src'))
       .set('_c', resolve('src/components'));
   },
+
   // 设为false打包时不生成.map文件
   productionSourceMap: false,
   // 这里写你调用接口的基础路径，来解决跨域，如果设置了代理，那你本地开发环境的axios的baseUrl要写为 '' ，即空字符串
   // devServer: {
   //   proxy: 'localhost:3000'
   // }
+
   configureWebpack: {
     plugins: [
       // 开启gzip压缩
@@ -59,6 +64,7 @@ module.exports = {
         minRatio: 0.8
       })
     ],
+
     optimization: {
       minimizer: [
         new UglifyJsPlugin({
