@@ -8,8 +8,8 @@ PrivilegeController functionSaveOrUpdate和menuBatchSave、batchSaveFunctionList
 sa/123456
 
 4 执行脚本：
-先执行：src/main/resources/sql/smart-admin.sql
-再执行：src/main/resources/sql/quartz_mysql_2.3.0.sql
+先执行：doc/smart-admin.sql
+再执行：doc/quartz_mysql_2.3.0.sql
 
 5 除dev之外文件
 
