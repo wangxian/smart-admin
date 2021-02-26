@@ -1,7 +1,7 @@
 {
   "name": "smart-admin",
   "version": "1.0.0",
-  "author": "1024创新实验室<1024lab@sina.com>",
+  "author": "smart-admin",
   "private": false,
   "scripts": {
     "dev": "vue-cli-service serve --open",
@@ -11,7 +11,7 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "development": "vue-cli-service build --mode development",
-    "sit": "vue-cli-service build --mode sit",
+    "preview": "vue-cli-service build --mode preview",
     "prod": "vue-cli-service build --mode prod"
   },
   "dependencies": {

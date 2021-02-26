@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>net.1024lab</groupId>
-  <artifactId>smart-admin-service-parent</artifactId>
+  <groupId>io.webapp</groupId>
+  <artifactId>admin-backend</artifactId>
   <version>1.0.0</version>
   <packaging>pom</packaging>
 
@@ -16,9 +16,10 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
+
     <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
     <log4j.web.version>2.10.0</log4j.web.version>
-    <smartadmin.springboot.version>2.2.5.RELEASE</smartadmin.springboot.version>
+    <springboot.version>2.2.5.RELEASE</springboot.version>
     <velocity.version>1.7</velocity.version>
     <velocity-engine-core.version>2.0</velocity-engine-core.version>
     <swagger.version>2.7.0</swagger.version>
@@ -48,48 +49,11 @@
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
-        <version>${smartadmin.springboot.version}</version>
+        <version>${springboot.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <!--BOM end-->
-
-      <!--springboot starter dependency begin -->
-      <!--            <dependency>-->
-      <!--                <groupId>org.springframework.boot</groupId>-->
-      <!--                <artifactId>spring-boot-starter-log4j2</artifactId>-->
-      <!--            </dependency>-->
-      <!--            <dependency>-->
-      <!--                <groupId>org.springframework.boot</groupId>-->
-      <!--                <artifactId>spring-boot-starter-actuator</artifactId>-->
-      <!--            </dependency>-->
-      <!--            <dependency>-->
-      <!--                <groupId>org.springframework.boot</groupId>-->
-      <!--                <artifactId>spring-boot-starter-quartz</artifactId>-->
-      <!--            </dependency>-->
-      <!--            <dependency>-->
-      <!--                <groupId>org.springframework.boot</groupId>-->
-      <!--                <artifactId>spring-boot-starter-validation</artifactId>-->
-      <!--            </dependency>-->
-      <!--            <dependency>-->
-      <!--                <groupId>org.springframework.boot</groupId>-->
-      <!--                <artifactId>spring-boot-starter-data-redis</artifactId>-->
-      <!--            </dependency>-->
-      <!--            <dependency>-->
-      <!--                <groupId>org.springframework.boot</groupId>-->
-      <!--                <artifactId>spring-boot-starter-web</artifactId>-->
-      <!--            </dependency>-->
-      <!--            <dependency>-->
-      <!--                <groupId>org.springframework.boot</groupId>-->
-      <!--                <artifactId>spring-boot-starter-websocket</artifactId>-->
-      <!--                <version>${smartadmin.springboot.version}</version>-->
-      <!--            </dependency>-->
-      <!--            <dependency>-->
-      <!--                <groupId>org.springframework.boot</groupId>-->
-      <!--                <artifactId>spring-boot-starter-test</artifactId>-->
-      <!--                <scope>test</scope>-->
-      <!--            </dependency>-->
-      <!--springboot starter dependency end -->
 
       <dependency>
         <groupId>com.baomidou</groupId>
@@ -227,6 +191,198 @@
         <scope>provided</scope>
       </dependency>
 
+      <!--springboot starter dependency begin -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-log4j2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-aop</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>spring-boot-starter-logging</artifactId>
+          <groupId>org.springframework.boot</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-quartz</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-redis</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-websocket</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-mail</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>logback-classic</artifactId>
+          <groupId>ch.qos.logback</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>spring-boot-starter-logging</artifactId>
+          <groupId>org.springframework.boot</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!--springboot starter dependency end -->
+
+    <dependency>
+      <groupId>com.baomidou</groupId>
+      <artifactId>mybatis-plus-boot-starter</artifactId>
+    </dependency>
+
+    <!--velocity begin-->
+    <dependency>
+      <artifactId>velocity</artifactId>
+      <groupId>org.apache.velocity</groupId>
+      <exclusions>
+        <exclusion>
+          <artifactId>commons-collections</artifactId>
+          <groupId>commons-collections</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.velocity</groupId>
+      <artifactId>velocity-engine-core</artifactId>
+    </dependency>
+    <!--velocity end-->
+
+    <!--fastjson  -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+    </dependency>
+
+    <!--druid  -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+    </dependency>
+
+    <!-- swagger begin -->
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger-ui</artifactId>
+    </dependency>
+    <!-- swagger end -->
+
+    <!-- guava -->
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
+
+    <!-- oss begin -->
+    <dependency>
+      <groupId>com.aliyun.oss</groupId>
+      <artifactId>aliyun-sdk-oss</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>commons-logging</artifactId>
+          <groupId>commons-logging</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.qiniu</groupId>
+      <artifactId>qiniu-java-sdk</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+    </dependency>
+    <!-- oss end -->
+
+    <!--jwt-->
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt</artifactId>
+    </dependency>
+
+    <!-- easy poi begin -->
+    <dependency>
+      <groupId>cn.afterturn</groupId>
+      <artifactId>easypoi-spring-boot-starter</artifactId>
+    </dependency>
+    <!-- easy poi end -->
+
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>commons-logging</artifactId>
+          <groupId>commons-logging</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-pool2</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.penggle</groupId>
+      <artifactId>kaptcha</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.googlecode.concurrentlinkedhashmap</groupId>
+      <artifactId>concurrentlinkedhashmap-lru</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>eu.bitwalker</groupId>
+      <artifactId>UserAgentUtils</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
     </dependencies>
   </dependencyManagement>
 
@@ -277,7 +433,7 @@
         <plugin>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-maven-plugin</artifactId>
-          <version>${smartadmin.springboot.version}</version>
+          <version>${springboot.version}</version>
           <configuration>
             <mainClass>net.lab1024.smartadmin.SmartAdminApplication</mainClass>
           </configuration>
@@ -303,12 +459,6 @@
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
-    </profile>
-    <profile>
-      <id>telework</id>
-      <properties>
-        <profiles.active>telework</profiles.active>
-      </properties>
     </profile>
     <profile>
       <id>sit</id>
