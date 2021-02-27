@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="net.lab1024.smartadmin.module.business.log.orderoperatelog.OrderOperateLogDao">
+<mapper namespace="io.webapp.module.business.log.orderoperatelog.OrderOperateLogDao">
     <resultMap id="orderOperateLogSaveDTOMap"
-               type="net.lab1024.smartadmin.module.business.log.orderoperatelog.domain.entity.OrderOperateLogEntity"></resultMap>
+               type="io.webapp.module.business.log.orderoperatelog.domain.entity.OrderOperateLogEntity"></resultMap>
 
 
     <select id="listOrderOperateLogsByOrderTypeAndOrderId" resultMap="orderOperateLogSaveDTOMap">

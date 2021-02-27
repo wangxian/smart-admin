@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="net.lab1024.smartadmin.module.system.employee.EmployeeDao">
+<mapper namespace="io.webapp.module.system.employee.EmployeeDao">
 
 
     <resultMap id="EmployeeDTO"
-               type="net.lab1024.smartadmin.module.system.employee.domain.dto.EmployeeDTO"></resultMap>
+               type="io.webapp.module.system.employee.domain.dto.EmployeeDTO"></resultMap>
 
-    <resultMap id="EmployeeVO" type="net.lab1024.smartadmin.module.system.employee.domain.vo.EmployeeVO"></resultMap>
+    <resultMap id="EmployeeVO" type="io.webapp.module.system.employee.domain.vo.EmployeeVO"></resultMap>
 
     <sql id="baseSql">
         e.id,

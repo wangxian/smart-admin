@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="net.lab1024.smartadmin.module.system.position.PositionDao">
+<mapper namespace="io.webapp.module.system.position.PositionDao">
 
 
     <sql id="baseSql">
@@ -11,7 +11,7 @@
         create_time
     </sql>
 
-    <select id="selectByPage" resultType="net.lab1024.smartadmin.module.system.position.domain.entity.PositionEntity">
+    <select id="selectByPage" resultType="io.webapp.module.system.position.domain.entity.PositionEntity">
         SELECT
         <include refid="baseSql"></include>
         FROM
@@ -24,7 +24,7 @@
         order by create_time desc
     </select>
 
-    <select id="selectRelation" resultType="net.lab1024.smartadmin.module.system.position.domain.dto.PositionRelationResultDTO">
+    <select id="selectRelation" resultType="io.webapp.module.system.position.domain.dto.PositionRelationResultDTO">
         SELECT
         job.position_name,
         rel.position_id,
@@ -44,7 +44,7 @@
         </where>
     </select>
 
-    <select id="selectEmployeesRelation" resultType="net.lab1024.smartadmin.module.system.position.domain.dto.PositionRelationResultDTO">
+    <select id="selectEmployeesRelation" resultType="io.webapp.module.system.position.domain.dto.PositionRelationResultDTO">
         SELECT
         job.position_name,
         rel.position_id,

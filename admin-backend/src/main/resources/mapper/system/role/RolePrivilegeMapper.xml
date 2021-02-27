@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="net.lab1024.smartadmin.module.system.role.roleprivilege.RolePrivilegeDao">
+<mapper namespace="io.webapp.module.system.role.roleprivilege.RolePrivilegeDao">
 
     <resultMap id="RolePrivilegeEntity"
-               type="net.lab1024.smartadmin.module.system.role.roleprivilege.domain.entity.RolePrivilegeEntity"></resultMap>
+               type="io.webapp.module.system.role.roleprivilege.domain.entity.RolePrivilegeEntity"></resultMap>
 
     <resultMap id="PrivilegeEntity"
-               type="net.lab1024.smartadmin.module.system.privilege.domain.entity.PrivilegeEntity"></resultMap>
+               type="io.webapp.module.system.privilege.domain.entity.PrivilegeEntity"></resultMap>
 
     <sql id="baseSql">
         rp.id,

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="net.lab1024.smartadmin.module.business.peony.dao.PeonyDao">
+<mapper namespace="io.webapp.module.business.peony.dao.PeonyDao">
 
-    <resultMap id="PeonyVO" type="net.lab1024.smartadmin.module.business.peony.domain.vo.PeonyVO"></resultMap>
-    <resultMap id="PeonyExcelVO" type="net.lab1024.smartadmin.module.business.peony.domain.vo.PeonyExcelVO"></resultMap>
+    <resultMap id="PeonyVO" type="io.webapp.module.business.peony.domain.vo.PeonyVO"></resultMap>
+    <resultMap id="PeonyExcelVO" type="io.webapp.module.business.peony.domain.vo.PeonyExcelVO"></resultMap>
 
 
     <select id="queryByPage" resultMap="PeonyVO">

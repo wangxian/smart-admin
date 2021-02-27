@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="net.lab1024.smartadmin.module.support.idgenerator.IdGeneratorDao">
+<mapper namespace="io.webapp.module.support.idgenerator.IdGeneratorDao">
     <resultMap id="idGeneratorLastNumberDTO"
-               type="net.lab1024.smartadmin.module.support.idgenerator.domain.IdGeneratorLastNumberDTO">
+               type="io.webapp.module.support.idgenerator.domain.IdGeneratorLastNumberDTO">
     </resultMap>
-    <resultMap id="idGeneratorEntity" type="net.lab1024.smartadmin.module.support.idgenerator.domain.IdGeneratorEntity">
+    <resultMap id="idGeneratorEntity" type="io.webapp.module.support.idgenerator.domain.IdGeneratorEntity">
     </resultMap>
 
     <resultMap id="idGeneratorRecordDTO"
-               type="net.lab1024.smartadmin.module.support.idgenerator.domain.IdGeneratorRecordDTO">
+               type="io.webapp.module.support.idgenerator.domain.IdGeneratorRecordDTO">
     </resultMap>
 
 

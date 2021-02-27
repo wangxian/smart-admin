@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="net.lab1024.smartadmin.module.system.privilege.dao.PrivilegeDao">
+<mapper namespace="io.webapp.module.system.privilege.dao.PrivilegeDao">
 
     <resultMap id="PrivilegeEntity"
-               type="net.lab1024.smartadmin.module.system.privilege.domain.entity.PrivilegeEntity"></resultMap>
+               type="io.webapp.module.system.privilege.domain.entity.PrivilegeEntity"></resultMap>
 
     <sql id="baseSql">
         p.id,

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="net.lab1024.smartadmin.module.business.notice.dao.NoticeDao">
+<mapper namespace="io.webapp.module.business.notice.dao.NoticeDao">
 
-    <resultMap id="NoticeEntity" type="net.lab1024.smartadmin.module.business.notice.domain.entity.NoticeEntity"></resultMap>
+    <resultMap id="NoticeEntity" type="io.webapp.module.business.notice.domain.entity.NoticeEntity"></resultMap>
 
-    <resultMap id="NoticeDTO" type="net.lab1024.smartadmin.module.business.notice.domain.dto.NoticeVO"></resultMap>
+    <resultMap id="NoticeDTO" type="io.webapp.module.business.notice.domain.dto.NoticeVO"></resultMap>
 
-    <resultMap id="NoticeDetailDTO" type="net.lab1024.smartadmin.module.business.notice.domain.dto.NoticeDetailVO"></resultMap>
+    <resultMap id="NoticeDetailDTO" type="io.webapp.module.business.notice.domain.dto.NoticeDetailVO"></resultMap>
 
-    <resultMap id="NoticeReceiveDTO" type="net.lab1024.smartadmin.module.business.notice.domain.dto.NoticeReceiveDTO"></resultMap>
+    <resultMap id="NoticeReceiveDTO" type="io.webapp.module.business.notice.domain.dto.NoticeReceiveDTO"></resultMap>
 
 
-    <resultMap id="NoticeReadCountDTO" type="net.lab1024.smartadmin.module.business.notice.domain.dto.NoticeReadCountDTO"></resultMap>
+    <resultMap id="NoticeReadCountDTO" type="io.webapp.module.business.notice.domain.dto.NoticeReadCountDTO"></resultMap>
 
 
     <select id="queryByPage" resultMap="NoticeDTO">

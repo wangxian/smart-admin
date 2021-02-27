@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="net.lab1024.smartadmin.module.business.log.userloginlog.UserLoginLogDao">
+<mapper namespace="io.webapp.module.business.log.userloginlog.UserLoginLogDao">
 
-    <resultMap id="UserLoginLogEntity" type="net.lab1024.smartadmin.module.business.log.userloginlog.domain.UserLoginLogEntity"></resultMap>
+    <resultMap id="UserLoginLogEntity" type="io.webapp.module.business.log.userloginlog.domain.UserLoginLogEntity"></resultMap>
 
 
     <select id="queryByPage" resultMap="UserLoginLogEntity">
