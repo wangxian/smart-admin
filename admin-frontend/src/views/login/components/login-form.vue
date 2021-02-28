@@ -45,7 +45,8 @@
             trigger: 'blur'
           }];
         }
-      }, // 密码规则
+      },
+      // 密码规则
       loginPwdRules: {
         type: Array,
         default: () => {
@@ -55,7 +56,8 @@
             trigger: 'blur'
           }];
         }
-      }, // 验证码规则
+      },
+      // 验证码规则
       codedRules: {
         type: Array,
         default: () => {
@@ -67,6 +69,7 @@
         }
       }
     },
+
     data () {
       return {
         // 防止重复提交 按钮加载状态
@@ -74,8 +77,8 @@
         formData: {
           code: '',
           codeUuid: '',
-          loginName: 'sa',
-          loginPwd: '123456'
+          loginName: 'admin',
+          loginPwd: 's6321'
         },
         codeUrl: ''
       };
