@@ -10,7 +10,6 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- *
  * zhuo
  */
 @Mapper
@@ -22,10 +21,10 @@ public interface IdGeneratorDao {
 
     void updateLastNumber(@Param("generatorId") Long generatorId, @Param("lastNumber") Long lastNumber);
 
-    int replaceIdGeneratorRecord(@Param("generatorId") Long generatorId,//
-                                 @Param("year") int year,//
-                                 @Param("month") int month,//
-                                 @Param("day") int day,//
+    int replaceIdGeneratorRecord(@Param("generatorId") Long generatorId,// 
+                                 @Param("year") int year,// 
+                                 @Param("month") int month,// 
+                                 @Param("day") int day,// 
                                  @Param("lastNumber") Long lastNumber);
 
     IdGeneratorRecordDTO selectHistoryLastNumber(@Param("generatorId") Long generatorId,

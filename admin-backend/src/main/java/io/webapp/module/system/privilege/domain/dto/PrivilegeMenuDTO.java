@@ -1,8 +1,8 @@
 package io.webapp.module.system.privilege.domain.dto;
 
-import io.webapp.module.system.privilege.constant.PrivilegeTypeEnum;
-import io.webapp.common.anno.ApiModelPropertyEnum;
 import io.swagger.annotations.ApiModelProperty;
+import io.webapp.common.anno.ApiModelPropertyEnum;
+import io.webapp.module.system.privilege.constant.PrivilegeTypeEnum;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
 @Data
 public class PrivilegeMenuDTO {
 
-    @ApiModelPropertyEnum(enumDesc = "菜单类型",value = PrivilegeTypeEnum.class)
+    @ApiModelPropertyEnum(enumDesc = "菜单类型", value = PrivilegeTypeEnum.class)
     @NotNull
     private Integer type;
 

@@ -1,9 +1,11 @@
 package io.webapp.config;
+
 import io.webapp.constant.SystemEnvironmentEnum;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
+
 /**
  * 是否是正式环境
  *
@@ -17,6 +19,6 @@ public class SystemEnvironmentCondition implements Condition {
 
     @Override
     public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata) {
-        return ! SystemEnvironmentEnum.PROD.equalsValue(systemEnvironment);
+        return !SystemEnvironmentEnum.PROD.equalsValue(systemEnvironment);
     }
 }

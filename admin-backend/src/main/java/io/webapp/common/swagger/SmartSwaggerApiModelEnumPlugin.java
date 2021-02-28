@@ -6,7 +6,7 @@
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *         http:// www.apache.org/licenses/LICENSE-2.0
  *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,10 +19,10 @@
 
 package io.webapp.common.swagger;
 
-import io.webapp.common.anno.ApiModelPropertyEnum;
-import io.webapp.common.domain.BaseEnum;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
+import io.webapp.common.anno.ApiModelPropertyEnum;
+import io.webapp.common.domain.BaseEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.annotation.AnnotationUtils;
 import springfox.documentation.spi.DocumentationType;
@@ -59,8 +59,8 @@ public class SmartSwaggerApiModelEnumPlugin implements ModelPropertyBuilderPlugi
             String enumInfo = BaseEnum.getInfo(aClass);
             String enumDesc = annotation.get().enumDesc();
             context.getBuilder().required(annotation.transform(toIsRequired()).or(false))
-                .description(enumDesc +":"+enumInfo)
-                .example(annotation.transform(toExample()).orNull());
+                   .description(enumDesc + ":" + enumInfo)
+                   .example(annotation.transform(toExample()).orNull());
         }
     }
 

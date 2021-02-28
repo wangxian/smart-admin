@@ -27,13 +27,15 @@ public interface QuartzTaskDao extends BaseMapper<QuartzTaskEntity> {
 
     /**
      * 更新任务状态
+     *
      * @param taskId
      * @param taskStatus
      */
-    void updateStatus(@Param("taskId") Integer taskId,@Param("taskStatus") Integer taskStatus);
+    void updateStatus(@Param("taskId") Integer taskId, @Param("taskStatus") Integer taskStatus);
 
     /**
      * 查询列表
+     *
      * @param queryDTO
      * @return
      */

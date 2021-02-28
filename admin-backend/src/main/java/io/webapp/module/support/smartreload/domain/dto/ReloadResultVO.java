@@ -1,4 +1,5 @@
 package io.webapp.module.support.smartreload.domain.dto;
+
 import lombok.Data;
 
 import java.util.Date;
@@ -23,7 +24,7 @@ public class ReloadResultVO {
     private String args;
 
     /**
-     *  状态标识
+     * 状态标识
      */
     private String identification;
 

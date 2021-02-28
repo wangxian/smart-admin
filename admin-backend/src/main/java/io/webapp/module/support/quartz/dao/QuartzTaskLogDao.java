@@ -23,11 +23,12 @@ import java.util.List;
  */
 @Mapper
 @Component
-public interface QuartzTaskLogDao extends BaseMapper<QuartzTaskLogEntity>{
+public interface QuartzTaskLogDao extends BaseMapper<QuartzTaskLogEntity> {
 
 
     /**
      * 查询列表
+     *
      * @param queryDTO
      * @return
      */

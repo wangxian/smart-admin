@@ -1,12 +1,12 @@
 package io.webapp.config;
 
-import io.webapp.constant.SwaggerTagConst;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import io.swagger.annotations.Api;
+import io.webapp.constant.SwaggerTagConst;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -86,18 +86,18 @@ public class SmartSwaggerDynamicGroupConfig implements EnvironmentAware, BeanDef
 
     private String groupName = "default";
 
-    private List<String> groupList = Lists.newArrayList();
+    private final List<String> groupList = Lists.newArrayList();
 
-    private Map<String, List<String>> groupMap = Maps.newHashMap();
+    private final Map<String, List<String>> groupMap = Maps.newHashMap();
 
     @Override
     public void setEnvironment(Environment environment) {
         this.apiGroupName = environment.getProperty("swagger.apiGroupName");
-        this.title = environment.getProperty("swagger.title");
-        this.description = environment.getProperty("swagger.description");
-        this.version = environment.getProperty("swagger.version");
-        this.serviceUrl = environment.getProperty("swagger.serviceUrl");
-        this.packAge = environment.getProperty("swagger.packAge");
+        this.title        = environment.getProperty("swagger.title");
+        this.description  = environment.getProperty("swagger.description");
+        this.version      = environment.getProperty("swagger.version");
+        this.serviceUrl   = environment.getProperty("swagger.serviceUrl");
+        this.packAge      = environment.getProperty("swagger.packAge");
     }
 
     @Override
@@ -105,7 +105,7 @@ public class SmartSwaggerDynamicGroupConfig implements EnvironmentAware, BeanDef
         this.groupBuild();
         for (Map.Entry<String, List<String>> entry : groupMap.entrySet()) {
             String group = entry.getKey();
-            BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(Docket.class, this :: baseDocket);
+            BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(Docket.class, this::baseDocket);
             BeanDefinition beanDefinition = builder.getRawBeanDefinition();
             registry.registerBeanDefinition(group + "Api", beanDefinition);
         }
@@ -152,18 +152,18 @@ public class SmartSwaggerDynamicGroupConfig implements EnvironmentAware, BeanDef
     }
 
     private List<ApiKey> securitySchemes() {
-        List<ApiKey> apiKeyList= new ArrayList<>();
+        List<ApiKey> apiKeyList = new ArrayList<>();
         apiKeyList.add(new ApiKey("x-access-token", "x-access-token", "header"));
         return apiKeyList;
     }
 
     private List<SecurityContext> securityContexts() {
-        List<SecurityContext> securityContexts=new ArrayList<>();
+        List<SecurityContext> securityContexts = new ArrayList<>();
         securityContexts.add(
                 SecurityContext.builder()
-                        .securityReferences(defaultAuth())
-                        .forPaths(PathSelectors.any())
-                        .build());
+                               .securityReferences(defaultAuth())
+                               .forPaths(PathSelectors.any())
+                               .build());
         return securityContexts;
     }
 
@@ -171,7 +171,7 @@ public class SmartSwaggerDynamicGroupConfig implements EnvironmentAware, BeanDef
         AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
         authorizationScopes[0] = authorizationScope;
-        List<SecurityReference> securityReferences=new ArrayList<>();
+        List<SecurityReference> securityReferences = new ArrayList<>();
         securityReferences.add(new SecurityReference("x-access-token", authorizationScopes));
         return securityReferences;
     }
@@ -186,10 +186,7 @@ public class SmartSwaggerDynamicGroupConfig implements EnvironmentAware, BeanDef
                 api = apiOptional.get();
             }
             List<String> tags = Arrays.asList(api.tags());
-            if (api != null && apiTags.containsAll(tags)) {
-                return true;
-            }
-            return false;
+            return api != null && apiTags.containsAll(tags);
         };
         groupIndex++;
         return Predicates.and(RequestHandlerSelectors.withClassAnnotation(RestController.class), methodPredicate);
@@ -201,7 +198,7 @@ public class SmartSwaggerDynamicGroupConfig implements EnvironmentAware, BeanDef
                 .description(description)
                 .version(version)
                 .license("Apache License Version 2.0")
-                .contact(new Contact("1024创新实验室", "http://www.1024lab.net", ""))
+                .contact(new Contact("1024创新实验室", "http:// www.1024lab.net", ""))
                 .termsOfServiceUrl(serviceUrl)
                 .build();
     }
@@ -210,8 +207,6 @@ public class SmartSwaggerDynamicGroupConfig implements EnvironmentAware, BeanDef
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
 
     }
-
-
 
 
 }

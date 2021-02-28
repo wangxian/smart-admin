@@ -1,16 +1,16 @@
 package io.webapp.interceptor;
 
 import com.alibaba.fastjson.JSONObject;
-import io.webapp.constant.CommonConst;
-import io.webapp.util.SmartRequestTokenUtil;
-import io.webapp.util.SmartStringUtil;
 import io.webapp.common.anno.NoNeedLogin;
 import io.webapp.common.anno.NoValidPrivilege;
 import io.webapp.common.domain.ResponseDTO;
+import io.webapp.constant.CommonConst;
 import io.webapp.module.business.login.LoginResponseCodeConst;
 import io.webapp.module.business.login.LoginTokenService;
 import io.webapp.module.business.login.domain.RequestTokenBO;
 import io.webapp.module.system.privilege.service.PrivilegeEmployeeService;
+import io.webapp.util.SmartRequestTokenUtil;
+import io.webapp.util.SmartStringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -58,20 +58,20 @@ public class SmartAuthenticationInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        //跨域设置
+        // 跨域设置
         this.crossDomainConfig(response);
         boolean isHandlerMethod = handler instanceof HandlerMethod;
-        if (! isHandlerMethod) {
+        if (!isHandlerMethod) {
             return true;
         }
 
-        //不需要登录的注解
+        // 不需要登录的注解
         Boolean isNoNeedLogin = ((HandlerMethod) handler).getMethodAnnotation(NoNeedLogin.class) != null;
         if (isNoNeedLogin) {
             return true;
         }
 
-        //放行的Uri前缀
+        // 放行的Uri前缀
         String uri = request.getRequestURI();
         String contextPath = request.getContextPath();
         String target = uri.replaceFirst(contextPath, "");
@@ -79,7 +79,7 @@ public class SmartAuthenticationInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
 
-        //需要做token校验, 消息头的token优先于请求query参数的token
+        // 需要做token校验, 消息头的token优先于请求query参数的token
         String xHeaderToken = request.getHeader(TOKEN_NAME);
         String xRequestToken = request.getParameter(TOKEN_NAME);
         String xAccessToken = null != xHeaderToken ? xHeaderToken : xRequestToken;
@@ -88,14 +88,14 @@ public class SmartAuthenticationInterceptor extends HandlerInterceptorAdapter {
             return false;
         }
 
-        //根据token获取登录用户
+        // 根据token获取登录用户
         RequestTokenBO requestToken = loginTokenService.getEmployeeTokenInfo(xAccessToken);
         if (null == requestToken) {
             this.outputResult(response, LoginResponseCodeConst.LOGIN_ERROR);
             return false;
         }
 
-        //判断接口权限
+        // 判断接口权限
         String methodName = ((HandlerMethod) handler).getMethod().getName();
         String className = ((HandlerMethod) handler).getBeanType().getName();
         List<String> list = SmartStringUtil.splitConvertToList(className, "\\.");
@@ -110,14 +110,14 @@ public class SmartAuthenticationInterceptor extends HandlerInterceptorAdapter {
         } else if (isMethodAnnotation) {
             noValidPrivilege = m.getAnnotation(NoValidPrivilege.class);
         }
-        //不需验证权限
+        // 不需验证权限
         if (noValidPrivilege != null) {
             SmartRequestTokenUtil.setUser(request, requestToken);
             return true;
         }
-        //需要验证权限
+        // 需要验证权限
         Boolean privilegeValidPass = privilegeEmployeeService.checkEmployeeHavePrivilege(requestToken, controllerName, methodName);
-        if (! privilegeValidPass) {
+        if (!privilegeValidPass) {
             this.outputResult(response, LoginResponseCodeConst.NOT_HAVE_PRIVILEGES);
             return false;
         }

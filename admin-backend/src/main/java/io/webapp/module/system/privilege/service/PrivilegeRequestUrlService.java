@@ -1,12 +1,12 @@
 package io.webapp.module.system.privilege.service;
 
-import io.webapp.constant.CommonConst;
-import io.webapp.module.system.privilege.domain.dto.PrivilegeRequestUrlVO;
-import io.webapp.util.SmartStringUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
+import io.webapp.constant.CommonConst;
+import io.webapp.module.system.privilege.domain.dto.PrivilegeRequestUrlVO;
+import io.webapp.util.SmartStringUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotationUtils;
@@ -40,7 +40,7 @@ public class PrivilegeRequestUrlService {
     /**
      * 系统所有requestUrl
      */
-    private CopyOnWriteArrayList<PrivilegeRequestUrlVO> privilegeUrlDTOList = Lists.newCopyOnWriteArrayList();
+    private final CopyOnWriteArrayList<PrivilegeRequestUrlVO> privilegeUrlDTOList = Lists.newCopyOnWriteArrayList();
 
     @Autowired
     private WebApplicationContext applicationContext;
@@ -50,10 +50,10 @@ public class PrivilegeRequestUrlService {
         this.privilegeUrlDTOList.clear();
 
         RequestMappingHandlerMapping mapping = applicationContext.getBean(RequestMappingHandlerMapping.class);
-        //获取url与类和方法的对应信息
+        // 获取url与类和方法的对应信息
         Map<RequestMappingInfo, HandlerMethod> map = mapping.getHandlerMethods();
         map.forEach((info, handlerMethod) -> {
-            //只对Rest 服务进行权限验证
+            // 只对Rest 服务进行权限验证
             RestController restAnnotation = AnnotationUtils.findAnnotation(handlerMethod.getMethod().getDeclaringClass(), RestController.class);
             if (restAnnotation == null) {
                 ResponseBody responseBody = handlerMethod.getMethod().getAnnotation(ResponseBody.class);
@@ -61,7 +61,7 @@ public class PrivilegeRequestUrlService {
                     return;
                 }
             }
-            //获取url的Set集合，一个方法可能对应多个url
+            // 获取url的Set集合，一个方法可能对应多个url
             Set<String> patterns = info.getPatternsCondition().getPatterns();
             if (CollectionUtils.isEmpty(patterns)) {
                 return;

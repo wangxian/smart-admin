@@ -1,8 +1,8 @@
 package io.webapp.module.business.login.domain;
 
+import io.swagger.annotations.ApiModelProperty;
 import io.webapp.common.anno.ApiModelPropertyEnum;
 import io.webapp.module.system.privilege.constant.PrivilegeTypeEnum;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -21,7 +21,7 @@ public class LoginPrivilegeDTO {
     @ApiModelProperty("权限key")
     private String key;
 
-    @ApiModelPropertyEnum(enumDesc = "菜单类型",value = PrivilegeTypeEnum.class)
+    @ApiModelPropertyEnum(enumDesc = "菜单类型", value = PrivilegeTypeEnum.class)
     private Integer type;
 
     @ApiModelProperty("url")

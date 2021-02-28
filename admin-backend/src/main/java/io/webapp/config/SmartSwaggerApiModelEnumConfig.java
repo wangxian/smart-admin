@@ -23,7 +23,7 @@ public class SmartSwaggerApiModelEnumConfig {
 
     @Bean
     @Order(SwaggerPluginSupport.SWAGGER_PLUGIN_ORDER + 1)
-    public SmartSwaggerApiModelEnumPlugin swaggerEnum(){
+    public SmartSwaggerApiModelEnumPlugin swaggerEnum() {
         return new SmartSwaggerApiModelEnumPlugin();
     }
 }

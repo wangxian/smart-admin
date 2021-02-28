@@ -16,7 +16,7 @@ import lombok.Data;
 public class KaptchaVO {
 
     /**
-     *  验证码UUID
+     * 验证码UUID
      */
     private String uuid;
 

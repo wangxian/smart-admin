@@ -12,21 +12,21 @@ package io.webapp.module.support.quartz.constant;
  */
 public enum TaskResultEnum {
 
-    SUCCESS(0,"成功"),
+    SUCCESS(0, "成功"),
     /**
      *
      */
-    FAIL(1,"失败");
+    FAIL(1, "失败");
 
-    public static final String INFO="0:成功，1:失败";
+    public static final String INFO = "0:成功，1:失败";
 
     private Integer status;
 
     private String desc;
 
-    TaskResultEnum(Integer status , String desc) {
+    TaskResultEnum(Integer status, String desc) {
         this.status = status;
-        this.desc = desc;
+        this.desc   = desc;
     }
 
     public Integer getStatus() {

@@ -1,4 +1,5 @@
 package io.webapp.constant;
+
 /**
  * smart initDefines 项 常量
  *

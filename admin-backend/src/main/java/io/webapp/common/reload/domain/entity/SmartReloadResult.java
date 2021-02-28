@@ -1,4 +1,5 @@
 package io.webapp.common.reload.domain.entity;
+
 /**
  * t_reload_result 表 实体类
  *
@@ -35,18 +36,18 @@ public class SmartReloadResult {
     }
 
     public SmartReloadResult(String tag, String args, boolean result, String exception) {
-        this.tag = tag;
-        this.args = args;
-        this.result = result;
+        this.tag       = tag;
+        this.args      = args;
+        this.result    = result;
         this.exception = exception;
     }
 
     public SmartReloadResult(String tag, String args, String identification, boolean result, String exception) {
-        this.tag = tag;
-        this.args = args;
+        this.tag            = tag;
+        this.args           = args;
         this.identification = identification;
-        this.result = result;
-        this.exception = exception;
+        this.result         = result;
+        this.exception      = exception;
     }
 
     public void setTag(String tag) {

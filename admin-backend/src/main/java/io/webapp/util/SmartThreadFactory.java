@@ -24,7 +24,7 @@ public class SmartThreadFactory implements ThreadFactory {
 
     private SmartThreadFactory(String namePrefix) {
         SecurityManager s = System.getSecurityManager();
-        group = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();
+        group           = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();
         this.namePrefix = namePrefix + " pool " + poolNumber.getAndIncrement() + "-thread-";
     }
 

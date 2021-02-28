@@ -47,7 +47,7 @@ public class SystemConfigEnum {
          */
         GIT_LOG_PLUGIN(SystemConfigDataType.JSON);
 
-        private SystemConfigDataType dataType;
+        private final SystemConfigDataType dataType;
 
         Key(SystemConfigDataType dataType) {
             this.dataType = dataType;

@@ -46,11 +46,11 @@ public class KaptchaWordRenderer extends Configurable implements com.google.code
         int widthNeeded = 0;
 
         int startPosX;
-        for(startPosX = 0; startPosX < wordChars.length; ++startPosX) {
+        for (startPosX = 0; startPosX < wordChars.length; ++startPosX) {
             chosenFonts[startPosX] = fonts[random.nextInt(fonts.length)];
             char[] charToDraw = new char[]{wordChars[startPosX]};
             GlyphVector gv = chosenFonts[startPosX].createGlyphVector(frc, charToDraw);
-            charWidths[startPosX] = (int)gv.getVisualBounds().getWidth();
+            charWidths[startPosX] = (int) gv.getVisualBounds().getWidth();
             if (startPosX > 0) {
                 widthNeeded += 2;
             }
@@ -60,7 +60,7 @@ public class KaptchaWordRenderer extends Configurable implements com.google.code
 
         startPosX = (width - widthNeeded) / 2;
 
-        for(int i = 0; i < wordChars.length; ++i) {
+        for (int i = 0; i < wordChars.length; ++i) {
             g2D.setColor(KaptchaColor.getColor());
             g2D.setFont(chosenFonts[i].deriveFont(Font.PLAIN));
             char[] charToDraw = new char[]{wordChars[i]};

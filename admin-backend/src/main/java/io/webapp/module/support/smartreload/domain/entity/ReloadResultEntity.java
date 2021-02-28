@@ -1,4 +1,5 @@
 package io.webapp.module.support.smartreload.domain.entity;
+
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 

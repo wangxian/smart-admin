@@ -13,14 +13,14 @@ package io.webapp.module.system.datascope.constant;
  */
 public enum DataScopeTypeEnum {
 
-    DEFAULT(0,0,"默认类型","数据范围样例");
+    DEFAULT(0, 0, "默认类型", "数据范围样例");
 
-    private Integer type;
-    private Integer sort;
-    private String name;
-    private String desc;
+    private final Integer type;
+    private final Integer sort;
+    private final String name;
+    private final String desc;
 
-    DataScopeTypeEnum(Integer type,Integer sort,String name,String desc) {
+    DataScopeTypeEnum(Integer type, Integer sort, String name, String desc) {
         this.type = type;
         this.sort = sort;
         this.name = name;

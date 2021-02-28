@@ -1,9 +1,9 @@
 package io.webapp.config;
 
-import io.webapp.common.kaptcha.KaptchaNoise;
-import io.webapp.common.kaptcha.KaptchaWordRenderer;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
+import io.webapp.common.kaptcha.KaptchaNoise;
+import io.webapp.common.kaptcha.KaptchaWordRenderer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,9 +23,9 @@ import java.util.Properties;
 public class SmartKaptchaConfig {
 
     @Bean
-    public DefaultKaptcha getDefaultKaptcha(){
-        DefaultKaptcha defaultKaptcha=new DefaultKaptcha();
-        Properties properties=new Properties();
+    public DefaultKaptcha getDefaultKaptcha() {
+        DefaultKaptcha defaultKaptcha = new DefaultKaptcha();
+        Properties properties = new Properties();
         properties.setProperty("kaptcha.border", "no");
         properties.setProperty("kaptcha.border.color", "34,114,200");
         properties.setProperty("kaptcha.image.width", "125");
@@ -41,7 +41,7 @@ public class SmartKaptchaConfig {
         properties.setProperty("kaptcha.word.impl", KaptchaWordRenderer.class.getName());
         properties.setProperty("kaptcha.noise.impl", KaptchaNoise.class.getName());
 
-        Config config=new Config(properties);
+        Config config = new Config(properties);
         defaultKaptcha.setConfig(config);
         return defaultKaptcha;
     }

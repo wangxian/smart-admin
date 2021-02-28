@@ -1,19 +1,19 @@
 package io.webapp.module.support.file.domain.dto;
 
-import io.webapp.module.support.file.constant.FileServiceTypeEnum;
+import io.swagger.annotations.ApiModelProperty;
 import io.webapp.common.anno.ApiModelPropertyEnum;
 import io.webapp.common.validator.en.CheckEnum;
-import io.swagger.annotations.ApiModelProperty;
+import io.webapp.module.support.file.constant.FileServiceTypeEnum;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 
 /**
-* @Description:    文件保存DTO
-* @Author:         sbq
-* @CreateDate:     2019/9/11 15:05
-* @Version:        1.0
-*/
+ * @Description: 文件保存DTO
+ * @Author: sbq
+ * @CreateDate: 2019/9/11 15:05
+ * @Version: 1.0
+ */
 @Data
 public class FileAddDTO {
 
@@ -25,8 +25,8 @@ public class FileAddDTO {
     @NotBlank(message = "相关业务类型不能为空")
     private String moduleType;
 
-    @ApiModelPropertyEnum(enumDesc = "文件类型",value = FileServiceTypeEnum.class)
-    @CheckEnum(enumClazz = FileServiceTypeEnum.class,message = "文件类型错误")
+    @ApiModelPropertyEnum(enumDesc = "文件类型", value = FileServiceTypeEnum.class)
+    @CheckEnum(enumClazz = FileServiceTypeEnum.class, message = "文件类型错误")
     private Integer fileLocationType;
 
     @ApiModelProperty("文件名称")

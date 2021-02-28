@@ -1,15 +1,15 @@
 package io.webapp.module.system.position;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.webapp.common.anno.OperateLog;
+import io.webapp.common.domain.PageResultDTO;
+import io.webapp.common.domain.ResponseDTO;
 import io.webapp.constant.SwaggerTagConst;
 import io.webapp.module.system.position.domain.dto.PositionAddDTO;
 import io.webapp.module.system.position.domain.dto.PositionQueryDTO;
 import io.webapp.module.system.position.domain.dto.PositionResultVO;
 import io.webapp.module.system.position.domain.dto.PositionUpdateDTO;
-import io.webapp.common.anno.OperateLog;
-import io.webapp.common.domain.PageResultDTO;
-import io.webapp.common.domain.ResponseDTO;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

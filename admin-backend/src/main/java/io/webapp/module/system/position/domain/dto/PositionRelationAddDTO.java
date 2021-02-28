@@ -27,6 +27,6 @@ public class PositionRelationAddDTO {
 
     public PositionRelationAddDTO(List<Long> positionIdList, Long employeeId) {
         this.positionIdList = positionIdList;
-        this.employeeId = employeeId;
+        this.employeeId     = employeeId;
     }
 }

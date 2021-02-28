@@ -12,23 +12,23 @@ import io.webapp.common.domain.BaseEnum;
  * @date 2019/7/10 0010 下午 19:11
  * @since JDK1.8
  */
-public enum MessageTypeEnum implements BaseEnum{
+public enum MessageTypeEnum implements BaseEnum {
 
-    SYS_NOTICE(1,"系统通知"),
+    SYS_NOTICE(1, "系统通知"),
 
-    PRIVATE_LETTER(2,"私信"),
+    PRIVATE_LETTER(2, "私信"),
 
-    HEART_BEAT(3,"心跳");
-
-
-    private Integer value;
-
-    private String desc;
+    HEART_BEAT(3, "心跳");
 
 
-    MessageTypeEnum(Integer value,String desc){
+    private final Integer value;
+
+    private final String desc;
+
+
+    MessageTypeEnum(Integer value, String desc) {
         this.value = value;
-        this.desc = desc;
+        this.desc  = desc;
     }
 
 

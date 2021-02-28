@@ -1,16 +1,16 @@
 package io.webapp.module.system.datascope.service;
 
+import com.google.common.collect.Lists;
+import io.webapp.module.system.datascope.DataScopeRoleDao;
 import io.webapp.module.system.datascope.constant.DataScopeViewTypeEnum;
 import io.webapp.module.system.datascope.domain.entity.DataScopeRoleEntity;
 import io.webapp.module.system.department.DepartmentTreeService;
-import io.webapp.module.system.privilege.service.PrivilegeEmployeeService;
-import io.webapp.module.system.datascope.DataScopeRoleDao;
 import io.webapp.module.system.employee.EmployeeDao;
 import io.webapp.module.system.employee.domain.dto.EmployeeDTO;
 import io.webapp.module.system.employee.domain.entity.EmployeeEntity;
 import io.webapp.module.system.employee.domain.vo.EmployeeVO;
+import io.webapp.module.system.privilege.service.PrivilegeEmployeeService;
 import io.webapp.module.system.role.roleemployee.RoleEmployeeDao;
-import com.google.common.collect.Lists;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -110,16 +110,16 @@ public class DataScopeViewService {
             return DataScopeViewTypeEnum.ALL.getType();
         }
         List<Long> roleIdList = roleEmployeeDao.selectRoleIdByEmployeeId(employeeId);
-        //未设置角色 默认本人
+        // 未设置角色 默认本人
         if (CollectionUtils.isEmpty(roleIdList)) {
             return DataScopeViewTypeEnum.ME.getType();
         }
-        //未设置角色数据范围 默认本人
+        // 未设置角色数据范围 默认本人
         List<DataScopeRoleEntity> dataScopeRoleList = dataScopeRoleDao.listByRoleIdList(roleIdList);
         if (CollectionUtils.isEmpty(dataScopeRoleList)) {
             return DataScopeViewTypeEnum.ME.getType();
         }
-        Map<Integer, List<DataScopeRoleEntity>> listMap = dataScopeRoleList.stream().collect(Collectors.groupingBy(DataScopeRoleEntity :: getDataScopeType));
+        Map<Integer, List<DataScopeRoleEntity>> listMap = dataScopeRoleList.stream().collect(Collectors.groupingBy(DataScopeRoleEntity::getDataScopeType));
         List<DataScopeRoleEntity> viewLevelList = listMap.get(dataScopeType);
         DataScopeRoleEntity maxLevel = viewLevelList.stream().max(Comparator.comparing(e -> DataScopeViewTypeEnum.valueOf(e.getViewType()).getLevel())).get();
         return maxLevel.getViewType();
@@ -134,6 +134,7 @@ public class DataScopeViewService {
     private List<Long> getMeEmployeeIdList(Long employeeId) {
         return Lists.newArrayList(employeeId);
     }
+
     /**
      * 获取本部门相关 可查看员工id
      *

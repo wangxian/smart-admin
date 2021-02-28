@@ -1,17 +1,17 @@
 package io.webapp.module.system.role.roleemployee;
 
-import io.webapp.constant.SwaggerTagConst;
-import io.webapp.module.system.employee.domain.vo.EmployeeVO;
-import io.webapp.module.system.role.basic.domain.dto.RoleQueryDTO;
-import io.webapp.common.anno.OperateLog;
-import io.webapp.common.domain.PageResultDTO;
-import io.webapp.common.domain.ResponseDTO;
-import io.webapp.module.system.role.basic.domain.dto.RoleBatchDTO;
-import io.webapp.module.system.role.basic.domain.dto.RoleSelectedVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.webapp.common.anno.OperateLog;
+import io.webapp.common.domain.PageResultDTO;
+import io.webapp.common.domain.ResponseDTO;
+import io.webapp.constant.SwaggerTagConst;
+import io.webapp.module.system.employee.domain.vo.EmployeeVO;
+import io.webapp.module.system.role.basic.domain.dto.RoleBatchDTO;
+import io.webapp.module.system.role.basic.domain.dto.RoleQueryDTO;
+import io.webapp.module.system.role.basic.domain.dto.RoleSelectedVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,7 +46,7 @@ public class RoleEmployeeController {
 
     @ApiOperation(value = "从角色成员列表中移除员工", notes = "从角色成员列表中移除员工")
     @ApiImplicitParams({@ApiImplicitParam(name = "employeeId", value = "员工id", paramType = "query", required = true), @ApiImplicitParam(name = "roleId", value = "角色id", paramType = "query",
-        required = true)})
+                                                                                                                                        required = true)})
     @GetMapping("/role/removeEmployee")
     public ResponseDTO<String> removeEmployee(Long employeeId, Long roleId) {
         return roleEmployeeService.removeEmployeeRole(employeeId, roleId);

@@ -1,8 +1,8 @@
 package io.webapp.module.system.role.basic;
+
 import io.webapp.common.constant.ResponseCodeConst;
 
 /**
- *
  * @author yandanyang
  * 角色业务状态码 6001 - 6999
  */

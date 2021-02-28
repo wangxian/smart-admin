@@ -1,14 +1,14 @@
 package io.webapp.common.exception;
+
 /**
- *
  * [ 业务逻辑异常,全局异常拦截后统一返回ResponseCodeConst.SYSTEM_ERROR ]
  *
- * @version 1.0
- * @since JDK1.8
  * @author yandanyang
+ * @version 1.0
  * @company 1024lab.net
  * @copyright (c) 2019 1024lab.netInc. All rights reserved.
  * @date
+ * @since JDK1.8
  */
 public class SmartBusinessException extends RuntimeException {
 

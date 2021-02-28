@@ -7,15 +7,14 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotNull;
 
 /**
- *
  * [  ]
  *
- * @version 1.0
- * @since JDK1.8
  * @author yandanyang
+ * @version 1.0
  * @company 1024lab.net
  * @copyright (c) 2019 1024lab.netInc. All rights reserved.
  * @date
+ * @since JDK1.8
  */
 @Data
 public class DepartmentCreateDTO {

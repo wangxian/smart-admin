@@ -43,14 +43,14 @@ public class SmartSendMailUtil {
     /**
      * 发送文本邮件
      *
-     * @param sendMail 发件人邮箱
-     * @param sendMailPwd 发件人密码
-     * @param sendMailName 发件人昵称(可选)
-     * @param receiveMail 收件人邮箱
+     * @param sendMail        发件人邮箱
+     * @param sendMailPwd     发件人密码
+     * @param sendMailName    发件人昵称(可选)
+     * @param receiveMail     收件人邮箱
      * @param receiveMailName 收件人昵称(可选)
-     * @param sendSMTPHost 发件人邮箱的 SMTP 服务器地址, 必须准确, 不同邮件服务器地址不同, 一般(只是一般, 绝非绝对)格式为: smtp.xxx.com
-     * @param title 邮件主题
-     * @param content 邮件正文
+     * @param sendSMTPHost    发件人邮箱的 SMTP 服务器地址, 必须准确, 不同邮件服务器地址不同, 一般(只是一般, 绝非绝对)格式为: smtp.xxx.com
+     * @param title           邮件主题
+     * @param content         邮件正文
      * @author Administrator
      * @date 2017年12月13日 下午1:51:38
      */
@@ -92,14 +92,14 @@ public class SmartSendMailUtil {
     /**
      * 发送带附件的邮件
      *
-     * @param sendMail 发件人邮箱
-     * @param sendMailPwd 发件人密码
-     * @param sendMailName 发件人昵称(可选)
-     * @param receiveMail 收件人邮箱
+     * @param sendMail        发件人邮箱
+     * @param sendMailPwd     发件人密码
+     * @param sendMailName    发件人昵称(可选)
+     * @param receiveMail     收件人邮箱
      * @param receiveMailName 收件人昵称(可选)
-     * @param sendSMTPHost 发件人邮箱的 SMTP 服务器地址, 必须准确, 不同邮件服务器地址不同, 一般(只是一般, 绝非绝对)格式为: smtp.xxx.com
-     * @param title 邮件主题
-     * @param content 邮件正文
+     * @param sendSMTPHost    发件人邮箱的 SMTP 服务器地址, 必须准确, 不同邮件服务器地址不同, 一般(只是一般, 绝非绝对)格式为: smtp.xxx.com
+     * @param title           邮件主题
+     * @param content         邮件正文
      * @author Administrator
      * @date 2017年12月13日 下午1:51:38
      */
@@ -162,7 +162,7 @@ public class SmartSendMailUtil {
 
         // 2. 根据配置创建会话对象, 用于和邮件服务器交互
         Session session = Session.getDefaultInstance(props, new Authenticator() {
-            //身份认证
+            // 身份认证
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(userName, pwd);
@@ -204,13 +204,13 @@ public class SmartSendMailUtil {
     /**
      * 创建一封只包含文本的简单邮件
      *
-     * @param session 和服务器交互的会话
-     * @param sendMail 发件人邮箱
-     * @param sendMailName 发件人昵称
-     * @param receiveMail 收件人邮箱
+     * @param session         和服务器交互的会话
+     * @param sendMail        发件人邮箱
+     * @param sendMailName    发件人昵称
+     * @param receiveMail     收件人邮箱
      * @param receiveMailName 收件人昵称
-     * @param title 邮件主题
-     * @param content 邮件正文
+     * @param title           邮件主题
+     * @param content         邮件正文
      * @return
      * @throws Exception
      * @author Administrator
@@ -228,7 +228,7 @@ public class SmartSendMailUtil {
                 to.add(new InternetAddress(s));
             }
         }
-        //Address[] addresses = new Address[]{new InternetAddress(receiveMail),new InternetAddress(receiveMail)};
+        // Address[] addresses = new Address[]{new InternetAddress(receiveMail),new InternetAddress(receiveMail)};
         message.addRecipients(MimeMessage.RecipientType.TO, to.toArray((new InternetAddress[to.size()])));
         // 4. Subject: 邮件主题（标题有广告嫌疑，避免被邮件服务器误认为是滥发广告以至返回失败，请修改标题）
         message.setSubject(title, "UTF-8");

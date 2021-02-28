@@ -120,7 +120,7 @@ public class SmartDruidDataSourceConfig {
         servletRegistrationBean.setServlet(new StatViewServlet());
         servletRegistrationBean.addUrlMappings("/druid/*");
         Map<String, String> initParameters = new HashMap<String, String>();
-        //不设置用户名密码可以直接通过druid/index.html访问
+        // 不设置用户名密码可以直接通过druid/index.html访问
         if (druidLoginEnable) {
             initParameters.put("loginUsername", druidUserName);
             initParameters.put("loginPassword", druidPassword);

@@ -1,16 +1,20 @@
 package io.webapp.common.heartbeat;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
 
 
 /**
-* @Description: 心跳服务
-* @Author: simajinqiang
-* @Date: 2018/7/9 16:26
-*/
+ * @Description: 心跳服务
+ * @Author: simajinqiang
+ * @Date: 2018/7/9 16:26
+ */
 public abstract class AbstractHeartBeatCommand implements HeartBeatRecordCommendInterface {
 
 
@@ -40,20 +44,20 @@ public abstract class AbstractHeartBeatCommand implements HeartBeatRecordCommend
     /**
      * 初始化
      */
-    public void init(HeartBeatConfig config, HeartBeatLogger logger){
+    public void init(HeartBeatConfig config, HeartBeatLogger logger) {
         this.handlerHeartBeat();
         ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("AbstractHeartBeatCommand-%s").build();
         executorService = Executors.newScheduledThreadPool(threadNum, threadFactory);
         executorService.scheduleWithFixedDelay(new DoHeartBeat(), config.getDelayHandlerTime(), config.getIntervalTime(), TimeUnit.MILLISECONDS);
     }
 
-    public void handlerHeartBeat(){
+    public void handlerHeartBeat() {
         try {
-            projectPath = HeatBeatRecordHelper.getProjectPath();
-            serverIps = IpUtil.getLocalIPS();
-            processNo = HeatBeatRecordHelper.getProcessID();
+            projectPath      = HeatBeatRecordHelper.getProjectPath();
+            serverIps        = IpUtil.getLocalIPS();
+            processNo        = HeatBeatRecordHelper.getProcessID();
             processStartTime = HeatBeatRecordHelper.getStartTime();
-        }catch (Throwable e){
+        } catch (Throwable e) {
             logger.error("get heart beat info error.", e);
         }
     }
@@ -61,26 +65,26 @@ public abstract class AbstractHeartBeatCommand implements HeartBeatRecordCommend
     /**
      * 销毁线程池
      */
-    public void destroy(){
+    public void destroy() {
         if (executorService != null && !executorService.isShutdown()) {
             executorService.shutdown();
             executorService = null;
         }
     }
 
-    public class DoHeartBeat implements Runnable{
+    public class DoHeartBeat implements Runnable {
 
         @Override
         public void run() {
             try {
                 HeartBeatRecordDTO heartBeatRecord = new HeartBeatRecordDTO();
                 heartBeatRecord.setProjectPath(projectPath);
-                heartBeatRecord.setServerIp(StringUtil.join(serverIps,";"));
+                heartBeatRecord.setServerIp(StringUtil.join(serverIps, ";"));
                 heartBeatRecord.setProcessNo(processNo);
                 heartBeatRecord.setProcessStartTime(processStartTime);
                 heartBeatRecord.setHeartBeatTime(new Date());
                 handler(heartBeatRecord);
-            }catch (Throwable t){
+            } catch (Throwable t) {
                 logger.error("handler heartbeat error.", t);
             }
 

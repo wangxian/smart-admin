@@ -1,4 +1,5 @@
 package io.webapp.module.support.smartreload.domain.dto;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 

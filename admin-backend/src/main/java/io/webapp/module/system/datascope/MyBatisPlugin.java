@@ -68,18 +68,18 @@ public class MyBatisPlugin implements Interceptor {
         int whereIndex = StringUtils.ordinalIndexOf(sql.toLowerCase(), where, appendSqlWhereIndex + 1);
         int orderIndex = sql.toLowerCase().indexOf(order);
         int groupIndex = sql.toLowerCase().indexOf(group);
-        if (whereIndex > - 1) {
+        if (whereIndex > -1) {
             String subSql = sql.substring(0, whereIndex + where.length() + 1);
             subSql = subSql + " " + appendSql + " AND " + sql.substring(whereIndex + where.length() + 1);
             return subSql;
         }
 
-        if (groupIndex > - 1) {
+        if (groupIndex > -1) {
             String subSql = sql.substring(0, groupIndex);
             subSql = subSql + " where " + appendSql + " " + sql.substring(groupIndex);
             return subSql;
         }
-        if (orderIndex > - 1) {
+        if (orderIndex > -1) {
             String subSql = sql.substring(0, orderIndex);
             subSql = subSql + " where " + appendSql + " " + sql.substring(orderIndex);
             return subSql;
@@ -99,6 +99,7 @@ public class MyBatisPlugin implements Interceptor {
         public BoundSqlSqlSource(BoundSql boundSql) {
             this.boundSql = boundSql;
         }
+
         @Override
         public BoundSql getBoundSql(Object parameterObject) {
             return boundSql;

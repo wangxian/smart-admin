@@ -6,15 +6,14 @@ import java.util.Arrays;
 import java.util.Optional;
 
 /**
- *
  * [ 是与否]
  *
- * @version 1.0
- * @since JDK1.8
  * @author yandanyang
+ * @version 1.0
  * @company 1024lab.net
  * @copyright (c) 2019 1024lab.netInc. All rights reserved.
  * @date
+ * @since JDK1.8
  */
 public enum JudgeEnum implements BaseEnum {
 
@@ -22,18 +21,19 @@ public enum JudgeEnum implements BaseEnum {
 
     YES(1, "是");
 
-    private Integer value;
-    private String desc;
+    private final Integer value;
+    private final String desc;
 
     JudgeEnum(Integer value, String desc) {
         this.value = value;
-        this.desc = desc;
+        this.desc  = desc;
     }
 
     @Override
     public Integer getValue() {
         return value;
     }
+
     @Override
     public String getDesc() {
         return desc;

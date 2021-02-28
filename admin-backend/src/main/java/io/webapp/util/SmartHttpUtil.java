@@ -15,6 +15,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -87,7 +88,7 @@ public class SmartHttpUtil {
                     httpPost.setHeader(entry.getKey(), entry.getValue());
                 }
             }
-            StringEntity entity = new StringEntity(json, Charset.forName("UTF-8"));
+            StringEntity entity = new StringEntity(json, StandardCharsets.UTF_8);
             entity.setContentEncoding("UTF-8");
             entity.setContentType("application/json");
             httpPost.setEntity(entity);
@@ -128,7 +129,7 @@ public class SmartHttpUtil {
                     nvps.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
                 }
             }
-            //设置参数到请求对象中
+            // 设置参数到请求对象中
             httpPost.setEntity(new UrlEncodedFormEntity(nvps, "UTF-8"));
             HttpResponse response = httpClient.execute(httpPost);
 

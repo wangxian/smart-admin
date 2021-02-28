@@ -1,8 +1,8 @@
 package io.webapp.module.system.role.roleprivilege.domain.dto;
 
-import io.webapp.module.system.privilege.constant.PrivilegeTypeEnum;
-import io.webapp.common.anno.ApiModelPropertyEnum;
 import io.swagger.annotations.ApiModelProperty;
+import io.webapp.common.anno.ApiModelPropertyEnum;
+import io.webapp.module.system.privilege.constant.PrivilegeTypeEnum;
 import lombok.Data;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class RolePrivilegeSimpleDTO {
     @ApiModelProperty("名称")
     private String name;
 
-    @ApiModelPropertyEnum(enumDesc = "类型",value = PrivilegeTypeEnum.class)
+    @ApiModelPropertyEnum(enumDesc = "类型", value = PrivilegeTypeEnum.class)
     private Integer type;
 
     @ApiModelProperty("key")

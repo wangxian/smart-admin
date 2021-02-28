@@ -2,8 +2,8 @@ package io.webapp.module.business.log.userloginlog;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import io.webapp.module.business.log.userloginlog.domain.UserLoginLogQueryDTO;
 import io.webapp.module.business.log.userloginlog.domain.UserLoginLogEntity;
+import io.webapp.module.business.log.userloginlog.domain.UserLoginLogQueryDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
@@ -26,22 +26,25 @@ public interface UserLoginLogDao extends BaseMapper<UserLoginLogEntity> {
 
     /**
      * 分页查询
+     *
      * @param queryDTO
      * @return UserLoginLogEntity
-    */
+     */
     List<UserLoginLogEntity> queryByPage(Page page, @Param("queryDTO") UserLoginLogQueryDTO queryDTO);
 
     /**
      * 根据id删除
+     *
      * @param id
      * @return
-    */
+     */
     void deleteById(@Param("id") Long id);
 
     /**
      * 批量删除
+     *
      * @param idList
      * @return
-    */
+     */
     void deleteByIds(@Param("idList") List<Long> idList);
 }

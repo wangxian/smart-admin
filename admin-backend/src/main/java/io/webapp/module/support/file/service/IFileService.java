@@ -1,7 +1,7 @@
 package io.webapp.module.support.file.service;
 
-import io.webapp.module.support.file.domain.vo.UploadVO;
 import io.webapp.common.domain.ResponseDTO;
+import io.webapp.module.support.file.domain.vo.UploadVO;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
@@ -119,7 +120,7 @@ public interface IFileService {
         try {
             if (request.getHeader("User-Agent").toLowerCase().indexOf("firefox") > 0) {
                 // firefox浏览器
-                fileName = new String(fileName.getBytes("UTF-8"), "ISO8859-1");
+                fileName = new String(fileName.getBytes(StandardCharsets.UTF_8), "ISO8859-1");
             } else if (request.getHeader("User-Agent").toUpperCase().indexOf("MSIE") > 0) {
                 // IE浏览器
                 fileName = URLEncoder.encode(fileName, "UTF-8");
@@ -128,10 +129,10 @@ public interface IFileService {
                 fileName = URLEncoder.encode(fileName, "UTF-8");
             } else if (request.getHeader("User-Agent").toUpperCase().indexOf("CHROME") > 0) {
                 // 谷歌
-                fileName = new String(fileName.getBytes("UTF-8"), "ISO8859-1");
+                fileName = new String(fileName.getBytes(StandardCharsets.UTF_8), "ISO8859-1");
             } else {
-                //万能乱码问题解决
-                fileName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
+                // 万能乱码问题解决
+                fileName = new String(fileName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1);
             }
         } catch (UnsupportedEncodingException e) {
             // log.error("", e);
@@ -142,7 +143,7 @@ public interface IFileService {
             // 输入流转换为字节流
             byte[] buffer = FileCopyUtils.copyToByteArray(in);
             ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(buffer, heads, HttpStatus.OK);
-            //file.delete();
+            // file.delete();
             return responseEntity;
         } catch (Exception e) {
             // log.error("", e);

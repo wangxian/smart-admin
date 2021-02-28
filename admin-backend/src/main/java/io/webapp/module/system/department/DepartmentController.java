@@ -1,13 +1,13 @@
 package io.webapp.module.system.department;
 
-import io.webapp.constant.SwaggerTagConst;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.webapp.common.anno.OperateLog;
 import io.webapp.common.domain.ResponseDTO;
+import io.webapp.constant.SwaggerTagConst;
 import io.webapp.module.system.department.domain.dto.DepartmentCreateDTO;
 import io.webapp.module.system.department.domain.dto.DepartmentUpdateDTO;
 import io.webapp.module.system.department.domain.dto.DepartmentVO;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -79,8 +79,8 @@ public class DepartmentController {
 
     @ApiOperation(value = "上下移动")
     @GetMapping("/department/upOrDown/{departmentId}/{swapId}")
-    public ResponseDTO<String> upOrDown(@PathVariable("departmentId") Long departmentId,@PathVariable("swapId") Long swapId) {
-        return departmentService.upOrDown(departmentId,swapId);
+    public ResponseDTO<String> upOrDown(@PathVariable("departmentId") Long departmentId, @PathVariable("swapId") Long swapId) {
+        return departmentService.upOrDown(departmentId, swapId);
     }
 
     @ApiOperation(value = "升级")
@@ -91,8 +91,8 @@ public class DepartmentController {
 
     @ApiOperation(value = "降级")
     @GetMapping("/department/downgrade/{departmentId}/{preId}")
-    public ResponseDTO<String> downgrade(@PathVariable("departmentId") Long departmentId,@PathVariable("preId") Long preId) {
-        return departmentService.downgrade(departmentId,preId);
+    public ResponseDTO<String> downgrade(@PathVariable("departmentId") Long departmentId, @PathVariable("preId") Long preId) {
+        return departmentService.downgrade(departmentId, preId);
     }
 
 

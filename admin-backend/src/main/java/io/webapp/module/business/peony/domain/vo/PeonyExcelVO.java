@@ -2,16 +2,17 @@ package io.webapp.module.business.peony.domain.vo;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import lombok.Data;
+
 import java.util.Date;
 
 /**
- *  [ 牡丹花 ]
+ * [ 牡丹花 ]
  *
  * @author 卓大
  * @version 1.0
- * @company 1024创新实验室( www.1024lab.net )
+ * @company 1024创新实验室(www.1024lab.net)
  * @copyright (c) 1024创新实验室( www.1024lab.net )Inc. All rights reserved.
- * @date  2020-04-06 18:17:56
+ * @date 2020-04-06 18:17:56
  * @since JDK1.8
  */
 @Data
@@ -36,7 +37,6 @@ public class PeonyExcelVO {
 
     @Excel(name = "更新时间", format = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
-
 
 
 }

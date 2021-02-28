@@ -15,7 +15,6 @@ import java.util.Iterator;
 public class StringUtil {
 
 
-
     public static String join(Iterable<?> iterable, String separator) {
         return iterable == null ? null : join(iterable.iterator(), separator);
     }
@@ -37,7 +36,7 @@ public class StringUtil {
                     buf.append(first);
                 }
 
-                while(iterator.hasNext()) {
+                while (iterator.hasNext()) {
                     if (separator != null) {
                         buf.append(separator);
                     }

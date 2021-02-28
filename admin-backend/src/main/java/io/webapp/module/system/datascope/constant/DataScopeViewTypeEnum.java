@@ -16,22 +16,22 @@ import java.util.Optional;
  */
 public enum DataScopeViewTypeEnum {
 
-    ME(0,0,"本人"),
+    ME(0, 0, "本人"),
 
-    DEPARTMENT(1,5,"本部门"),
+    DEPARTMENT(1, 5, "本部门"),
 
-    DEPARTMENT_AND_SUB(2,10,"本部门及下属子部门"),
+    DEPARTMENT_AND_SUB(2, 10, "本部门及下属子部门"),
 
-    ALL(3,15,"全部");
+    ALL(3, 15, "全部");
 
-    private Integer type;
-    private Integer level;
-    private String name;
+    private final Integer type;
+    private final Integer level;
+    private final String name;
 
-    DataScopeViewTypeEnum(Integer type,Integer level, String name) {
-        this.type = type;
+    DataScopeViewTypeEnum(Integer type, Integer level, String name) {
+        this.type  = type;
         this.level = level;
-        this.name = name;
+        this.name  = name;
     }
 
     public Integer getType() {

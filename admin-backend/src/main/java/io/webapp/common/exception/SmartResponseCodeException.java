@@ -10,8 +10,8 @@ package io.webapp.common.exception;
  * @date 2019/8/7 0007 下午 16:11
  * @since JDK1.8
  */
-public class SmartResponseCodeException extends RuntimeException{
-    private Integer code;
+public class SmartResponseCodeException extends RuntimeException {
+    private final Integer code;
 
     public SmartResponseCodeException(Integer code, String message) {
         super(message);

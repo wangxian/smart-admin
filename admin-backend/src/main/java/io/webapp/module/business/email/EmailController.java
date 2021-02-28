@@ -1,15 +1,15 @@
 package io.webapp.module.business.email;
 
-import io.webapp.constant.SwaggerTagConst;
-import io.webapp.module.business.email.domain.dto.EmailQueryDTO;
-import io.webapp.module.business.email.domain.dto.EmailVO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.webapp.common.anno.NoValidPrivilege;
 import io.webapp.common.anno.OperateLog;
 import io.webapp.common.domain.PageResultDTO;
 import io.webapp.common.domain.ResponseDTO;
+import io.webapp.constant.SwaggerTagConst;
 import io.webapp.module.business.email.domain.dto.EmailDTO;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.webapp.module.business.email.domain.dto.EmailQueryDTO;
+import io.webapp.module.business.email.domain.dto.EmailVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -34,48 +34,48 @@ public class EmailController {
     @Autowired
     private EmailService emailService;
 
-    @ApiOperation(value = "分页查询",notes = "@author yandanyang")
+    @ApiOperation(value = "分页查询", notes = "@author yandanyang")
     @PostMapping("/email/page/query")
     @NoValidPrivilege
     public ResponseDTO<PageResultDTO<EmailVO>> queryByPage(@RequestBody @Validated EmailQueryDTO queryDTO) {
         return emailService.queryByPage(queryDTO);
     }
 
-    @ApiOperation(value = "添加",notes = "@author yandanyang")
+    @ApiOperation(value = "添加", notes = "@author yandanyang")
     @PostMapping("/email/add")
     @NoValidPrivilege
-    public ResponseDTO<Long> add(@RequestBody @Valid EmailDTO addTO){
+    public ResponseDTO<Long> add(@RequestBody @Valid EmailDTO addTO) {
         return emailService.add(addTO);
     }
 
-    @ApiOperation(value="修改",notes = "@author yandanyang")
+    @ApiOperation(value = "修改", notes = "@author yandanyang")
     @PostMapping("/email/update")
     @NoValidPrivilege
-    public ResponseDTO<Long> update(@RequestBody @Valid EmailDTO updateDTO){
+    public ResponseDTO<Long> update(@RequestBody @Valid EmailDTO updateDTO) {
         return emailService.update(updateDTO);
     }
 
 
-    @ApiOperation(value="删除",notes = "@author yandanyang")
+    @ApiOperation(value = "删除", notes = "@author yandanyang")
     @GetMapping("/email/delete/{id}")
     @NoValidPrivilege
-    public ResponseDTO<String> delete(@PathVariable("id") Long id){
+    public ResponseDTO<String> delete(@PathVariable("id") Long id) {
         return emailService.delete(id);
     }
 
 
-    @ApiOperation(value="详情",notes = "@author yandanyang")
+    @ApiOperation(value = "详情", notes = "@author yandanyang")
     @GetMapping("/email/detail/{id}")
     @NoValidPrivilege
-    public ResponseDTO<EmailVO> detail(@PathVariable("id") Long id){
+    public ResponseDTO<EmailVO> detail(@PathVariable("id") Long id) {
         return emailService.detail(id);
     }
 
 
-    @ApiOperation(value="发送",notes = "@author yandanyang")
+    @ApiOperation(value = "发送", notes = "@author yandanyang")
     @GetMapping("/email/send/{id}")
     @NoValidPrivilege
-    public ResponseDTO<String> send(@PathVariable("id") Long id){
+    public ResponseDTO<String> send(@PathVariable("id") Long id) {
         return emailService.send(id);
     }
 }

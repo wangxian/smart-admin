@@ -14,12 +14,12 @@ import lombok.Data;
  * @since JDK1.8
  */
 @Data
-public class NoticeReceiveQueryDTO extends NoticeQueryDTO{
+public class NoticeReceiveQueryDTO extends NoticeQueryDTO {
 
-    @ApiModelProperty(value = "当前登录人",hidden = true)
+    @ApiModelProperty(value = "当前登录人", hidden = true)
     private Long employeeId;
 
-    @ApiModelProperty(value = "发送状态",hidden = true)
+    @ApiModelProperty(value = "发送状态", hidden = true)
     private Integer sendStatus;
 
 }

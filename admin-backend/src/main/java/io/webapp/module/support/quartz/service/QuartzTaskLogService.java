@@ -1,7 +1,7 @@
 package io.webapp.module.support.quartz.service;
 
-import io.webapp.module.support.quartz.domain.entity.QuartzTaskLogEntity;
 import io.webapp.module.support.quartz.dao.QuartzTaskLogDao;
+import io.webapp.module.support.quartz.domain.entity.QuartzTaskLogEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +22,7 @@ public class QuartzTaskLogService {
     private QuartzTaskLogDao quartzTaskLogDao;
 
 
-    public void save(QuartzTaskLogEntity logEntity){
+    public void save(QuartzTaskLogEntity logEntity) {
         quartzTaskLogDao.insert(logEntity);
     }
 }

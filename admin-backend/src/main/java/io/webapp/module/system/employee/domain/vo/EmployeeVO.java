@@ -1,8 +1,8 @@
 package io.webapp.module.system.employee.domain.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.webapp.module.system.position.domain.dto.PositionRelationResultDTO;
 import io.swagger.annotations.ApiModelProperty;
+import io.webapp.module.system.position.domain.dto.PositionRelationResultDTO;
 import lombok.Data;
 
 import java.util.Date;

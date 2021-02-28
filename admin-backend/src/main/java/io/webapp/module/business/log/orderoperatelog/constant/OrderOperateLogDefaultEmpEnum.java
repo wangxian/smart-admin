@@ -1,7 +1,6 @@
 package io.webapp.module.business.log.orderoperatelog.constant;
 
 /**
- *
  * @author yandanyang
  * @version 1.0
  * @company 1024lab.net
@@ -11,15 +10,15 @@ package io.webapp.module.business.log.orderoperatelog.constant;
  */
 public enum OrderOperateLogDefaultEmpEnum {
 
-    DEFAULT_EMP(0,"系统");
+    DEFAULT_EMP(0, "系统");
 
 
-    private Integer empId;
+    private final Integer empId;
 
-    private String empName;
+    private final String empName;
 
-    OrderOperateLogDefaultEmpEnum(Integer empId,String empName) {
-        this.empId = empId;
+    OrderOperateLogDefaultEmpEnum(Integer empId, String empName) {
+        this.empId   = empId;
         this.empName = empName;
     }
 
@@ -30,7 +29,6 @@ public enum OrderOperateLogDefaultEmpEnum {
     public String getEmpName() {
         return empName;
     }
-
 
 
 }

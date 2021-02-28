@@ -1,8 +1,8 @@
 package io.webapp.module.support.file.domain.vo;
 
-import io.webapp.module.support.file.constant.FileServiceTypeEnum;
-import io.webapp.common.anno.ApiModelPropertyEnum;
 import io.swagger.annotations.ApiModelProperty;
+import io.webapp.common.anno.ApiModelPropertyEnum;
+import io.webapp.module.support.file.constant.FileServiceTypeEnum;
 import lombok.Data;
 
 import java.sql.Date;

@@ -1,10 +1,10 @@
 package io.webapp.module.support.idgenerator;
 
+import io.webapp.common.exception.SmartBusinessException;
 import io.webapp.module.support.idgenerator.constant.IdGeneratorEnum;
 import io.webapp.module.support.idgenerator.constant.IdGeneratorRuleTypeEnum;
 import io.webapp.module.support.idgenerator.domain.IdGeneratorEntity;
 import io.webapp.module.support.idgenerator.domain.IdGeneratorPOJO;
-import io.webapp.common.exception.SmartBusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

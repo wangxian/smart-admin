@@ -1,20 +1,20 @@
 package io.webapp.module.system.privilege.service;
 
+import com.google.common.collect.Lists;
+import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
+import io.webapp.common.constant.JudgeEnum;
+import io.webapp.common.exception.SmartBusinessException;
 import io.webapp.module.business.login.domain.RequestTokenBO;
+import io.webapp.module.system.employee.domain.dto.EmployeeDTO;
 import io.webapp.module.system.privilege.constant.PrivilegeTypeEnum;
+import io.webapp.module.system.privilege.dao.PrivilegeDao;
 import io.webapp.module.system.privilege.domain.entity.PrivilegeEntity;
+import io.webapp.module.system.role.roleemployee.RoleEmployeeDao;
+import io.webapp.module.system.role.roleprivilege.RolePrivilegeDao;
 import io.webapp.module.system.systemconfig.SystemConfigService;
 import io.webapp.module.system.systemconfig.constant.SystemConfigEnum;
 import io.webapp.module.system.systemconfig.domain.dto.SystemConfigDTO;
 import io.webapp.util.SmartStringUtil;
-import io.webapp.common.constant.JudgeEnum;
-import io.webapp.common.exception.SmartBusinessException;
-import io.webapp.module.system.employee.domain.dto.EmployeeDTO;
-import io.webapp.module.system.privilege.dao.PrivilegeDao;
-import io.webapp.module.system.role.roleemployee.RoleEmployeeDao;
-import io.webapp.module.system.role.roleprivilege.RolePrivilegeDao;
-import com.google.common.collect.Lists;
-import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +40,8 @@ public class PrivilegeEmployeeService {
     /**
      * 后台用户权限缓存 <id,<controllerName,methodName></>></>
      */
-    private ConcurrentMap<Long, Map<String, List<String>>> employeePrivileges = new ConcurrentLinkedHashMap.Builder<Long, Map<String, List<String>>>().maximumWeightedCapacity(1000).build();
-    private ConcurrentMap<Long, List<PrivilegeEntity>> employeePrivilegeListMap = new ConcurrentLinkedHashMap.Builder<Long, List<PrivilegeEntity>>().maximumWeightedCapacity(1000).build();
+    private final ConcurrentMap<Long, Map<String, List<String>>> employeePrivileges = new ConcurrentLinkedHashMap.Builder<Long, Map<String, List<String>>>().maximumWeightedCapacity(1000).build();
+    private final ConcurrentMap<Long, List<PrivilegeEntity>> employeePrivilegeListMap = new ConcurrentLinkedHashMap.Builder<Long, List<PrivilegeEntity>>().maximumWeightedCapacity(1000).build();
 
     @Autowired
     private SystemConfigService systemConfigService;

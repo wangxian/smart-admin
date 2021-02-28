@@ -1,4 +1,5 @@
 package io.webapp.module.support.smartreload.dao;
+
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import io.webapp.module.support.smartreload.domain.entity.ReloadItemEntity;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,4 +13,5 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Mapper
-public interface ReloadItemDao extends BaseMapper<ReloadItemEntity> {}
+public interface ReloadItemDao extends BaseMapper<ReloadItemEntity> {
+}

@@ -1,7 +1,7 @@
 package io.webapp.module.system.department;
 
-import io.webapp.module.system.department.domain.dto.DepartmentVO;
 import com.google.common.collect.Lists;
+import io.webapp.module.system.department.domain.dto.DepartmentVO;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,31 +27,32 @@ public class DepartmentTreeService {
 
     /**
      * 构建部门树结构
+     *
      * @param departmentVOList
      * @return
      */
     public List<DepartmentVO> buildTree(List<DepartmentVO> departmentVOList) {
-        if(CollectionUtils.isEmpty(departmentVOList)){
+        if (CollectionUtils.isEmpty(departmentVOList)) {
             return Lists.newArrayList();
         }
         List<DepartmentVO> list = departmentVOList.stream().filter(e -> e.getParentId() == null || e.getParentId() == 0).collect(Collectors.toList());
-        if(CollectionUtils.isEmpty(list)){
+        if (CollectionUtils.isEmpty(list)) {
             return Lists.newArrayList();
         }
-        this.buildTree(list,departmentVOList);
+        this.buildTree(list, departmentVOList);
         return list;
     }
 
-    private void buildTree(List<DepartmentVO> nodeList,List<DepartmentVO> departmentVOList){
+    private void buildTree(List<DepartmentVO> nodeList, List<DepartmentVO> departmentVOList) {
         int nodeSize = nodeList.size();
-        for(int i =0 ;i< nodeSize;i++){
-            int preIndex = i-1;
-            int nextIndex = i+1;
+        for (int i = 0; i < nodeSize; i++) {
+            int preIndex = i - 1;
+            int nextIndex = i + 1;
             DepartmentVO node = nodeList.get(i);
-            if(preIndex>-1){
+            if (preIndex > -1) {
                 node.setPreId(nodeList.get(preIndex).getId());
             }
-            if(nextIndex<nodeSize){
+            if (nextIndex < nodeSize) {
                 node.setNextId(nodeList.get(nextIndex).getId());
             }
             buildTree(node, departmentVOList);
@@ -62,7 +63,7 @@ public class DepartmentTreeService {
         List<DepartmentVO> children = getChildren(node, departmentVOList);
         if (CollectionUtils.isNotEmpty(children)) {
             node.setChildrenDepartment(children);
-            this.buildTree(children,departmentVOList);
+            this.buildTree(children, departmentVOList);
         }
     }
 
@@ -70,7 +71,6 @@ public class DepartmentTreeService {
         Long id = node.getId();
         return departmentVOList.stream().filter(e -> id.equals(e.getParentId())).collect(Collectors.toList());
     }
-
 
 
     /**

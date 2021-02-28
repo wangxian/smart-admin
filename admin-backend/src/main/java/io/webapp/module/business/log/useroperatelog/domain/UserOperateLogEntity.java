@@ -1,4 +1,5 @@
 package io.webapp.module.business.log.useroperatelog.domain;
+
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.webapp.common.domain.BaseEntity;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @TableName("t_user_operate_log")
 public class UserOperateLogEntity extends BaseEntity {
-
 
 
     /**
@@ -68,7 +68,6 @@ public class UserOperateLogEntity extends BaseEntity {
      * 失败原因
      */
     private String failReason;
-
 
 
 }

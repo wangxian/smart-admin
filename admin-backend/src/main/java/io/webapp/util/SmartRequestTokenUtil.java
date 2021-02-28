@@ -6,6 +6,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author yandanyang
  * @version 1.0
@@ -18,7 +19,7 @@ public class SmartRequestTokenUtil {
 
     private static final String USER_KEY = "smart_admin_user";
 
-    private static ThreadLocal<RequestTokenBO> RequestUserThreadLocal = new ThreadLocal<RequestTokenBO>();
+    private static final ThreadLocal<RequestTokenBO> RequestUserThreadLocal = new ThreadLocal<RequestTokenBO>();
 
     public static void setUser(HttpServletRequest request, RequestTokenBO requestToken) {
         request.setAttribute(USER_KEY, requestToken);

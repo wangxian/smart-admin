@@ -1,7 +1,7 @@
 package io.webapp.module.support.quartz.domain.dto;
 
-import io.webapp.module.support.quartz.constant.TaskStatusEnum;
 import io.swagger.annotations.ApiModelProperty;
+import io.webapp.module.support.quartz.constant.TaskStatusEnum;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -37,7 +37,7 @@ public class QuartzTaskDTO {
     @NotNull(message = "cron表达式不能为空")
     private String taskCron;
 
-    @ApiModelProperty("任务状态:"+ TaskStatusEnum.INFO)
+    @ApiModelProperty("任务状态:" + TaskStatusEnum.INFO)
     private Integer taskStatus;
 
     @ApiModelProperty("任务备注")

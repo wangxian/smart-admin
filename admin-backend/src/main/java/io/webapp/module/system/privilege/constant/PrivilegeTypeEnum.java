@@ -7,31 +7,31 @@ import java.util.Arrays;
 import java.util.Optional;
 
 /**
- *
  * [  ]
  *
- * @version 1.0
- * @since JDK1.8
  * @author yandanyang
+ * @version 1.0
  * @company 1024lab.net
  * @copyright (c) 2019 1024lab.netInc. All rights reserved.
  * @date
+ * @since JDK1.8
  */
 public enum PrivilegeTypeEnum implements BaseEnum {
 
 
-    MENU(1,"菜单"),
+    MENU(1, "菜单"),
 
-    POINTS(2,"功能点");
+    POINTS(2, "功能点");
 
-    private Integer value;
+    private final Integer value;
 
-    private String desc;
+    private final String desc;
 
-    PrivilegeTypeEnum(Integer value,String desc){
+    PrivilegeTypeEnum(Integer value, String desc) {
         this.value = value;
-        this.desc = desc;
+        this.desc  = desc;
     }
+
     @Override
     public Integer getValue() {
         return this.value;

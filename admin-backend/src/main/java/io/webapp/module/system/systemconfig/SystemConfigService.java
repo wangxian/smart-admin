@@ -3,6 +3,12 @@ package io.webapp.module.system.systemconfig;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.google.common.collect.Lists;
+import io.webapp.common.constant.JudgeEnum;
+import io.webapp.common.constant.ResponseCodeConst;
+import io.webapp.common.domain.PageResultDTO;
+import io.webapp.common.domain.ResponseDTO;
+import io.webapp.common.reload.annotation.SmartReload;
 import io.webapp.constant.SmartReloadTagConst;
 import io.webapp.module.support.smartreload.SmartReloadService;
 import io.webapp.module.system.systemconfig.constant.SystemConfigDataType;
@@ -12,13 +18,6 @@ import io.webapp.module.system.systemconfig.domain.dto.*;
 import io.webapp.module.system.systemconfig.domain.entity.SystemConfigEntity;
 import io.webapp.util.SmartBeanUtil;
 import io.webapp.util.SmartPageUtil;
-import io.webapp.common.constant.JudgeEnum;
-import io.webapp.common.constant.ResponseCodeConst;
-import io.webapp.common.domain.PageResultDTO;
-import io.webapp.common.domain.ResponseDTO;
-import io.webapp.common.reload.annotation.SmartReload;
-import io.webapp.module.system.systemconfig.domain.dto.*;
-import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -43,7 +42,7 @@ public class SystemConfigService {
     /**
      * 系统配置缓存
      */
-    private ConcurrentHashMap<String, SystemConfigEntity> systemConfigMap = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, SystemConfigEntity> systemConfigMap = new ConcurrentHashMap<>();
 
     @Autowired
     private SystemConfigDao systemConfigDao;
@@ -83,7 +82,7 @@ public class SystemConfigService {
      */
     public ResponseDTO<PageResultDTO<SystemConfigVO>> getSystemConfigPage(SystemConfigQueryDTO queryDTO) {
         Page page = SmartPageUtil.convert2QueryPage(queryDTO);
-        if(queryDTO.getKey() != null){
+        if (queryDTO.getKey() != null) {
             queryDTO.setKey(queryDTO.getKey().toLowerCase());
         }
         List<SystemConfigEntity> entityList = systemConfigDao.selectSystemSettingList(page, queryDTO);
@@ -98,7 +97,7 @@ public class SystemConfigService {
      * @return
      */
     public ResponseDTO<SystemConfigVO> selectByKey(String configKey) {
-        if(configKey != null){
+        if (configKey != null) {
             configKey = configKey.toLowerCase();
         }
         SystemConfigEntity entity = systemConfigDao.getByKey(configKey);
@@ -118,7 +117,7 @@ public class SystemConfigService {
      * @return
      */
     public <T> T selectByKey2Obj(String configKey, Class<T> clazz) {
-        if(configKey != null){
+        if (configKey != null) {
             configKey = configKey.toLowerCase();
         }
         SystemConfigEntity entity = systemConfigDao.getByKey(configKey);
@@ -154,15 +153,15 @@ public class SystemConfigService {
         if (entity != null) {
             return ResponseDTO.wrap(SystemConfigResponseCodeConst.ALREADY_EXIST);
         }
-        ResponseDTO valueValid = this.configValueValid(configAddDTO.getConfigKey(),configAddDTO.getConfigValue());
-        if(!valueValid.isSuccess()){
+        ResponseDTO valueValid = this.configValueValid(configAddDTO.getConfigKey(), configAddDTO.getConfigValue());
+        if (!valueValid.isSuccess()) {
             return valueValid;
         }
         configAddDTO.setConfigKey(configAddDTO.getConfigKey().toLowerCase());
         SystemConfigEntity addEntity = SmartBeanUtil.copy(configAddDTO, SystemConfigEntity.class);
         addEntity.setIsUsing(JudgeEnum.YES.getValue());
         systemConfigDao.insert(addEntity);
-        //刷新缓存
+        // 刷新缓存
         this.initSystemConfigCache();
         return ResponseDTO.succ();
     }
@@ -176,7 +175,7 @@ public class SystemConfigService {
     public ResponseDTO<String> updateSystemConfig(SystemConfigUpdateDTO updateDTO) {
         updateDTO.setConfigKey(updateDTO.getConfigKey().toLowerCase());
         SystemConfigEntity entity = systemConfigDao.selectById(updateDTO.getId());
-        //系统配置不存在
+        // 系统配置不存在
         if (entity == null) {
             return ResponseDTO.wrap(SystemConfigResponseCodeConst.NOT_EXIST);
         }
@@ -184,46 +183,46 @@ public class SystemConfigService {
         if (alreadyEntity != null) {
             return ResponseDTO.wrap(SystemConfigResponseCodeConst.ALREADY_EXIST);
         }
-        ResponseDTO valueValid = this.configValueValid(updateDTO.getConfigKey(),updateDTO.getConfigValue());
-        if(!valueValid.isSuccess()){
+        ResponseDTO valueValid = this.configValueValid(updateDTO.getConfigKey(), updateDTO.getConfigValue());
+        if (!valueValid.isSuccess()) {
             return valueValid;
         }
         entity = SmartBeanUtil.copy(updateDTO, SystemConfigEntity.class);
         updateDTO.setConfigKey(updateDTO.getConfigKey().toLowerCase());
         systemConfigDao.updateById(entity);
 
-        //刷新缓存
+        // 刷新缓存
         this.initSystemConfigCache();
         return ResponseDTO.succ();
     }
 
 
-    private ResponseDTO<String> configValueValid(String configKey , String configValue){
+    private ResponseDTO<String> configValueValid(String configKey, String configValue) {
         SystemConfigEnum.Key configKeyEnum = SystemConfigEnum.Key.selectByKey(configKey);
-        if(configKeyEnum == null){
+        if (configKeyEnum == null) {
             return ResponseDTO.succ();
         }
         SystemConfigDataType dataType = configKeyEnum.getDataType();
-        if(dataType == null){
+        if (dataType == null) {
             return ResponseDTO.succ();
         }
-        if(dataType.name().equals(SystemConfigDataType.TEXT.name())){
+        if (dataType.name().equals(SystemConfigDataType.TEXT.name())) {
             return ResponseDTO.succ();
         }
-        if(dataType.name().equals(SystemConfigDataType.JSON.name())){
+        if (dataType.name().equals(SystemConfigDataType.JSON.name())) {
             try {
                 JSONObject jsonStr = JSONObject.parseObject(configValue);
                 return ResponseDTO.succ();
             } catch (Exception e) {
-                return ResponseDTO.wrap(ResponseCodeConst.ERROR_PARAM,"数据格式不是JSON,请修改后提交。");
+                return ResponseDTO.wrap(ResponseCodeConst.ERROR_PARAM, "数据格式不是JSON,请修改后提交。");
             }
         }
-        if(StringUtils.isNotEmpty(dataType.getValid())){
+        if (StringUtils.isNotEmpty(dataType.getValid())) {
             Boolean valid = Pattern.matches(dataType.getValid(), configValue);
-            if(valid){
+            if (valid) {
                 return ResponseDTO.succ();
             }
-            return ResponseDTO.wrap(ResponseCodeConst.ERROR_PARAM,"数据格式不是"+dataType.name().toLowerCase()+",请修改后提交。");
+            return ResponseDTO.wrap(ResponseCodeConst.ERROR_PARAM, "数据格式不是" + dataType.name().toLowerCase() + ",请修改后提交。");
         }
 
         return ResponseDTO.succ();

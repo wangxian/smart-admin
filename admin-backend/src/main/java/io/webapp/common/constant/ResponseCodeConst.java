@@ -65,14 +65,14 @@ public class ResponseCodeConst {
     protected ResponseCodeConst(int code, String msg) {
         super();
         this.code = code;
-        this.msg = msg;
+        this.msg  = msg;
         ResponseCodeContainer.put(this);
     }
 
     protected ResponseCodeConst(int code, String msg, boolean success) {
         super();
-        this.code = code;
-        this.msg = msg;
+        this.code    = code;
+        this.msg     = msg;
         this.success = success;
         ResponseCodeContainer.put(this);
     }
@@ -143,7 +143,7 @@ public class ResponseCodeConst {
             RESPONSE_CODE_RANGE_MAP.forEach((k, v) -> {
                 if ((start >= v[0] && start <= v[1]) || (end >= v[0] && end <= v[1])) {
                     throw new IllegalArgumentException(String.format("<ResponseDTO> Class:%s 's id range[%d,%d] has " + "intersection with " + "class:%s", clazz.getSimpleName(), start, end,
-                        k.getSimpleName()));
+                                                                     k.getSimpleName()));
                 }
             });
 
@@ -169,7 +169,7 @@ public class ResponseCodeConst {
             if (code < idRange[0] || code > idRange[1]) {
                 throw new IllegalArgumentException(String.format("<ResponseDTO> Id(%d) out of range[%d,%d], " + "class:%s", code, idRange[0], idRange[1], codeConst.getClass().getSimpleName()));
             }
-            if (RESPONSE_CODE_MAP.keySet().contains(code)) {
+            if (RESPONSE_CODE_MAP.containsKey(code)) {
                 log.error(String.format("<ResponseDTO> Id(%d) out of range[%d,%d], " + "class:%s  code is repeat!", code, idRange[0], idRange[1], codeConst.getClass().getSimpleName()));
                 System.exit(0);
             }

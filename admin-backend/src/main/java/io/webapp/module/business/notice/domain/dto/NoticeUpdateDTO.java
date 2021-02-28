@@ -14,7 +14,7 @@ import lombok.Data;
  * @since JDK1.8
  */
 @Data
-public class NoticeUpdateDTO extends NoticeAddDTO{
+public class NoticeUpdateDTO extends NoticeAddDTO {
 
     @ApiModelProperty("id")
     private Long id;

@@ -1,14 +1,14 @@
 package io.webapp.common.reload;
 
 import io.webapp.common.reload.annotation.SmartReload;
+import io.webapp.common.reload.domain.AbstractSmartReloadObject;
+import io.webapp.common.reload.domain.AnnotationReloadObject;
+import io.webapp.common.reload.domain.InterfaceReloadObject;
 import io.webapp.common.reload.domain.entity.ReloadItem;
 import io.webapp.common.reload.domain.entity.SmartReloadResult;
 import io.webapp.common.reload.interfaces.SmartReloadCommandInterface;
 import io.webapp.common.reload.interfaces.SmartReloadThreadLogger;
 import io.webapp.common.reload.interfaces.SmartReloadable;
-import io.webapp.common.reload.domain.AbstractSmartReloadObject;
-import io.webapp.common.reload.domain.AnnotationReloadObject;
-import io.webapp.common.reload.domain.InterfaceReloadObject;
 
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -26,11 +26,11 @@ import static java.util.Objects.requireNonNull;
  */
 public class SmartReloadManager {
 
-    private Map<String, AbstractSmartReloadObject> tagReloadObject;
+    private final Map<String, AbstractSmartReloadObject> tagReloadObject;
 
-    private SmartReloadScheduler reloadScheduler;
+    private final SmartReloadScheduler reloadScheduler;
 
-    private SmartReloadThreadLogger logger;
+    private final SmartReloadThreadLogger logger;
 
     public SmartReloadManager(SmartReloadThreadLogger logger, int threadCount) {
         this.tagReloadObject = new ConcurrentHashMap<>();
@@ -42,7 +42,7 @@ public class SmartReloadManager {
             throw new ExceptionInInitializerError("threadCount must be greater than 1");
         }
 
-        this.logger = logger;
+        this.logger          = logger;
         this.reloadScheduler = new SmartReloadScheduler(this.logger, threadCount);
     }
 

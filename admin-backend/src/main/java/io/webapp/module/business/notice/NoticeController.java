@@ -1,15 +1,14 @@
 package io.webapp.module.business.notice;
 
-import io.webapp.constant.SwaggerTagConst;
-import io.webapp.module.business.notice.domain.dto.*;
-import io.webapp.util.SmartRequestTokenUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.webapp.common.anno.NoValidPrivilege;
 import io.webapp.common.domain.PageParamDTO;
 import io.webapp.common.domain.PageResultDTO;
 import io.webapp.common.domain.ResponseDTO;
+import io.webapp.constant.SwaggerTagConst;
 import io.webapp.module.business.notice.domain.dto.*;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.webapp.util.SmartRequestTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,15 +1,16 @@
 package io.webapp.module.business.login;
 
+import com.google.code.kaptcha.impl.DefaultKaptcha;
+import eu.bitwalker.useragentutils.UserAgent;
+import io.webapp.common.constant.JudgeEnum;
+import io.webapp.common.domain.ResponseDTO;
 import io.webapp.constant.CommonConst;
+import io.webapp.module.business.log.LogService;
+import io.webapp.module.business.log.userloginlog.domain.UserLoginLogEntity;
 import io.webapp.module.business.login.domain.KaptchaVO;
 import io.webapp.module.business.login.domain.LoginDetailVO;
 import io.webapp.module.business.login.domain.LoginPrivilegeDTO;
 import io.webapp.module.business.login.domain.RequestTokenBO;
-import io.webapp.util.SmartBeanUtil;
-import io.webapp.util.SmartDigestUtil;
-import io.webapp.util.SmartIPUtil;
-import io.webapp.common.constant.JudgeEnum;
-import io.webapp.common.domain.ResponseDTO;
 import io.webapp.module.system.department.DepartmentDao;
 import io.webapp.module.system.department.domain.entity.DepartmentEntity;
 import io.webapp.module.system.employee.EmployeeDao;
@@ -17,12 +18,11 @@ import io.webapp.module.system.employee.constant.EmployeeResponseCodeConst;
 import io.webapp.module.system.employee.constant.EmployeeStatusEnum;
 import io.webapp.module.system.employee.domain.dto.EmployeeDTO;
 import io.webapp.module.system.employee.domain.dto.EmployeeLoginFormDTO;
-import io.webapp.module.business.log.LogService;
-import io.webapp.module.business.log.userloginlog.domain.UserLoginLogEntity;
 import io.webapp.module.system.privilege.domain.entity.PrivilegeEntity;
 import io.webapp.module.system.privilege.service.PrivilegeEmployeeService;
-import com.google.code.kaptcha.impl.DefaultKaptcha;
-import eu.bitwalker.useragentutils.UserAgent;
+import io.webapp.util.SmartBeanUtil;
+import io.webapp.util.SmartDigestUtil;
+import io.webapp.util.SmartIPUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
@@ -85,7 +85,7 @@ public class LoginService {
     public ResponseDTO<LoginDetailVO> login(@Valid EmployeeLoginFormDTO loginForm, HttpServletRequest request) {
         String redisVerificationCode = redisValueOperations.get(loginForm.getCodeUuid());
 
-        //增加删除已使用的验证码方式 频繁登录
+        // 增加删除已使用的验证码方式 频繁登录
         redisValueOperations.getOperations().delete(loginForm.getCodeUuid());
         if (StringUtils.isEmpty(redisVerificationCode)) {
             return ResponseDTO.wrap(EmployeeResponseCodeConst.VERIFICATION_CODE_INVALID);
@@ -105,32 +105,32 @@ public class LoginService {
             return ResponseDTO.wrap(EmployeeResponseCodeConst.IS_DISABLED);
         }
 
-        //jwt token赋值
+        // jwt token赋值
         String compactJws = loginTokenService.generateToken(employeeDTO);
 
         LoginDetailVO loginDTO = SmartBeanUtil.copy(employeeDTO, LoginDetailVO.class);
 
-        //获取前端功能权限
+        // 获取前端功能权限
         loginDTO.setPrivilegeList(initEmployeePrivilege(employeeDTO.getId()));
 
         loginDTO.setXAccessToken(compactJws);
         DepartmentEntity departmentEntity = departmentDao.selectById(employeeDTO.getDepartmentId());
         loginDTO.setDepartmentName(departmentEntity.getName());
 
-        //判断是否为超管
+        // 判断是否为超管
         Boolean isSuperman = privilegeEmployeeService.isSuperman(loginDTO.getId());
         loginDTO.setIsSuperMan(isSuperman);
-        //登陆操作日志
+        // 登陆操作日志
         UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
         UserLoginLogEntity logEntity =
                 UserLoginLogEntity.builder()
-                        .userId(employeeDTO.getId())
-                        .userName(employeeDTO.getActualName())
-                        .remoteIp(SmartIPUtil.getRemoteIp(request))
-                        .remotePort(request.getRemotePort())
-                        .remoteBrowser(userAgent.getBrowser().getName())
-                        .remoteOs(userAgent.getOperatingSystem().getName())
-                        .loginStatus(JudgeEnum.YES.getValue()).build();
+                                  .userId(employeeDTO.getId())
+                                  .userName(employeeDTO.getActualName())
+                                  .remoteIp(SmartIPUtil.getRemoteIp(request))
+                                  .remotePort(request.getRemotePort())
+                                  .remoteBrowser(userAgent.getBrowser().getName())
+                                  .remoteOs(userAgent.getOperatingSystem().getName())
+                                  .loginStatus(JudgeEnum.YES.getValue()).build();
         logService.addLog(logEntity);
         return ResponseDTO.succData(loginDTO);
     }
@@ -200,7 +200,7 @@ public class LoginService {
     public LoginDetailVO getSession(RequestTokenBO requestUser) {
         LoginDetailVO loginDTO = SmartBeanUtil.copy(requestUser.getEmployeeBO(), LoginDetailVO.class);
         List<PrivilegeEntity> privilegeEntityList = privilegeEmployeeService.getEmployeeAllPrivilege(requestUser.getRequestUserId());
-        //======  开启缓存   ======
+        // ======  开启缓存   ======
         if (privilegeEntityList == null) {
             List<LoginPrivilegeDTO> loginPrivilegeDTOS = initEmployeePrivilege(requestUser.getRequestUserId());
             loginDTO.setPrivilegeList(loginPrivilegeDTOS);
@@ -208,11 +208,11 @@ public class LoginService {
             loginDTO.setPrivilegeList(SmartBeanUtil.copyList(privilegeEntityList, LoginPrivilegeDTO.class));
         }
 
-        //======  不开启缓存   ======
-//        List<LoginPrivilegeDTO> loginPrivilegeDTOS = initEmployeePrivilege(requestUser.getRequestUserId());
-//        loginDTO.setPrivilegeList(loginPrivilegeDTOS);
+        // ======  不开启缓存   ======
+        //        List<LoginPrivilegeDTO> loginPrivilegeDTOS = initEmployeePrivilege(requestUser.getRequestUserId());
+        //        loginDTO.setPrivilegeList(loginPrivilegeDTOS);
 
-        //判断是否为超管
+        // 判断是否为超管
         Boolean isSuperman = privilegeEmployeeService.isSuperman(loginDTO.getId());
         loginDTO.setIsSuperMan(isSuperman);
         return loginDTO;

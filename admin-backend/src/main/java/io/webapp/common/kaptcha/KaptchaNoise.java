@@ -26,15 +26,15 @@ public class KaptchaNoise extends Configurable implements NoiseProducer {
 
         int width = image.getWidth();
         int height = image.getHeight();
-        Graphics2D graph = (Graphics2D)image.getGraphics();
+        Graphics2D graph = (Graphics2D) image.getGraphics();
         graph.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
         graph.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL));
         Random random = new Random();
         int noiseLineNum = random.nextInt(3);
-        if(noiseLineNum == 0){
+        if (noiseLineNum == 0) {
             noiseLineNum = 1;
         }
-        for (int i = 0; i < noiseLineNum; i++){
+        for (int i = 0; i < noiseLineNum; i++) {
             graph.setColor(KaptchaColor.getColor());
             graph.drawLine(random.nextInt(width), random.nextInt(height), 10 + random.nextInt(20), 10 + random.nextInt(20));
         }

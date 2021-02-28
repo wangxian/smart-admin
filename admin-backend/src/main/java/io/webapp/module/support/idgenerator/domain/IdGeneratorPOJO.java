@@ -18,7 +18,7 @@ public class IdGeneratorPOJO {
 
     public IdGeneratorPOJO(IdGeneratorRuleTypeEnum idGeneratorRuleTypeEnum, IdGeneratorEntity idGeneratorEntity) {
         this.idGeneratorRuleTypeEnum = idGeneratorRuleTypeEnum;
-        this.idGeneratorEntity = idGeneratorEntity;
+        this.idGeneratorEntity       = idGeneratorEntity;
     }
 
     public IdGeneratorRuleTypeEnum getIdGeneratorRuleTypeEnum() {

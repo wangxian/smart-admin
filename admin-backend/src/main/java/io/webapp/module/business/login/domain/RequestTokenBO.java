@@ -7,13 +7,13 @@ import lombok.Getter;
 @Getter
 public class RequestTokenBO {
 
-    private Long requestUserId;
+    private final Long requestUserId;
 
-    private EmployeeBO employeeBO;
+    private final EmployeeBO employeeBO;
 
     public RequestTokenBO(EmployeeBO employeeBO) {
         this.requestUserId = employeeBO.getId();
-        this.employeeBO = employeeBO;
+        this.employeeBO    = employeeBO;
     }
 
     @Override

@@ -1,15 +1,15 @@
 package io.webapp.module.system.datascope;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.webapp.common.anno.NoValidPrivilege;
+import io.webapp.common.anno.OperateLog;
+import io.webapp.common.domain.ResponseDTO;
 import io.webapp.constant.SwaggerTagConst;
 import io.webapp.module.system.datascope.domain.dto.DataScopeAndViewTypeVO;
 import io.webapp.module.system.datascope.domain.dto.DataScopeBatchSetRoleDTO;
 import io.webapp.module.system.datascope.domain.dto.DataScopeSelectVO;
 import io.webapp.module.system.datascope.service.DataScopeService;
-import io.webapp.common.anno.NoValidPrivilege;
-import io.webapp.common.anno.OperateLog;
-import io.webapp.common.domain.ResponseDTO;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

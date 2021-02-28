@@ -12,12 +12,12 @@ package io.webapp.module.system.datascope.constant;
  */
 public enum DataScopeWhereInTypeEnum {
 
-    EMPLOYEE(0,"以员工IN"),
+    EMPLOYEE(0, "以员工IN"),
 
-    DEPARTMENT(1,"以部门IN");
+    DEPARTMENT(1, "以部门IN");
 
-    private Integer type;
-    private String desc;
+    private final Integer type;
+    private final String desc;
 
     DataScopeWhereInTypeEnum(Integer type, String desc) {
         this.type = type;

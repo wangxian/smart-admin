@@ -1,13 +1,12 @@
 package io.webapp.module.system.position;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.webapp.common.domain.PageResultDTO;
+import io.webapp.common.domain.ResponseDTO;
 import io.webapp.module.system.position.domain.dto.*;
 import io.webapp.module.system.position.domain.entity.PositionEntity;
 import io.webapp.util.SmartBeanUtil;
 import io.webapp.util.SmartPageUtil;
-import io.webapp.common.domain.PageResultDTO;
-import io.webapp.common.domain.ResponseDTO;
-import io.webapp.module.system.position.domain.dto.*;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,7 +75,7 @@ public class PositionService {
      * 删除岗位
      */
     public ResponseDTO<String> removePosition(Long id) {
-        //查询是否还有人关联该岗位
+        // 查询是否还有人关联该岗位
         PositionRelationQueryDTO positionRelationQueryDTO = new PositionRelationQueryDTO();
         positionRelationQueryDTO.setPositionId(id);
         List<PositionRelationResultDTO> dtoList = positionDao.selectRelation(positionRelationQueryDTO);

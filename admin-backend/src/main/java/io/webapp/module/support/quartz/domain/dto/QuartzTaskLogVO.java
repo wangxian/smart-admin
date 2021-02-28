@@ -1,7 +1,7 @@
 package io.webapp.module.support.quartz.domain.dto;
 
-import io.webapp.module.support.quartz.constant.TaskResultEnum;
 import io.swagger.annotations.ApiModelProperty;
+import io.webapp.module.support.quartz.constant.TaskResultEnum;
 import lombok.Data;
 
 import java.util.Date;
@@ -31,7 +31,7 @@ public class QuartzTaskLogVO {
     @ApiModelProperty("任务参数")
     private String taskParams;
 
-    @ApiModelProperty("任务处理状态:"+ TaskResultEnum.INFO)
+    @ApiModelProperty("任务处理状态:" + TaskResultEnum.INFO)
     private Integer processStatus;
 
     @ApiModelProperty("任务时长ms")

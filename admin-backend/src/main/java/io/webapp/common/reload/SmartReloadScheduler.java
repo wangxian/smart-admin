@@ -15,13 +15,13 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class SmartReloadScheduler {
 
-    private ScheduledThreadPoolExecutor executor;
+    private final ScheduledThreadPoolExecutor executor;
 
-    private SmartReloadThreadLogger logger;
+    private final SmartReloadThreadLogger logger;
 
     SmartReloadScheduler(SmartReloadThreadLogger logger, int threadCount) {
         this.executor = new ScheduledThreadPoolExecutor(threadCount, new SmartReloadSchedulerThreadFactory());
-        this.logger = logger;
+        this.logger   = logger;
     }
 
     void shutdown() {
@@ -38,13 +38,13 @@ public class SmartReloadScheduler {
 
     static class ScheduleRunnable implements Runnable {
 
-        private SmartReloadCommandInterface command;
+        private final SmartReloadCommandInterface command;
 
-        private SmartReloadThreadLogger logger;
+        private final SmartReloadThreadLogger logger;
 
         public ScheduleRunnable(SmartReloadCommandInterface command, SmartReloadThreadLogger logger) {
             this.command = command;
-            this.logger = logger;
+            this.logger  = logger;
         }
 
         @Override
@@ -69,7 +69,7 @@ public class SmartReloadScheduler {
 
         SmartReloadSchedulerThreadFactory() {
             SecurityManager s = System.getSecurityManager();
-            group = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();
+            group      = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();
             namePrefix = "smartreload-" + poolNumber.getAndIncrement() + "-thread-";
         }
 

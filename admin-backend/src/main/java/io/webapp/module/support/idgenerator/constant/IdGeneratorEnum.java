@@ -21,11 +21,11 @@ public enum IdGeneratorEnum {
 
     ORDER(1, "order");
 
-    private long id;
-    private String keyName;
+    private final long id;
+    private final String keyName;
 
     IdGeneratorEnum(int id, String keyName) {
-        this.id = id;
+        this.id      = id;
         this.keyName = keyName;
     }
 

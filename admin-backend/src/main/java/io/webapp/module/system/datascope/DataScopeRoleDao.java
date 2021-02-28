@@ -24,6 +24,7 @@ public interface DataScopeRoleDao extends BaseMapper<DataScopeRoleEntity> {
 
     /**
      * 获取某个角色的设置信息
+     *
      * @param roleId
      * @return
      */
@@ -31,6 +32,7 @@ public interface DataScopeRoleDao extends BaseMapper<DataScopeRoleEntity> {
 
     /**
      * 获取某批角色的所有数据范围配置信息
+     *
      * @param roleIdList
      * @return
      */
@@ -38,6 +40,7 @@ public interface DataScopeRoleDao extends BaseMapper<DataScopeRoleEntity> {
 
     /**
      * 删除某个角色的设置信息
+     *
      * @param roleId
      * @return
      */
@@ -46,7 +49,8 @@ public interface DataScopeRoleDao extends BaseMapper<DataScopeRoleEntity> {
 
     /**
      * 批量添加设置信息
+     *
      * @param list
      */
-    void batchInsert(@Param("list")List<DataScopeRoleEntity> list);
+    void batchInsert(@Param("list") List<DataScopeRoleEntity> list);
 }

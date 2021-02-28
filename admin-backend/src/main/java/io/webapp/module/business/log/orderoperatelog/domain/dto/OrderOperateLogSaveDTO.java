@@ -6,7 +6,6 @@ import io.webapp.module.business.log.orderoperatelog.constant.OrderOperateLogOrd
 import lombok.Data;
 
 /**
- *
  * @author yandanyang
  * @version 1.0
  * @company 1024lab.net
@@ -33,7 +32,7 @@ public class OrderOperateLogSaveDTO {
     private OrderOperateLogOperateTypeConst operateType;
 
     /**
-     *操作类型 对应的中文
+     * 操作类型 对应的中文
      */
     private String operateContent;
 
@@ -61,20 +60,20 @@ public class OrderOperateLogSaveDTO {
     }
 
     public OrderOperateLogSaveDTO(Long orderId, OrderOperateLogOrderTypeEnum orderType, OrderOperateLogOperateTypeConst operateType, String
-        operateRemark, Long employeeId, String employeeName, String extData) {
-        this.orderId = orderId;
-        this.orderType = orderType;
-        this.operateType = operateType;
+            operateRemark, Long employeeId, String employeeName, String extData) {
+        this.orderId       = orderId;
+        this.orderType     = orderType;
+        this.operateType   = operateType;
         this.operateRemark = operateRemark;
-        this.employeeId = employeeId;
-        this.employeeName = employeeName;
-        this.extData = extData;
+        this.employeeId    = employeeId;
+        this.employeeName  = employeeName;
+        this.extData       = extData;
     }
 
     @Override
     public String toString() {
         return "OrderOperateLogSaveDTO{" + "orderId=" + orderId + ", orderType=" + orderType + ", operateType=" + operateType + ", operateRemark='"
-            + operateRemark + '\'' + ", employeeId=" + employeeId + ", employeeName='" + employeeName + '\'' + ", extData='" + extData + '\'' + '}';
+                + operateRemark + '\'' + ", employeeId=" + employeeId + ", employeeName='" + employeeName + '\'' + ", extData='" + extData + '\'' + '}';
     }
 
 }

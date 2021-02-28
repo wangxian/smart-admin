@@ -1,11 +1,6 @@
 package io.webapp.module.business.notice;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import io.webapp.module.business.notice.domain.dto.*;
-import io.webapp.module.business.notice.domain.entity.NoticeEntity;
-import io.webapp.module.business.notice.domain.entity.NoticeReceiveRecordEntity;
-import io.webapp.util.SmartBeanUtil;
-import io.webapp.util.SmartPageUtil;
 import io.webapp.common.constant.JudgeEnum;
 import io.webapp.common.constant.ResponseCodeConst;
 import io.webapp.common.domain.PageParamDTO;
@@ -15,7 +10,11 @@ import io.webapp.module.business.login.domain.RequestTokenBO;
 import io.webapp.module.business.notice.dao.NoticeDao;
 import io.webapp.module.business.notice.dao.NoticeReceiveRecordDao;
 import io.webapp.module.business.notice.domain.dto.*;
+import io.webapp.module.business.notice.domain.entity.NoticeEntity;
+import io.webapp.module.business.notice.domain.entity.NoticeReceiveRecordEntity;
 import io.webapp.module.support.websocket.WebSocketServer;
+import io.webapp.util.SmartBeanUtil;
+import io.webapp.util.SmartPageUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -197,18 +196,18 @@ public class NoticeService {
         if (CollectionUtils.isEmpty(onLineEmployeeIds)) {
             return;
         }
-        //在线用户已读消息数
+        // 在线用户已读消息数
         Map<Long, Integer> readCountMap = new HashMap<>();
         List<NoticeReadCountDTO> readCountList = noticeDao.readCount(onLineEmployeeIds);
         if (CollectionUtils.isNotEmpty(readCountList)) {
-            readCountMap = readCountList.stream().collect(Collectors.toMap(NoticeReadCountDTO :: getEmployeeId, NoticeReadCountDTO :: getReadCount));
+            readCountMap = readCountList.stream().collect(Collectors.toMap(NoticeReadCountDTO::getEmployeeId, NoticeReadCountDTO::getReadCount));
         }
-        //已发送消息数
+        // 已发送消息数
         Integer noticeCount = noticeDao.noticeCount(JudgeEnum.YES.getValue());
         for (Long employeeId : onLineEmployeeIds) {
             Integer readCount = readCountMap.get(employeeId) == null ? 0 : readCountMap.get(employeeId);
             Integer unReadCount = noticeCount - readCount;
-            if (! requestToken.getRequestUserId().equals(employeeId)) {
+            if (!requestToken.getRequestUserId().equals(employeeId)) {
                 WebSocketServer.sendOneOnLineUser(unReadCount.toString(), employeeId);
             }
         }

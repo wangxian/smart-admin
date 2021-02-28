@@ -25,6 +25,7 @@ public @interface DataScope {
 
     /**
      * 第几个where 条件 从0开始
+     *
      * @return
      */
     int whereIndex() default 0;

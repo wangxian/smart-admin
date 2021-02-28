@@ -2,10 +2,10 @@ package io.webapp.module.support.websocket;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.google.common.collect.Lists;
 import io.webapp.module.support.websocket.domain.MessageCommonDTO;
 import io.webapp.module.support.websocket.domain.MessageDTO;
 import io.webapp.module.support.websocket.domain.WebSocketHeartBeatDTO;
-import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -39,12 +39,12 @@ public class WebSocketServer {
     /**
      * 当前在线用户 employee,expireTime
      */
-    private static ConcurrentHashMap<Long, Long> onLineUser = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<Long, Long> onLineUser = new ConcurrentHashMap<>();
 
     /**
      * 当前在线用户所对应的 socket session信息
      */
-    private static ConcurrentHashMap<Long, Session> webSocketSession = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<Long, Session> webSocketSession = new ConcurrentHashMap<>();
 
     @OnOpen
     public void onOpen(Session session, @PathParam("employeeId") Long employeeId) {
@@ -83,7 +83,8 @@ public class WebSocketServer {
         if (StringUtils.isEmpty(message)) {
             return;
         }
-        MessageCommonDTO messageCommonDTO = JSON.parseObject(message, new TypeReference<MessageCommonDTO>() {});
+        MessageCommonDTO messageCommonDTO = JSON.parseObject(message, new TypeReference<MessageCommonDTO>() {
+        });
         if (MessageTypeEnum.HEART_BEAT.getValue().equals(messageCommonDTO.getMessageType())) {
             this.heartBeatHandle(messageCommonDTO.getJsonStr());
         }
@@ -97,7 +98,8 @@ public class WebSocketServer {
     private void heartBeatHandle(String json) {
         Long currentDate = System.currentTimeMillis();
         Long expireTime = currentDate + 5 * 1000;
-        WebSocketHeartBeatDTO heartBeatDTO = JSON.parseObject(json, new TypeReference<WebSocketHeartBeatDTO>() {});
+        WebSocketHeartBeatDTO heartBeatDTO = JSON.parseObject(json, new TypeReference<WebSocketHeartBeatDTO>() {
+        });
         Long employeeId = heartBeatDTO.getEmployeeId();
         onLineUser.put(employeeId, expireTime);
     }
@@ -127,11 +129,11 @@ public class WebSocketServer {
      * @param messageDTO
      */
     public static void sendMessage(MessageDTO messageDTO) {
-        //系统通知
+        // 系统通知
         if (MessageTypeEnum.SYS_NOTICE.getValue().equals(messageDTO.getMessageType())) {
             sendAllOnLineUser(messageDTO.getMessage(), messageDTO.getFromUserId());
         }
-        //站内信
+        // 站内信
         if (MessageTypeEnum.PRIVATE_LETTER.getValue().equals(messageDTO.getMessageType())) {
             sendOneOnLineUser(messageDTO.getMessage(), messageDTO.getToUserId());
         }
@@ -147,8 +149,8 @@ public class WebSocketServer {
             Session session = entry.getValue();
             Long userId = entry.getKey();
             try {
-                //不想消息创建人推送消息
-                if (! userId.equals(fromUserId)) {
+                // 不想消息创建人推送消息
+                if (!userId.equals(fromUserId)) {
                     session.getBasicRemote().sendText(message);
                 }
             } catch (IOException e) {

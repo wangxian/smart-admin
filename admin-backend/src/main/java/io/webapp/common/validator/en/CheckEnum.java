@@ -43,7 +43,7 @@ public @interface CheckEnum {
      */
     boolean required() default false;
 
-    //下面这两个属性必须添加 :不然会报错
+    // 下面这两个属性必须添加 :不然会报错
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};

@@ -1,4 +1,5 @@
 package io.webapp.module.business.notice.domain.entity;
+
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.webapp.common.domain.BaseEntity;
 import lombok.Data;

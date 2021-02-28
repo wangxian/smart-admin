@@ -21,9 +21,9 @@ public enum CommentSortTypeEnum implements BaseEnum {
      */
     DESC(2, "DESC");
 
-    private Integer value;
+    private final Integer value;
 
-    private String desc;
+    private final String desc;
 
     /**
      * 排序类型：1正序 | 2倒序
@@ -32,7 +32,7 @@ public enum CommentSortTypeEnum implements BaseEnum {
 
     CommentSortTypeEnum(Integer value, String desc) {
         this.value = value;
-        this.desc = desc;
+        this.desc  = desc;
     }
 
     /**

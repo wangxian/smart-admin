@@ -5,10 +5,10 @@ import lombok.Data;
 import java.util.Date;
 
 /**
-* @Description: 心跳记录日志
-* @Author: simajinqiang
-* @Date: 2018/7/9 11:11
-*/
+ * @Description: 心跳记录日志
+ * @Author: simajinqiang
+ * @Date: 2018/7/9 11:11
+ */
 @Data
 public class HeartBeatRecordDTO {
 

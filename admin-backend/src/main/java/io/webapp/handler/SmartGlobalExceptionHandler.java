@@ -60,7 +60,7 @@ public class SmartGlobalExceptionHandler {
         // 参数校验未通过
         if (e instanceof MethodArgumentNotValidException) {
             List<FieldError> fieldErrors = ((MethodArgumentNotValidException) e).getBindingResult().getFieldErrors();
-            List<String> msgList = fieldErrors.stream().map(FieldError :: getDefaultMessage).collect(Collectors.toList());
+            List<String> msgList = fieldErrors.stream().map(FieldError::getDefaultMessage).collect(Collectors.toList());
             return ResponseDTO.wrap(ResponseCodeConst.ERROR_PARAM, String.join(",", msgList));
         }
 

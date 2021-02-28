@@ -67,8 +67,8 @@ public interface BaseEnum {
 
         String enumJson = JSON.toJSONString(json, true);
         enumJson = enumJson.replaceAll("\"", "");
-        enumJson= enumJson.replaceAll("\t","&nbsp;&nbsp;");
-        enumJson = enumJson.replaceAll("\n","<br>");
+        enumJson = enumJson.replaceAll("\t", "&nbsp;&nbsp;");
+        enumJson = enumJson.replaceAll("\n", "<br>");
         String prefix = "  <br>  export const <br> " + CaseFormat.UPPER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, clazz.getSimpleName() + " = <br> ");
         return prefix + "" + enumJson + " <br>";
     }
@@ -80,11 +80,11 @@ public interface BaseEnum {
         private String value;
 
         public DeletedQuotationAware(Object value) {
-            if(value == null){
+            if (value == null) {
                 this.value = "";
-            }else if (value instanceof String) {
+            } else if (value instanceof String) {
                 this.value = "'" + value + "'";
-            }else {
+            } else {
                 this.value = value.toString();
             }
         }

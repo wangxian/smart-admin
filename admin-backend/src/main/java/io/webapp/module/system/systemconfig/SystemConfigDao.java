@@ -38,11 +38,13 @@ public interface SystemConfigDao extends BaseMapper<SystemConfigEntity> {
 
     /**
      * 根据key查询获取数据  排除掉某個id的数据
+     *
      * @param key
      * @param excludeId
      * @return
      */
-    SystemConfigEntity getByKeyExcludeId(@Param("key") String key,@Param("excludeId") Long excludeId);
+    SystemConfigEntity getByKeyExcludeId(@Param("key") String key, @Param("excludeId") Long excludeId);
+
     /**
      * 查询所有系统配置
      *
@@ -52,11 +54,12 @@ public interface SystemConfigDao extends BaseMapper<SystemConfigEntity> {
 
     /**
      * 根据分组查询所有系统配置
+     *
      * @param group
      * @return
      */
     List<SystemConfigEntity> getListByGroup(String group);
 
 
-    SystemConfigEntity  selectByKeyAndGroup(@Param("configKey") String configKey, @Param("group") String group);
+    SystemConfigEntity selectByKeyAndGroup(@Param("configKey") String configKey, @Param("group") String group);
 }

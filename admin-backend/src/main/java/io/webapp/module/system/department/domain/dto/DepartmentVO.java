@@ -1,8 +1,8 @@
 package io.webapp.module.system.department.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.webapp.module.system.employee.domain.dto.EmployeeDTO;
 import io.swagger.annotations.ApiModelProperty;
+import io.webapp.module.system.employee.domain.dto.EmployeeDTO;
 import lombok.Data;
 
 import java.util.Date;

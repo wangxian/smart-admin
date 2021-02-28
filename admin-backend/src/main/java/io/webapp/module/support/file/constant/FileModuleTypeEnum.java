@@ -19,16 +19,16 @@ public enum FileModuleTypeEnum implements BaseEnum {
 
     CODE_REVIEW(2, "codeReview", "CodeReview");
 
-    private Integer value;
+    private final Integer value;
 
-    private String path;
+    private final String path;
 
-    private String desc;
+    private final String desc;
 
     FileModuleTypeEnum(Integer value, String path, String desc) {
         this.value = value;
-        this.path = path;
-        this.desc = desc;
+        this.path  = path;
+        this.desc  = desc;
     }
 
     public String getPath() {

@@ -1,7 +1,7 @@
 package io.webapp.common.reload.abstracts;
 
-import io.webapp.common.reload.domain.entity.ReloadItem;
 import io.webapp.common.reload.SmartReloadManager;
+import io.webapp.common.reload.domain.entity.ReloadItem;
 import io.webapp.common.reload.interfaces.SmartReloadCommandInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -26,7 +26,7 @@ public abstract class AbstractSmartReloadCommand4Spring implements SmartReloadCo
     @Autowired
     protected SmartReloadManager reloadManager;
 
-//    @PostConstruct
+    //    @PostConstruct
     public void init() {
         List<ReloadItem> readTagStatesFromDb = readReloadItem();
         if (readTagStatesFromDb != null) {
@@ -52,11 +52,11 @@ public abstract class AbstractSmartReloadCommand4Spring implements SmartReloadCo
         String tagIdentifier;
         String preTagChangeIdentifier;
         for (ReloadItem reloadItem : readTagStatesFromDb) {
-            tag = reloadItem.getTag();
-            tagIdentifier = reloadItem.getIdentification();
+            tag                    = reloadItem.getTag();
+            tagIdentifier          = reloadItem.getIdentification();
             preTagChangeIdentifier = currentTags.get(tag);
             // 数据不一致
-            if (preTagChangeIdentifier == null || ! preTagChangeIdentifier.equals(tagIdentifier)) {
+            if (preTagChangeIdentifier == null || !preTagChangeIdentifier.equals(tagIdentifier)) {
                 // 更新map数据
                 currentTags.put(tag, tagIdentifier);
                 // 执行重新加载此项的动作

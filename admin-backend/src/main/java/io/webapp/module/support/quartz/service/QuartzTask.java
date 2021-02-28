@@ -1,13 +1,13 @@
 package io.webapp.module.support.quartz.service;
 
+import io.webapp.common.domain.ITask;
+import io.webapp.module.support.quartz.constant.QuartzConst;
+import io.webapp.module.support.quartz.constant.TaskResultEnum;
 import io.webapp.module.support.quartz.domain.entity.QuartzTaskEntity;
 import io.webapp.module.support.quartz.domain.entity.QuartzTaskLogEntity;
 import io.webapp.third.SmartApplicationContext;
 import io.webapp.util.SmartIPUtil;
 import io.webapp.util.SmartQuartzUtil;
-import io.webapp.module.support.quartz.constant.QuartzConst;
-import io.webapp.module.support.quartz.constant.TaskResultEnum;
-import io.webapp.common.domain.ITask;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
@@ -55,7 +55,7 @@ public class QuartzTask extends QuartzJobBean {
         }
         taskLogEntity.setUpdateTime(new Date());
         taskLogEntity.setCreateTime(new Date());
-        //任务开始时间
+        // 任务开始时间
         long startTime = System.currentTimeMillis();
         try {
             ITask taskClass = (ITask) SmartApplicationContext.getBean(quartzTaskEntity.getTaskBean());

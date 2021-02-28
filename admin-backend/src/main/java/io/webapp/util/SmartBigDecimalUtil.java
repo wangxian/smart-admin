@@ -1,4 +1,5 @@
 package io.webapp.util;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
@@ -34,12 +35,15 @@ public class SmartBigDecimalUtil {
         public static BigDecimal add(BigDecimal num1, BigDecimal num2) {
             return setScale(num1.add(num2), PRICE_DECIMAL_POINT);
         }
+
         public static BigDecimal multiply(BigDecimal num1, BigDecimal num2) {
             return setScale(num1.multiply(num2), PRICE_DECIMAL_POINT);
         }
+
         public static BigDecimal subtract(BigDecimal num1, BigDecimal num2) {
             return setScale(num1.subtract(num2), PRICE_DECIMAL_POINT);
         }
+
         public static BigDecimal divide(BigDecimal num1, BigDecimal num2) {
             return setScale(num1.divide(num2, RoundingMode.HALF_UP), PRICE_DECIMAL_POINT);
         }
@@ -53,12 +57,15 @@ public class SmartBigDecimalUtil {
         public static BigDecimal add(BigDecimal num1, BigDecimal num2) {
             return setScale(num1.add(num2), SIX_PRICE_DECIMAL_POINT);
         }
+
         public static BigDecimal multiply(BigDecimal num1, BigDecimal num2) {
             return setScale(num1.multiply(num2), SIX_PRICE_DECIMAL_POINT);
         }
+
         public static BigDecimal subtract(BigDecimal num1, BigDecimal num2) {
             return setScale(num1.subtract(num2), SIX_PRICE_DECIMAL_POINT);
         }
+
         public static BigDecimal divide(BigDecimal num1, BigDecimal num2) {
             return num1.divide(num2, PRICE_DECIMAL_POINT, RoundingMode.HALF_UP);
         }
@@ -72,12 +79,15 @@ public class SmartBigDecimalUtil {
         public static BigDecimal add(BigDecimal num1, BigDecimal num2) {
             return setScale(num1.add(num2), WEIGHT_DECIMAL_POINT);
         }
+
         public static BigDecimal multiply(BigDecimal num1, BigDecimal num2) {
             return setScale(num1.multiply(num2), WEIGHT_DECIMAL_POINT);
         }
+
         public static BigDecimal subtract(BigDecimal num1, BigDecimal num2) {
             return setScale(num1.subtract(num2), WEIGHT_DECIMAL_POINT);
         }
+
         public static BigDecimal divide(BigDecimal num1, BigDecimal num2) {
             return num1.divide(num2, WEIGHT_DECIMAL_POINT, RoundingMode.HALF_UP);
         }
@@ -176,7 +186,7 @@ public class SmartBigDecimalUtil {
      * @return boolean
      */
     public static boolean isLessThan(BigDecimal num1, BigDecimal num2) {
-        return num1.compareTo(num2) == - 1;
+        return num1.compareTo(num2) == -1;
     }
 
     /**
@@ -272,7 +282,7 @@ public class SmartBigDecimalUtil {
      * @return String
      */
     public static Boolean isNotEmpty(BigDecimal num) {
-        return ! isEmpty(num);
+        return !isEmpty(num);
     }
 
     /**

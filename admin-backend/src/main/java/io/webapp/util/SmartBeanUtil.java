@@ -27,7 +27,7 @@ public class SmartBeanUtil {
      * @return
      */
     public static <T> T copy(Object source, Class<T> target) {
-        if(source == null || target == null){
+        if (source == null || target == null) {
             return null;
         }
         try {

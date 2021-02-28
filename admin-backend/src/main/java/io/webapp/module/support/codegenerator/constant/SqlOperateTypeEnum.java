@@ -8,16 +8,16 @@ package io.webapp.module.support.codegenerator.constant;
  * @version 1.0
  * @since JDK1.8
  */
-public enum SqlOperateTypeEnum{
+public enum SqlOperateTypeEnum {
 
 
     LIKE(1, "like"),
     EQUALS(2, "equals"),
     IN(3, "in");
 
-    private Integer type;
+    private final Integer type;
 
-    private String name;
+    private final String name;
 
     SqlOperateTypeEnum(Integer type, String name) {
         this.type = type;

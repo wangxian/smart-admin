@@ -1,4 +1,5 @@
 package io.webapp.module.business.notice.domain.entity;
+
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.webapp.common.domain.BaseEntity;
 import lombok.Data;
@@ -27,7 +28,6 @@ public class NoticeReceiveRecordEntity extends BaseEntity {
      * 消息接收人
      */
     private Long employeeId;
-
 
 
 }

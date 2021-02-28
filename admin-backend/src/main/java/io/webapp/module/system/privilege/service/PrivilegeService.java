@@ -1,12 +1,11 @@
 package io.webapp.module.system.privilege.service;
 
 import com.google.common.collect.Lists;
-import io.webapp.module.system.privilege.constant.PrivilegeResponseCodeConst;
 import io.webapp.common.domain.ResponseDTO;
 import io.webapp.common.domain.ValidateList;
+import io.webapp.module.system.privilege.constant.PrivilegeResponseCodeConst;
 import io.webapp.module.system.privilege.constant.PrivilegeTypeEnum;
 import io.webapp.module.system.privilege.dao.PrivilegeDao;
-import io.webapp.module.system.privilege.domain.dto.*;
 import io.webapp.module.system.privilege.domain.dto.*;
 import io.webapp.module.system.privilege.domain.entity.PrivilegeEntity;
 import io.webapp.module.system.role.roleprivilege.RolePrivilegeDao;
@@ -15,7 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -61,19 +63,19 @@ public class PrivilegeService {
         if (CollectionUtils.isEmpty(menuList)) {
             return ResponseDTO.succ();
         }
-        //使用前端发送权限的排序
+        // 使用前端发送权限的排序
         for (int i = 0; i < menuList.size(); i++) {
             menuList.get(i).setSort(i);
         }
 
         List<PrivilegeEntity> privilegeList = privilegeDao.selectByExcludeType(PrivilegeTypeEnum.POINTS.getValue());
-        //若数据库无数据 直接全部保存
+        // 若数据库无数据 直接全部保存
         if (CollectionUtils.isEmpty(privilegeList)) {
             List<PrivilegeEntity> menuSaveEntity = this.buildPrivilegeMenuEntity(menuList);
             privilegeDao.batchInsert(menuSaveEntity);
             return ResponseDTO.succ();
         }
-        //处理需更新的菜单项
+        // 处理需更新的菜单项
         Map<String, PrivilegeMenuDTO> storageMap = menuList.stream().collect(Collectors.toMap(PrivilegeMenuDTO::getMenuKey, e -> e));
         Set<String> menuKeyList = storageMap.keySet();
         List<PrivilegeEntity> updatePrivilegeList = privilegeList.stream().filter(e -> menuKeyList.contains(e.getKey())).collect(Collectors.toList());
@@ -81,16 +83,16 @@ public class PrivilegeService {
             this.rebuildPrivilegeMenuEntity(storageMap, updatePrivilegeList);
             privilegeDao.batchUpdate(updatePrivilegeList);
         }
-        //处理需删除的菜单项
+        // 处理需删除的菜单项
         List<String> delKeyList = privilegeList.stream().filter(e -> !menuKeyList.contains(e.getKey())).map(PrivilegeEntity::getKey).collect(Collectors.toList());
         if (CollectionUtils.isNotEmpty(delKeyList)) {
             privilegeDao.delByKeyList(delKeyList);
-            //处理需删除的功能点
+            // 处理需删除的功能点
             privilegeDao.delByParentKeyList(delKeyList);
             rolePrivilegeDao.deleteByPrivilegeKey(delKeyList);
         }
 
-        //处理需新增的菜单项
+        // 处理需新增的菜单项
         List<String> dbKeyList = privilegeList.stream().map(PrivilegeEntity::getKey).collect(Collectors.toList());
         List<PrivilegeMenuDTO> addPrivilegeList = menuList.stream().filter(e -> !dbKeyList.contains(e.getMenuKey())).collect(Collectors.toList());
         if (CollectionUtils.isNotEmpty(addPrivilegeList)) {
@@ -217,11 +219,11 @@ public class PrivilegeService {
             return ResponseDTO.wrap(PrivilegeResponseCodeConst.MENU_NOT_EXIST);
         }
 
-        //数据库中存在的数据
+        // 数据库中存在的数据
         List<PrivilegeEntity> existFunctionList = privilegeDao.selectByParentKey(menuKey);
         Map<String, PrivilegeEntity> privilegeEntityMap = existFunctionList.stream().collect(Collectors.toMap(PrivilegeEntity::getKey, e -> e));
 
-        //如果没有，则保存全部
+        // 如果没有，则保存全部
         if (existFunctionList.isEmpty()) {
             List<PrivilegeEntity> privilegeEntityList = functionList.stream().map(e -> function2Privilege(e)).collect(Collectors.toList());
             privilegeDao.batchInsert(privilegeEntityList);
@@ -229,7 +231,7 @@ public class PrivilegeService {
         }
 
         Set<String> functionKeySet = functionList.stream().map(PrivilegeFunctionDTO::getFunctionKey).collect(Collectors.toSet());
-        //删除的
+        // 删除的
         List<Long> deleteIdList = existFunctionList.stream().filter(e -> !functionKeySet.contains(e.getKey())).map(PrivilegeEntity::getId).collect(Collectors.toList());
         List<String> deleteKeyList = existFunctionList.stream().filter(e -> !functionKeySet.contains(e.getKey())).map(PrivilegeEntity::getKey).collect(Collectors.toList());
         if (!deleteIdList.isEmpty()) {
@@ -237,7 +239,7 @@ public class PrivilegeService {
             rolePrivilegeDao.deleteByPrivilegeKey(deleteKeyList);
         }
 
-        //需要更新的
+        // 需要更新的
         ArrayList<PrivilegeEntity> batchUpdateList = Lists.newArrayList();
         for (PrivilegeFunctionDTO privilegeFunctionDTO : functionList) {
             PrivilegeEntity existPrivilege = privilegeEntityMap.get(privilegeFunctionDTO.getFunctionKey());
@@ -252,11 +254,11 @@ public class PrivilegeService {
             privilegeDao.batchUpdate(batchUpdateList);
         }
 
-        //新增的
+        // 新增的
         List<PrivilegeEntity> batchInsertList = functionList.stream()
-                .filter(e -> !privilegeEntityMap.containsKey(e.getFunctionKey()))
-                .map(e -> function2Privilege(e))
-                .collect(Collectors.toList());
+                                                            .filter(e -> !privilegeEntityMap.containsKey(e.getFunctionKey()))
+                                                            .map(e -> function2Privilege(e))
+                                                            .collect(Collectors.toList());
 
         if (!batchInsertList.isEmpty()) {
             privilegeDao.batchInsert(batchInsertList);

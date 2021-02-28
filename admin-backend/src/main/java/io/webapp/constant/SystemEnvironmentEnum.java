@@ -35,13 +35,13 @@ public enum SystemEnvironmentEnum implements BaseEnum {
     public static final String DEV_ENV = "dev";
 
 
-    private String value;
+    private final String value;
 
-    private String desc;
+    private final String desc;
 
     SystemEnvironmentEnum(String value, String desc) {
         this.value = value;
-        this.desc = desc;
+        this.desc  = desc;
     }
 
     /**

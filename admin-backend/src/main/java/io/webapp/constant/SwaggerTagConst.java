@@ -51,7 +51,7 @@ public class SwaggerTagConst {
     }
 
     /**
-     *  自定义分组2
+     * 自定义分组2
      */
     public static class Group2 {
 

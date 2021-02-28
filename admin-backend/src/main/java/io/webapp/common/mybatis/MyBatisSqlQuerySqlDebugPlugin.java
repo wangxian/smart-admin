@@ -28,14 +28,14 @@ public class MyBatisSqlQuerySqlDebugPlugin implements Interceptor {
         MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[0];
         Object parameter = invocation.getArgs()[1];
         BoundSql boundSql = mappedStatement.getBoundSql(parameter);
-        log.info(boundSql.getSql()+"\r\n"+boundSql.getParameterMappings().toString());
+        log.info(boundSql.getSql() + "\r\n" + boundSql.getParameterMappings().toString());
         Object obj = invocation.proceed();
         return obj;
     }
 
     @Override
     public Object plugin(Object arg0) {
-        return Plugin.wrap(arg0,this);
+        return Plugin.wrap(arg0, this);
     }
 
     @Override

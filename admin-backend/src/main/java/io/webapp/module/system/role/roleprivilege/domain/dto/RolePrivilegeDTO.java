@@ -1,19 +1,20 @@
 package io.webapp.module.system.role.roleprivilege.domain.dto;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
+
 /**
- *
  * [  ]
  *
- * @version 1.0
- * @since JDK1.8
  * @author yandanyang
+ * @version 1.0
  * @company 1024lab.net
  * @copyright (c) 2019 1024lab.netInc. All rights reserved.
  * @date
+ * @since JDK1.8
  */
 @Data
 public class RolePrivilegeDTO {

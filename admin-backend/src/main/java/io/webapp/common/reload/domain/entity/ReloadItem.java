@@ -1,4 +1,5 @@
 package io.webapp.common.reload.domain.entity;
+
 /**
  * ReloadItem 类
  *
@@ -24,30 +25,37 @@ public class ReloadItem {
     public ReloadItem() {
 
     }
+
     public ReloadItem(String tag, String identification, String args) {
-        this.tag = tag;
+        this.tag            = tag;
         this.identification = identification;
-        this.args = args;
+        this.args           = args;
     }
 
     public String getTag() {
         return tag;
     }
+
     public void setTag(String tag) {
         this.tag = tag;
     }
+
     public String getIdentification() {
         return identification;
     }
+
     public void setIdentification(String identification) {
         this.identification = identification;
     }
+
     public String getArgs() {
         return args;
     }
+
     public void setArgs(String args) {
         this.args = args;
     }
+
     @Override
     public String toString() {
         return "ReloadItem{" + "tag='" + tag + '\'' + ", identification='" + identification + '\'' + ", args='" + args + '\'' + '}';

@@ -63,6 +63,6 @@ public class LoginDetailVO {
     private Boolean isSuperMan;
 
     @ApiModelProperty("权限列表")
-        private List<LoginPrivilegeDTO> privilegeList;
+    private List<LoginPrivilegeDTO> privilegeList;
 
 }

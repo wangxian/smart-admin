@@ -1,7 +1,7 @@
 package io.webapp.common.reload.abstracts;
 
-import io.webapp.common.reload.domain.entity.ReloadItem;
 import io.webapp.common.reload.SmartReloadManager;
+import io.webapp.common.reload.domain.entity.ReloadItem;
 import io.webapp.common.reload.interfaces.SmartReloadCommandInterface;
 
 import java.util.List;
@@ -22,11 +22,11 @@ public abstract class AbstractSmartReloadCommand implements SmartReloadCommandIn
     /**
      * Reload的执行类
      */
-    private SmartReloadManager reloadManager;
+    private final SmartReloadManager reloadManager;
 
     public AbstractSmartReloadCommand(SmartReloadManager reloadManager) {
         this.reloadManager = reloadManager;
-        this.currentTags = new ConcurrentHashMap<>();
+        this.currentTags   = new ConcurrentHashMap<>();
         // 初始获取ReloadItem数据
         List<ReloadItem> readTagStatesFromDb = readReloadItem();
         if (readTagStatesFromDb != null) {
@@ -37,6 +37,7 @@ public abstract class AbstractSmartReloadCommand implements SmartReloadCommandIn
             }
         }
     }
+
     /**
      * 任务：
      * 读取数据库中 ReloadItem 数据
@@ -51,11 +52,11 @@ public abstract class AbstractSmartReloadCommand implements SmartReloadCommandIn
         String tagIdentifier;
         String preTagChangeIdentifier;
         for (ReloadItem reloadItem : readTagStatesFromDb) {
-            tag = reloadItem.getTag();
-            tagIdentifier = reloadItem.getIdentification();
+            tag                    = reloadItem.getTag();
+            tagIdentifier          = reloadItem.getIdentification();
             preTagChangeIdentifier = currentTags.get(tag);
             // 数据不一致
-            if (preTagChangeIdentifier == null || ! preTagChangeIdentifier.equals(tagIdentifier)) {
+            if (preTagChangeIdentifier == null || !preTagChangeIdentifier.equals(tagIdentifier)) {
                 // 更新map数据
                 currentTags.put(tag, tagIdentifier);
                 // 执行重新加载此项的动作

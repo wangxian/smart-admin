@@ -1,12 +1,13 @@
 package io.webapp.module.system.role.basic;
-import io.webapp.constant.SwaggerTagConst;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.webapp.common.anno.OperateLog;
 import io.webapp.common.domain.ResponseDTO;
+import io.webapp.constant.SwaggerTagConst;
 import io.webapp.module.system.role.basic.domain.dto.RoleAddDTO;
 import io.webapp.module.system.role.basic.domain.dto.RoleUpdateDTO;
 import io.webapp.module.system.role.basic.domain.dto.RoleVO;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

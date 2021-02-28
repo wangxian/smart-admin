@@ -1,7 +1,11 @@
 package io.webapp.module.business.log.userloginlog.domain;
+
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.webapp.common.domain.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 /**
@@ -54,7 +58,6 @@ public class UserLoginLogEntity extends BaseEntity {
      * 登录状态
      */
     private Integer loginStatus;
-
 
 
 }

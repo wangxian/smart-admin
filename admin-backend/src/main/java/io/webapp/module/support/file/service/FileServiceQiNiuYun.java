@@ -1,5 +1,9 @@
 package io.webapp.module.support.file.service;
 
+import com.qiniu.http.Response;
+import com.qiniu.storage.Configuration;
+import com.qiniu.storage.UploadManager;
+import com.qiniu.util.Auth;
 import io.webapp.common.domain.ResponseDTO;
 import io.webapp.module.support.file.constant.FileResponseCodeConst;
 import io.webapp.module.support.file.constant.FileServiceNameConst;
@@ -7,10 +11,6 @@ import io.webapp.module.support.file.domain.dto.OSSConfig;
 import io.webapp.module.support.file.domain.vo.UploadVO;
 import io.webapp.module.system.systemconfig.SystemConfigService;
 import io.webapp.module.system.systemconfig.constant.SystemConfigEnum;
-import com.qiniu.http.Response;
-import com.qiniu.storage.Configuration;
-import com.qiniu.storage.UploadManager;
-import com.qiniu.util.Auth;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -43,7 +43,7 @@ import java.util.UUID;
 @Service(FileServiceNameConst.QI_NIU_OSS)
 public class FileServiceQiNiuYun implements IFileService {
 
-    //1小时，可以自定义链接过期时间
+    // 1小时，可以自定义链接过期时间
     private static final Long expireInSeconds = 3600L;
 
     @Autowired
@@ -60,11 +60,11 @@ public class FileServiceQiNiuYun implements IFileService {
         OSSConfig ossConfig = systemConfigService.selectByKey2Obj(SystemConfigEnum.Key.QI_NIU_OSS.name(), OSSConfig.class);
         try {
             InputStream inputStream = new ByteArrayInputStream(multipartFile.getBytes());
-            if (! ossConfig.toString().equals(accessConfig)) {
-                //accessKeyId 发生变动自动重新创建新的UploadManager
-                ossClient = new UploadManager(new Configuration());
-                token = Auth.create(ossConfig.getAccessKeyId(), ossConfig.getAccessKeySecret()).
-                    uploadToken(ossConfig.getBucketName());
+            if (!ossConfig.toString().equals(accessConfig)) {
+                // accessKeyId 发生变动自动重新创建新的UploadManager
+                ossClient    = new UploadManager(new Configuration());
+                token        = Auth.create(ossConfig.getAccessKeyId(), ossConfig.getAccessKeySecret()).
+                        uploadToken(ossConfig.getBucketName());
                 accessConfig = ossConfig.toString();
             }
             String uuid = UUID.randomUUID().toString().replace("-", "");
@@ -73,7 +73,7 @@ public class FileServiceQiNiuYun implements IFileService {
             String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1);
             String mime = this.getContentType(fileExt);
             Response res = ossClient.put(inputStream, ossPath, token, null, mime);
-            if (! res.isOK()) {
+            if (!res.isOK()) {
                 log.error("QINIU fileUpload ERROR : {}", res.toString());
                 return ResponseDTO.wrap(FileResponseCodeConst.UPLOAD_ERROR);
             }
@@ -93,11 +93,11 @@ public class FileServiceQiNiuYun implements IFileService {
     public ResponseDTO<String> getFileUrl(String path) {
         OSSConfig ossConfig = systemConfigService.selectByKey2Obj(SystemConfigEnum.Key.QI_NIU_OSS.name(), OSSConfig.class);
         try {
-            if (! ossConfig.toString().equals(accessConfig)) {
-                //accessKeyId 发生变动自动重新创建新的UploadManager
-                ossClient = new UploadManager(new Configuration());
-                token = Auth.create(ossConfig.getAccessKeyId(), ossConfig.getAccessKeySecret()).
-                    uploadToken(ossConfig.getBucketName());
+            if (!ossConfig.toString().equals(accessConfig)) {
+                // accessKeyId 发生变动自动重新创建新的UploadManager
+                ossClient    = new UploadManager(new Configuration());
+                token        = Auth.create(ossConfig.getAccessKeyId(), ossConfig.getAccessKeySecret()).
+                        uploadToken(ossConfig.getBucketName());
                 accessConfig = ossConfig.toString();
             }
             String encodedFileName = URLEncoder.encode(path, "utf-8");
@@ -106,7 +106,7 @@ public class FileServiceQiNiuYun implements IFileService {
             String accessKey = ossConfig.getAccessKeyId();
             String secretKey = ossConfig.getAccessKeySecret();
             Auth auth = Auth.create(accessKey, secretKey);
-            //1小时，可以自定义链接过期时间
+            // 1小时，可以自定义链接过期时间
             long expireInSeconds = 3600;
             String finalUrl = auth.privateDownloadUrl(publicUrl, expireInSeconds);
             return ResponseDTO.succData(finalUrl);

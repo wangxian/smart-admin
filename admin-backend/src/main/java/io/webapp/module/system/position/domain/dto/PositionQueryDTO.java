@@ -1,7 +1,7 @@
 package io.webapp.module.system.position.domain.dto;
 
-import io.webapp.common.domain.PageParamDTO;
 import io.swagger.annotations.ApiModelProperty;
+import io.webapp.common.domain.PageParamDTO;
 import lombok.Data;
 
 /**

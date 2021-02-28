@@ -1,18 +1,18 @@
 package io.webapp.module.system.role.roleprivilege.domain.entity;
+
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.webapp.common.domain.BaseEntity;
 import lombok.Data;
 
 /**
- *
  * [ 角色 权限关系 ]
  *
- * @version 1.0
- * @since JDK1.8
  * @author yandanyang
+ * @version 1.0
  * @company 1024lab.net
  * @copyright (c) 2019 1024lab.netInc. All rights reserved.
  * @date
+ * @since JDK1.8
  */
 @Data
 @TableName("t_role_privilege")

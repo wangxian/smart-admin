@@ -26,7 +26,7 @@ public enum SystemConfigDataType {
      */
     URL(SmartVerificationUtil.URL),
     /**
-     *  邮箱
+     * 邮箱
      */
     EMAIL(SmartVerificationUtil.EMAIL),
     /**
@@ -54,10 +54,10 @@ public enum SystemConfigDataType {
      */
     TIME(SmartVerificationUtil.TIME);
 
-    private String valid;
+    private final String valid;
 
 
-    SystemConfigDataType(String valid){
+    SystemConfigDataType(String valid) {
         this.valid = valid;
     }
 

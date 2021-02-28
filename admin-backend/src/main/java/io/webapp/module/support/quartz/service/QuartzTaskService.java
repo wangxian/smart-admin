@@ -1,12 +1,6 @@
 package io.webapp.module.support.quartz.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import io.webapp.module.support.quartz.domain.dto.*;
-import io.webapp.module.support.quartz.domain.entity.QuartzTaskEntity;
-import io.webapp.third.SmartApplicationContext;
-import io.webapp.util.SmartBeanUtil;
-import io.webapp.util.SmartPageUtil;
-import io.webapp.util.SmartQuartzUtil;
 import io.webapp.common.constant.ResponseCodeConst;
 import io.webapp.common.domain.PageResultDTO;
 import io.webapp.common.domain.ResponseDTO;
@@ -14,8 +8,13 @@ import io.webapp.module.support.quartz.constant.QuartzConst;
 import io.webapp.module.support.quartz.constant.TaskStatusEnum;
 import io.webapp.module.support.quartz.dao.QuartzTaskDao;
 import io.webapp.module.support.quartz.dao.QuartzTaskLogDao;
-import lombok.extern.slf4j.Slf4j;
 import io.webapp.module.support.quartz.domain.dto.*;
+import io.webapp.module.support.quartz.domain.entity.QuartzTaskEntity;
+import io.webapp.third.SmartApplicationContext;
+import io.webapp.util.SmartBeanUtil;
+import io.webapp.util.SmartPageUtil;
+import io.webapp.util.SmartQuartzUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,7 +82,7 @@ public class QuartzTaskService {
     @Transactional(rollbackFor = Throwable.class)
     public ResponseDTO<String> saveOrUpdateTask(QuartzTaskDTO quartzTaskDTO) throws Exception {
         ResponseDTO baseValid = this.baseValid(quartzTaskDTO);
-        if (! baseValid.isSuccess()) {
+        if (!baseValid.isSuccess()) {
             return baseValid;
         }
         Long taskId = quartzTaskDTO.getId();
@@ -104,7 +103,7 @@ public class QuartzTaskService {
         if (taskBean == null) {
             return ResponseDTO.wrap(ResponseCodeConst.ERROR_PARAM, "taskBean 不存在");
         }
-        if (! CronExpression.isValidExpression(quartzTaskDTO.getTaskCron())) {
+        if (!CronExpression.isValidExpression(quartzTaskDTO.getTaskCron())) {
             return ResponseDTO.wrap(ResponseCodeConst.ERROR_PARAM, "请传入正确的正则表达式");
         }
         return ResponseDTO.succ();
@@ -126,7 +125,7 @@ public class QuartzTaskService {
             return ResponseDTO.wrap(ResponseCodeConst.ERROR_PARAM, "task不存在");
         }
         QuartzTaskEntity taskEntity = SmartBeanUtil.copy(quartzTaskDTO, QuartzTaskEntity.class);
-        //任务状态不能更新
+        // 任务状态不能更新
         taskEntity.setTaskStatus(updateEntity.getTaskStatus());
         taskEntity.setUpdateTime(new Date());
         quartzTaskDao.updateById(taskEntity);
@@ -254,7 +253,7 @@ public class QuartzTaskService {
         trigger.getJobDataMap().put(QuartzConst.QUARTZ_PARAMS_KEY, taskEntity.getTaskParams());
 
         scheduler.rescheduleJob(triggerKey, trigger);
-        //如果更新之前任务是暂停状态，此时再次暂停任务
+        // 如果更新之前任务是暂停状态，此时再次暂停任务
         if (TaskStatusEnum.PAUSE.getStatus().equals(taskEntity.getTaskStatus())) {
             this.pauseQuartzTask(scheduler, Long.valueOf(taskEntity.getId()));
         }

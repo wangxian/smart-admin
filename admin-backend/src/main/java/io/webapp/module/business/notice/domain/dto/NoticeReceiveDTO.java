@@ -1,9 +1,9 @@
 package io.webapp.module.business.notice.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModelProperty;
 import io.webapp.common.anno.ApiModelPropertyEnum;
 import io.webapp.common.constant.JudgeEnum;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.Date;
@@ -19,7 +19,7 @@ import java.util.Date;
  * @since JDK1.8
  */
 @Data
-public class NoticeReceiveDTO{
+public class NoticeReceiveDTO {
 
     @ApiModelProperty("id")
     private Long id;
@@ -38,6 +38,6 @@ public class NoticeReceiveDTO{
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date receiveTime;
 
-    @ApiModelPropertyEnum(enumDesc = "读取状态",value = JudgeEnum.class)
+    @ApiModelPropertyEnum(enumDesc = "读取状态", value = JudgeEnum.class)
     private Integer readStatus;
 }

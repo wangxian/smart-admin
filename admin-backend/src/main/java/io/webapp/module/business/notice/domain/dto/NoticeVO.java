@@ -1,10 +1,12 @@
 package io.webapp.module.business.notice.domain.dto;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModelProperty;
 import io.webapp.common.anno.ApiModelPropertyEnum;
 import io.webapp.common.constant.JudgeEnum;
 import lombok.Data;
+
 import java.util.Date;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.annotations.ApiModelProperty;
 
 /**
  * [  ]
@@ -29,7 +31,7 @@ public class NoticeVO {
     @ApiModelProperty("消息创建人")
     private Long createUser;
 
-    @ApiModelPropertyEnum(enumDesc = "发送状态",value = JudgeEnum.class)
+    @ApiModelPropertyEnum(enumDesc = "发送状态", value = JudgeEnum.class)
     private Integer sendStatus;
 
     @ApiModelProperty("消息创建人名称")

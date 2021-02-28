@@ -28,7 +28,7 @@ public class EnumValidator implements ConstraintValidator<CheckEnum, Object> {
     public void initialize(CheckEnum constraintAnnotation) {
         // 获取注解传入的枚举类对象
         enumClass = constraintAnnotation.enumClazz();
-        required = constraintAnnotation.required();
+        required  = constraintAnnotation.required();
     }
 
     @Override

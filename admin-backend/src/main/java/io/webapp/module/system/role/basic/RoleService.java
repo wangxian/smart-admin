@@ -1,5 +1,6 @@
 package io.webapp.module.system.role.basic;
 
+import io.webapp.common.domain.ResponseDTO;
 import io.webapp.module.system.role.basic.domain.dto.RoleAddDTO;
 import io.webapp.module.system.role.basic.domain.dto.RoleUpdateDTO;
 import io.webapp.module.system.role.basic.domain.dto.RoleVO;
@@ -7,7 +8,6 @@ import io.webapp.module.system.role.basic.domain.entity.RoleEntity;
 import io.webapp.module.system.role.roleemployee.RoleEmployeeDao;
 import io.webapp.module.system.role.roleprivilege.RolePrivilegeDao;
 import io.webapp.util.SmartBeanUtil;
-import io.webapp.common.domain.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,7 +78,7 @@ public class RoleService {
             return ResponseDTO.wrap(RoleResponseCodeConst.ROLE_NOT_EXISTS);
         }
         RoleEntity employeeRoleEntity = roleDao.getByRoleName(roleUpdateDTO.getRoleName());
-        if (null != employeeRoleEntity && ! employeeRoleEntity.getId().equals(roleUpdateDTO.getId())) {
+        if (null != employeeRoleEntity && !employeeRoleEntity.getId().equals(roleUpdateDTO.getId())) {
             return ResponseDTO.wrap(RoleResponseCodeConst.ROLE_NAME_EXISTS);
         }
         RoleEntity roleEntity = SmartBeanUtil.copy(roleUpdateDTO, RoleEntity.class);

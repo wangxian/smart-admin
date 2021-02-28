@@ -1,9 +1,9 @@
 package io.webapp.module.support.file.service;
 
+import io.webapp.common.domain.ResponseDTO;
 import io.webapp.module.support.file.constant.FileResponseCodeConst;
 import io.webapp.module.support.file.constant.FileServiceNameConst;
 import io.webapp.module.support.file.domain.vo.UploadVO;
-import io.webapp.common.domain.ResponseDTO;
 import io.webapp.module.system.systemconfig.SystemConfigDao;
 import io.webapp.module.system.systemconfig.constant.SystemConfigEnum;
 import io.webapp.module.system.systemconfig.domain.entity.SystemConfigEntity;
@@ -63,7 +63,7 @@ public class FileServiceLocal implements IFileService {
             return ResponseDTO.wrap(FileResponseCodeConst.LOCAL_UPDATE_PREFIX_ERROR);
         }
         if (StringUtils.isNotEmpty(path)) {
-            filePath = filePath + path + "/";
+            filePath  = filePath + path + "/";
             urlParent = urlParent + path + "/";
         }
         File directory = new File(filePath);
@@ -76,8 +76,8 @@ public class FileServiceLocal implements IFileService {
         File fileTemp;
         String originalFileName;
         originalFileName = multipartFile.getOriginalFilename();
-        newFileName = this.generateFileName(originalFileName);
-        fileTemp = new File(new File(filePath + newFileName).getAbsolutePath());
+        newFileName      = this.generateFileName(originalFileName);
+        fileTemp         = new File(new File(filePath + newFileName).getAbsolutePath());
         try {
             multipartFile.transferTo(fileTemp);
             localUploadVO.setUrl(urlParent + newFileName);

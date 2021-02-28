@@ -32,9 +32,9 @@ public class BigDecimalValidator implements ConstraintValidator<CheckBigDecimal,
     @Override
     public void initialize(CheckBigDecimal constraintAnnotation) {
         // 初始化属性
-        value = new BigDecimal(constraintAnnotation.value());
+        value      = new BigDecimal(constraintAnnotation.value());
         symbolEnum = constraintAnnotation.symbolEnum();
-        required = constraintAnnotation.required();
+        required   = constraintAnnotation.required();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class BigDecimalValidator implements ConstraintValidator<CheckBigDecimal,
 
         // 如果数值为空，校验是否必须
         if (null == decimal) {
-            return ! required;
+            return !required;
         }
 
         // 根据操作符，校验结果
@@ -52,7 +52,7 @@ public class BigDecimalValidator implements ConstraintValidator<CheckBigDecimal,
                 return SmartBigDecimalUtil.equals(decimal, value);
             // 不等于
             case NOT_EQUAL:
-                return ! SmartBigDecimalUtil.equals(decimal, value);
+                return !SmartBigDecimalUtil.equals(decimal, value);
             // 小于
             case LESS_THAN:
                 return SmartBigDecimalUtil.isLessThan(decimal, value);

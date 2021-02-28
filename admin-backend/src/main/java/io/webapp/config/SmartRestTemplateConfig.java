@@ -16,12 +16,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,7 +71,7 @@ public class SmartRestTemplateConfig {
     public RestTemplate fastJsonRestTemplate() {
         RestTemplate restTemplate = new RestTemplate(httpRequestFactory());
 
-        HttpMessageConverter<?> converter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
+        HttpMessageConverter<?> converter = new StringHttpMessageConverter(StandardCharsets.UTF_8);
 
         FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
         List<MediaType> fastMediaTypes = new ArrayList<>();
@@ -79,7 +79,7 @@ public class SmartRestTemplateConfig {
         fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
         fastConverter.setSupportedMediaTypes(fastMediaTypes);
         List<HttpMessageConverter<?>> converters = restTemplate.getMessageConverters();
-        converters.add(1,converter);
+        converters.add(1, converter);
         converters.add(fastConverter);
         return restTemplate;
     }
@@ -96,14 +96,14 @@ public class SmartRestTemplateConfig {
         connectionManager.setDefaultMaxPerRoute(defaultMaxPerRoute);
 
         RequestConfig requestConfig = RequestConfig.custom()
-                .setSocketTimeout(socketTimeout)
-                .setConnectTimeout(connectTimeout)
-                .setConnectionRequestTimeout(connectionRequestTimeout)
-                .build();
+                                                   .setSocketTimeout(socketTimeout)
+                                                   .setConnectTimeout(connectTimeout)
+                                                   .setConnectionRequestTimeout(connectionRequestTimeout)
+                                                   .build();
         return HttpClientBuilder.create()
-                .setDefaultRequestConfig(requestConfig)
-                .setConnectionManager(connectionManager)
-                .build();
+                                .setDefaultRequestConfig(requestConfig)
+                                .setConnectionManager(connectionManager)
+                                .build();
     }
 
 }

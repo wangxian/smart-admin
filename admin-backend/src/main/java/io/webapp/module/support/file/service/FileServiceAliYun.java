@@ -56,12 +56,12 @@ public class FileServiceAliYun implements IFileService {
         OSSConfig ossConfig = systemConfigService.selectByKey2Obj(SystemConfigEnum.Key.ALI_OSS.name(), OSSConfig.class);
         try {
             InputStream inputStream = new ByteArrayInputStream(multipartFile.getBytes());
-            if (! ossConfig.toString().equals(accessConfig)) {
-                //accessKeyId 发生变动自动创建新的
+            if (!ossConfig.toString().equals(accessConfig)) {
+                // accessKeyId 发生变动自动创建新的
                 if (ossClient != null) {
                     ossClient.shutdown();
                 }
-                ossClient = new OSSClient(ossConfig.getEndpoint(), ossConfig.getAccessKeyId(), ossConfig.getAccessKeySecret());
+                ossClient    = new OSSClient(ossConfig.getEndpoint(), ossConfig.getAccessKeyId(), ossConfig.getAccessKeySecret());
                 accessConfig = ossConfig.toString();
             }
             String uuid = UUID.randomUUID().toString().replace("-", "");
@@ -94,12 +94,12 @@ public class FileServiceAliYun implements IFileService {
     public ResponseDTO<String> getFileUrl(String path) {
         OSSConfig ossConfig = systemConfigService.selectByKey2Obj(SystemConfigEnum.Key.ALI_OSS.name(), OSSConfig.class);
         try {
-            if (! ossConfig.toString().equals(accessConfig)) {
-                //accessKeyId 发生变动自动创建新的
+            if (!ossConfig.toString().equals(accessConfig)) {
+                // accessKeyId 发生变动自动创建新的
                 if (ossClient != null) {
                     ossClient.shutdown();
                 }
-                ossClient = new OSSClient(ossConfig.getEndpoint(), ossConfig.getAccessKeyId(), ossConfig.getAccessKeySecret());
+                ossClient    = new OSSClient(ossConfig.getEndpoint(), ossConfig.getAccessKeyId(), ossConfig.getAccessKeySecret());
                 accessConfig = ossConfig.toString();
             }
             String url = this.getUrl(path, ossConfig.getBucketName(), ossClient);
@@ -136,15 +136,15 @@ public class FileServiceAliYun implements IFileService {
      */
     public File getFile(String key, String fileName) {
         OSSConfig ossConfig = systemConfigService.selectByKey2Obj(SystemConfigEnum.Key.ALI_OSS.name(), OSSConfig.class);
-        if (! ossConfig.toString().equals(accessConfig)) {
-            //accessKeyId 发生变动自动创建新的
+        if (!ossConfig.toString().equals(accessConfig)) {
+            // accessKeyId 发生变动自动创建新的
             if (ossClient != null) {
                 ossClient.shutdown();
             }
-            ossClient = new OSSClient(ossConfig.getEndpoint(), ossConfig.getAccessKeyId(), ossConfig.getAccessKeySecret());
+            ossClient    = new OSSClient(ossConfig.getEndpoint(), ossConfig.getAccessKeyId(), ossConfig.getAccessKeySecret());
             accessConfig = ossConfig.toString();
         }
-        //获取oss对象
+        // 获取oss对象
         OSSObject ossObject = ossClient.getObject(ossConfig.getBucketName(), key);
         if (StringUtils.isBlank(fileName)) {
             // 获取元信息

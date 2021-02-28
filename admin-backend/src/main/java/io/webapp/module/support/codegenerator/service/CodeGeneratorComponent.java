@@ -20,8 +20,8 @@ import java.util.Map;
 @Component
 public class CodeGeneratorComponent {
 
-    private static Map<String, String> dataMap = new HashMap<>(16);
-    private static Map<String, String> numberTypeMap = new HashMap<>(16);
+    private static final Map<String, String> dataMap = new HashMap<>(16);
+    private static final Map<String, String> numberTypeMap = new HashMap<>(16);
 
     static {
         dataMap();
@@ -56,7 +56,7 @@ public class CodeGeneratorComponent {
         String xmlPackagePath = "mapper/" + modulePath + File.separator;
         String frontPackagePath = "web" + File.separator;
         Map<String, String> templateMap = new HashMap<>();
-        //后端
+        // 后端
         templateMap.put("templates/codegenerator/java/Controller.java.vm", javaPackagePath + "controller" + File.separator + moduleClass + "Controller.java");
         templateMap.put("templates/codegenerator/java/Dao.java.vm", javaPackagePath + "dao" + File.separator + moduleClass + "Dao.java");
         templateMap.put("templates/codegenerator/java/Dao.xml.vm", xmlPackagePath + moduleClass + "Mapper.xml");
@@ -67,7 +67,7 @@ public class CodeGeneratorComponent {
         templateMap.put("templates/codegenerator/java/ExcelVO.java.vm", javaPackagePath + "domain" + File.separator + "vo" + File.separator + moduleClass + "ExcelVO.java");
         templateMap.put("templates/codegenerator/java/QueryDTO.java.vm", javaPackagePath + "domain" + File.separator + "dto" + File.separator + moduleClass + "QueryDTO.java");
         templateMap.put("templates/codegenerator/java/Service.java.vm", javaPackagePath + "service" + File.separator + moduleClass + "Service.java");
-        //前端
+        // 前端
         String webPackageName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, moduleClass).replaceAll("_", "-");
         templateMap.put("templates/codegenerator/web/Api.js.vm", frontPackagePath + "api" + File.separator + webPackageName + ".js");
         templateMap.put("templates/codegenerator/web/Router.js.vm", frontPackagePath + "router" + File.separator + webPackageName + ".js");

@@ -54,5 +54,4 @@ public class OrderOperateLogEntity extends BaseEntity {
     private String extData;
 
 
-
 }

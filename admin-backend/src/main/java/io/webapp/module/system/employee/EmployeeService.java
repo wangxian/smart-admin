@@ -1,6 +1,10 @@
 package io.webapp.module.system.employee;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.google.common.collect.Lists;
+import io.webapp.common.constant.JudgeEnum;
+import io.webapp.common.domain.PageResultDTO;
+import io.webapp.common.domain.ResponseDTO;
 import io.webapp.constant.CommonConst;
 import io.webapp.module.business.login.domain.RequestTokenBO;
 import io.webapp.module.system.department.DepartmentDao;
@@ -16,17 +20,12 @@ import io.webapp.module.system.position.PositionService;
 import io.webapp.module.system.position.domain.dto.PositionRelationAddDTO;
 import io.webapp.module.system.position.domain.dto.PositionRelationResultDTO;
 import io.webapp.module.system.privilege.service.PrivilegeEmployeeService;
+import io.webapp.module.system.role.roleemployee.RoleEmployeeDao;
+import io.webapp.module.system.role.roleemployee.domain.RoleEmployeeEntity;
 import io.webapp.util.SmartBeanUtil;
 import io.webapp.util.SmartDigestUtil;
 import io.webapp.util.SmartPageUtil;
 import io.webapp.util.SmartVerificationUtil;
-import io.webapp.common.constant.JudgeEnum;
-import io.webapp.common.domain.PageResultDTO;
-import io.webapp.common.domain.ResponseDTO;
-import io.webapp.module.system.employee.domain.dto.*;
-import io.webapp.module.system.role.roleemployee.RoleEmployeeDao;
-import io.webapp.module.system.role.roleemployee.domain.RoleEmployeeEntity;
-import com.google.common.collect.Lists;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang3.StringUtils;
@@ -75,7 +74,7 @@ public class EmployeeService {
      */
     private static final ConcurrentHashMap<Long, EmployeeBO> employeeCache = new ConcurrentHashMap<>();
 
-    public List<EmployeeVO> getAllEmployee(){
+    public List<EmployeeVO> getAllEmployee() {
         return employeeDao.selectAll();
     }
 
@@ -110,7 +109,7 @@ public class EmployeeService {
 
             for (PositionRelationResultDTO positionRelationResultDTO : positionRelationResultDTOList) {
                 List<PositionRelationResultDTO> relationResultDTOList = employeePositionMap.get(positionRelationResultDTO.getEmployeeId());
-                //匹配对应的岗位
+                // 匹配对应的岗位
                 if (relationResultDTOList == null) {
                     relationResultDTOList = new ArrayList<>();
                     employeePositionMap.put(positionRelationResultDTO.getEmployeeId(), relationResultDTOList);
@@ -120,7 +119,7 @@ public class EmployeeService {
 
             for (EmployeeDTO employeeDTO : employeeList) {
                 List<PositionRelationResultDTO> relationResultDTOList = employeePositionMap.get(employeeDTO.getId());
-                if(relationResultDTOList != null){
+                if (relationResultDTOList != null) {
                     employeeDTO.setPositionRelationList(relationResultDTOList);
                     employeeDTO.setPositionName(relationResultDTOList.stream().map(PositionRelationResultDTO::getPositionName).collect(Collectors.joining(",")));
                 }
@@ -150,12 +149,12 @@ public class EmployeeService {
                 return ResponseDTO.wrap(EmployeeResponseCodeConst.BIRTHDAY_ERROR);
             }
         }
-        //同名员工
+        // 同名员工
         EmployeeDTO sameNameEmployee = employeeDao.getByLoginName(entity.getLoginName(), EmployeeStatusEnum.NORMAL.getValue());
         if (null != sameNameEmployee) {
             return ResponseDTO.wrap(EmployeeResponseCodeConst.LOGIN_NAME_EXISTS);
         }
-        //同电话员工
+        // 同电话员工
         EmployeeDTO samePhoneEmployee = employeeDao.getByPhone(entity.getLoginName(), EmployeeStatusEnum.NORMAL.getValue());
         if (null != samePhoneEmployee) {
             return ResponseDTO.wrap(EmployeeResponseCodeConst.PHONE_EXISTS);
@@ -166,7 +165,7 @@ public class EmployeeService {
             return ResponseDTO.wrap(EmployeeResponseCodeConst.DEPT_NOT_EXIST);
         }
 
-        //如果没有密码  默认设置为123456
+        // 如果没有密码  默认设置为123456
         String pwd = entity.getLoginPwd();
         if (StringUtils.isBlank(pwd)) {
             entity.setLoginPwd(SmartDigestUtil.encryptPassword(CommonConst.Password.SALT_FORMAT, RESET_PASSWORD));
@@ -181,7 +180,7 @@ public class EmployeeService {
         employeeDao.insert(entity);
 
         PositionRelationAddDTO positionRelAddDTO = new PositionRelationAddDTO(employeeAddDto.getPositionIdList(), entity.getId());
-        //存储所选岗位信息
+        // 存储所选岗位信息
         positionService.addPositionRelation(positionRelAddDTO);
 
         return ResponseDTO.succ();
@@ -272,7 +271,7 @@ public class EmployeeService {
             entity.setBirthday(null);
         }
         if (CollectionUtils.isNotEmpty(updateDTO.getPositionIdList())) {
-            //删除旧的关联关系 添加新的关联关系
+            // 删除旧的关联关系 添加新的关联关系
             positionService.removePositionRelation(entity.getId());
             PositionRelationAddDTO positionRelAddDTO = new PositionRelationAddDTO(updateDTO.getPositionIdList(), entity.getId());
             positionService.addPositionRelation(positionRelAddDTO);
@@ -298,7 +297,7 @@ public class EmployeeService {
         if (null == employeeEntity) {
             return ResponseDTO.wrap(EmployeeResponseCodeConst.EMP_NOT_EXISTS);
         }
-        //假删
+        // 假删
         employeeEntity.setIsDelete(JudgeEnum.YES.getValue().longValue());
         employeeDao.updateById(employeeEntity);
         employeeCache.remove(employeeId);

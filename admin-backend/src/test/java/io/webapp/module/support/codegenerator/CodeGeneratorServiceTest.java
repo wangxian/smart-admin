@@ -30,19 +30,19 @@ public class CodeGeneratorServiceTest extends BaseTest {
 
         // t_peony 牡丹花表
 
-        //搜索字段 kind， 使用like搜索
+        // 搜索字段 kind， 使用like搜索
         CodeGeneratorQueryColumnDTO kind = CodeGeneratorQueryColumnDTO.builder()
                                                                       .columnName("kind")
                                                                       .sqlOperate(SqlOperateTypeEnum.LIKE).build();
-        //搜索字段 kind， 使用 == 搜索
+        // 搜索字段 kind， 使用 == 搜索
         CodeGeneratorQueryColumnDTO id = CodeGeneratorQueryColumnDTO.builder()
                                                                     .columnName("id")
                                                                     .sqlOperate(SqlOperateTypeEnum.EQUALS).build();
-        //搜索字段 name， 使用like搜索
+        // 搜索字段 name， 使用like搜索
         CodeGeneratorQueryColumnDTO name = CodeGeneratorQueryColumnDTO.builder()
                                                                       .columnName("name")
                                                                       .sqlOperate(SqlOperateTypeEnum.LIKE).build();
-        //搜索字段 color， 使用like搜索
+        // 搜索字段 color， 使用like搜索
         CodeGeneratorQueryColumnDTO color = CodeGeneratorQueryColumnDTO.builder()
                                                                        .columnName("color")
                                                                        .sqlOperate(SqlOperateTypeEnum.LIKE).build();
@@ -50,16 +50,16 @@ public class CodeGeneratorServiceTest extends BaseTest {
         List<CodeGeneratorQueryColumnDTO> queryColumnList = Lists.newArrayList(id, kind, name, color);
 
         CodeGeneratorDTO codeGenerator = CodeGeneratorDTO.builder()
-                                                         .author("卓大")//class 注释作者
-                                                         .company("1024创新实验室( www.1024lab.net )")//class注释公司名字
-                                                         .tableName("t_peony")//表名
-                                                         .tablePrefix("t_")//表名前缀
-                                                         .basePackage("io.webapp")//包名
-                                                         .modulePackage("business.peony")//业务子包名
-                                                         .queryColumnList(queryColumnList)//加入搜搜字段
-                                                         .build();//构建
+                                                         .author("卓大")// class 注释作者
+                                                         .company("1024创新实验室( www.1024lab.net )")// class注释公司名字
+                                                         .tableName("t_peony")// 表名
+                                                         .tablePrefix("t_")// 表名前缀
+                                                         .basePackage("io.webapp")// 包名
+                                                         .modulePackage("business.peony")// 业务子包名
+                                                         .queryColumnList(queryColumnList)// 加入搜搜字段
+                                                         .build();// 构建
 
-        //当需要代码生成的时候，请将注释去掉
+        // 当需要代码生成的时候，请将注释去掉
         //        codeGeneratorService.codeGenerator(codeGenerator);
     }
 

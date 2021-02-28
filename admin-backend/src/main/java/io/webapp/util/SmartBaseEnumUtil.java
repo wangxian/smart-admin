@@ -13,7 +13,7 @@ public class SmartBaseEnumUtil {
     /**
      * 校验int类型的参数与枚举类比较是否合法
      *
-     * @param value 参数
+     * @param value     参数
      * @param enumClass 枚举类必须实现BaseEnum接口
      * @return boolean
      * @Author listen
@@ -50,7 +50,7 @@ public class SmartBaseEnumUtil {
     /**
      * 获取与int Code相匹配的枚举类的info
      *
-     * @param value 参数
+     * @param value     参数
      * @param enumClass 枚举类必须实现BaseEnum接口
      * @return String 如无匹配枚举则返回null
      */
@@ -67,7 +67,7 @@ public class SmartBaseEnumUtil {
     /**
      * 根据int类型的参数与获取枚举类的实例
      *
-     * @param value 参数
+     * @param value     参数
      * @param enumClass 枚举类必须实现BaseEnum接口
      * @return BaseEnum 无匹配值返回null
      * @Author listen

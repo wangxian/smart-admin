@@ -1,7 +1,7 @@
 package io.webapp.module.system.employee.domain.dto;
 
-import io.webapp.util.SmartVerificationUtil;
 import io.swagger.annotations.ApiModelProperty;
+import io.webapp.util.SmartVerificationUtil;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;

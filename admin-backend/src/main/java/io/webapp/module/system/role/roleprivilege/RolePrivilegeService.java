@@ -1,18 +1,18 @@
 package io.webapp.module.system.role.roleprivilege;
 
+import com.google.common.collect.Lists;
+import io.webapp.common.domain.ResponseDTO;
 import io.webapp.module.system.privilege.dao.PrivilegeDao;
 import io.webapp.module.system.privilege.domain.entity.PrivilegeEntity;
 import io.webapp.module.system.privilege.service.PrivilegeEmployeeService;
-import io.webapp.module.system.role.roleprivilege.domain.dto.RolePrivilegeTreeVO;
-import io.webapp.module.system.role.roleprivilege.domain.entity.RolePrivilegeEntity;
-import io.webapp.util.SmartBeanUtil;
-import io.webapp.common.domain.ResponseDTO;
 import io.webapp.module.system.role.basic.RoleDao;
 import io.webapp.module.system.role.basic.RoleResponseCodeConst;
 import io.webapp.module.system.role.basic.domain.entity.RoleEntity;
 import io.webapp.module.system.role.roleprivilege.domain.dto.RolePrivilegeDTO;
 import io.webapp.module.system.role.roleprivilege.domain.dto.RolePrivilegeSimpleDTO;
-import com.google.common.collect.Lists;
+import io.webapp.module.system.role.roleprivilege.domain.dto.RolePrivilegeTreeVO;
+import io.webapp.module.system.role.roleprivilege.domain.entity.RolePrivilegeEntity;
+import io.webapp.util.SmartBeanUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,9 +83,9 @@ public class RolePrivilegeService {
             rolePrivilegeTreeDTO.setSelectedKey(Lists.newArrayList());
             return ResponseDTO.succData(rolePrivilegeTreeDTO);
         }
-        //构造权限树
+        // 构造权限树
         List<RolePrivilegeSimpleDTO> privilegeList = this.buildPrivilegeTree(privilegeDTOList);
-        //设置选中状态
+        // 设置选中状态
         List<PrivilegeEntity> rolePrivilegeEntityList = rolePrivilegeDao.listByRoleId(roleId);
         List<String> privilegeKeyList = rolePrivilegeEntityList.stream().map(e -> e.getKey()).collect(Collectors.toList());
         rolePrivilegeTreeDTO.setPrivilege(privilegeList);
@@ -107,12 +107,12 @@ public class RolePrivilegeService {
     }
 
     private void buildChildPrivilegeList(List<PrivilegeEntity> privilegeEntityList, List<RolePrivilegeSimpleDTO> parentMenuList) {
-        List<String> parentKeyList = parentMenuList.stream().map(RolePrivilegeSimpleDTO :: getKey).collect(Collectors.toList());
+        List<String> parentKeyList = parentMenuList.stream().map(RolePrivilegeSimpleDTO::getKey).collect(Collectors.toList());
         List<PrivilegeEntity> childEntityList = privilegeEntityList.stream().filter(e -> parentKeyList.contains(e.getParentKey())).collect(Collectors.toList());
         if (CollectionUtils.isEmpty(childEntityList)) {
             return;
         }
-        Map<String, List<PrivilegeEntity>> listMap = childEntityList.stream().collect(Collectors.groupingBy(PrivilegeEntity :: getParentKey));
+        Map<String, List<PrivilegeEntity>> listMap = childEntityList.stream().collect(Collectors.groupingBy(PrivilegeEntity::getParentKey));
         for (RolePrivilegeSimpleDTO rolePrivilegeSimpleDTO : parentMenuList) {
             String key = rolePrivilegeSimpleDTO.getKey();
             List<PrivilegeEntity> privilegeEntities = listMap.get(key);

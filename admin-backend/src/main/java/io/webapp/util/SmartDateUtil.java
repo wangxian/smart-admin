@@ -111,11 +111,7 @@ public class SmartDateUtil extends DateUtils {
 
         if (currentTime > dateTime && currentTime < anotherTime) {
             return true;
-        } else if (currentTime > anotherTime && currentTime < dateTime) {
-            return true;
-        } else {
-            return false;
-        }
+        } else return currentTime > anotherTime && currentTime < dateTime;
     }
 
     public static Date parse(SimpleDateFormat format, String dateStr) {
@@ -163,19 +159,16 @@ public class SmartDateUtil extends DateUtils {
             return false;
         } else if (calendar.get(Calendar.MONTH) != todayCalendar.get(Calendar.MONTH)) {
             return false;
-        } else if (calendar.get(Calendar.DAY_OF_MONTH) != todayCalendar.get(Calendar.DAY_OF_MONTH)) {
-            return false;
-        }
-        return true;
+        } else return calendar.get(Calendar.DAY_OF_MONTH) == todayCalendar.get(Calendar.DAY_OF_MONTH);
     }
 
     /**
      * 设置Calendar的小时、分钟、秒、毫秒
      *
-     * @param calendar 日历
-     * @param hour 小时
-     * @param minute 分钟
-     * @param second 秒
+     * @param calendar    日历
+     * @param hour        小时
+     * @param minute      分钟
+     * @param second      秒
      * @param milliSecond 毫秒
      */
     public static void setCalender(Calendar calendar, int hour, int minute, int second, int milliSecond) {
@@ -235,7 +228,7 @@ public class SmartDateUtil extends DateUtils {
         calendar.setTime(getDayEnd(date));
         calendar.add(Calendar.MONTH, 1);
         calendar.set(Calendar.DAY_OF_MONTH, 1);
-        calendar.add(Calendar.DAY_OF_MONTH, - 1);
+        calendar.add(Calendar.DAY_OF_MONTH, -1);
         return calendar.getTime();
     }
 
@@ -292,10 +285,7 @@ public class SmartDateUtil extends DateUtils {
             return true;
         }
         String current = SmartDateUtil.formatYMD(new Date());
-        if (current.equals(dateStr)) {
-            return true;
-        }
-        return false;
+        return current.equals(dateStr);
     }
 
     /**
@@ -312,10 +302,7 @@ public class SmartDateUtil extends DateUtils {
         }
         String queryDate = SmartDateUtil.formatYM(SmartDateUtil.parseYMD(dateStr));
         String current = SmartDateUtil.formatYM(new Date());
-        if (current.equals(queryDate)) {
-            return true;
-        }
-        return false;
+        return current.equals(queryDate);
     }
 
     public static boolean isCurrentMonthYM(String dateStr) {
@@ -323,10 +310,7 @@ public class SmartDateUtil extends DateUtils {
             return true;
         }
         String current = SmartDateUtil.formatYM(new Date());
-        if (current.equals(dateStr)) {
-            return true;
-        }
-        return false;
+        return current.equals(dateStr);
     }
 
     /**
@@ -415,7 +399,7 @@ public class SmartDateUtil extends DateUtils {
     public static Date getBeginDayOfYesterday() {
         Calendar cal = new GregorianCalendar();
         cal.setTime(getDayBegin(new Date()));
-        cal.add(Calendar.DAY_OF_MONTH, - 1);
+        cal.add(Calendar.DAY_OF_MONTH, -1);
         return cal.getTime();
     }
 
@@ -427,7 +411,7 @@ public class SmartDateUtil extends DateUtils {
     public static Date getEndDayOfYesterDay() {
         Calendar cal = new GregorianCalendar();
         cal.setTime(getDayEnd(new Date()));
-        cal.add(Calendar.DAY_OF_MONTH, - 1);
+        cal.add(Calendar.DAY_OF_MONTH, -1);
         return cal.getTime();
     }
 
@@ -451,9 +435,9 @@ public class SmartDateUtil extends DateUtils {
      * 获取几个月后的日期
      */
     public static Date getAfterMonth(Date inputDate, int number) {
-        Calendar c = Calendar.getInstance();//获得一个日历的实例
-        c.setTime(inputDate);//设置日历时间
-        c.add(Calendar.MONTH, number);//在日历的月份上增加月
+        Calendar c = Calendar.getInstance();// 获得一个日历的实例
+        c.setTime(inputDate);// 设置日历时间
+        c.add(Calendar.MONTH, number);// 在日历的月份上增加月
         return c.getTime();
     }
 

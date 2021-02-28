@@ -1,10 +1,10 @@
 package io.webapp.module.system.datascope.service;
 
-import io.webapp.module.business.login.domain.RequestTokenBO;
-import io.webapp.util.SmartRequestTokenUtil;
 import io.webapp.common.anno.DataScope;
+import io.webapp.module.business.login.domain.RequestTokenBO;
 import io.webapp.module.system.datascope.constant.DataScopeWhereInTypeEnum;
 import io.webapp.module.system.datascope.domain.dto.DataScopeSqlConfigDTO;
+import io.webapp.util.SmartRequestTokenUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.reflections.Reflections;
@@ -35,7 +35,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class DataScopeSqlConfigService {
 
-    private ConcurrentHashMap<String, DataScopeSqlConfigDTO> dataScopeMethodMap = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, DataScopeSqlConfigDTO> dataScopeMethodMap = new ConcurrentHashMap<>();
 
     @Autowired
     private DataScopeViewService dataScopeViewService;

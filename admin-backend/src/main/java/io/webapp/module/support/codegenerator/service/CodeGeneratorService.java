@@ -1,6 +1,7 @@
 package io.webapp.module.support.codegenerator.service;
 
 import com.google.common.base.CaseFormat;
+import com.google.common.collect.Lists;
 import io.webapp.module.support.codegenerator.dao.TableDao;
 import io.webapp.module.support.codegenerator.domain.CodeGeneratorDTO;
 import io.webapp.module.support.codegenerator.domain.CodeGeneratorQueryColumnDTO;
@@ -8,7 +9,6 @@ import io.webapp.module.support.codegenerator.domain.ColumnVO;
 import io.webapp.module.support.codegenerator.domain.QueryFieldVO;
 import io.webapp.util.SmartDateUtil;
 import io.webapp.util.SmartStringUtil;
-import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.WordUtils;
@@ -93,7 +93,7 @@ public class CodeGeneratorService {
         map.put("entityImports", entityImports);
         map.put("webModuleName", CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, moduleClass).replaceAll("_", "-"));
         map.put("upperCamel", CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, moduleClass));
-        //前端的变量
+        // 前端的变量
         map.put("ViewUIMessage", "$Message");
         map.put("VueRefs", "$refs");
         VelocityContext context = new VelocityContext(map);

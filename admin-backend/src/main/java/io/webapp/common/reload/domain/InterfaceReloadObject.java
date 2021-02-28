@@ -12,7 +12,7 @@ import io.webapp.common.reload.interfaces.SmartReloadable;
  */
 public class InterfaceReloadObject extends AbstractSmartReloadObject {
 
-    private SmartReloadable object;
+    private final SmartReloadable object;
 
     public InterfaceReloadObject(SmartReloadable object) {
         super();

@@ -47,10 +47,10 @@ public class SmartEasyPoiExcelUtil {
     }
 
     private static void downLoadExcel(String fileName, HttpServletResponse response, Workbook workbook) throws IOException {
-            response.setHeader("content-Type", "application/vnd.ms-excel");
-            response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, "UTF-8"));
-            response.setCharacterEncoding("UTF-8");
-            workbook.write(response.getOutputStream());
+        response.setHeader("content-Type", "application/vnd.ms-excel");
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, "UTF-8"));
+        response.setCharacterEncoding("UTF-8");
+        workbook.write(response.getOutputStream());
     }
 
     private static void defaultExport(List<Map<String, Object>> list, String fileName, HttpServletResponse response) throws IOException {
@@ -70,10 +70,10 @@ public class SmartEasyPoiExcelUtil {
         try {
             list = ExcelImportUtil.importExcel(new File(filePath), pojoClass, params);
         } catch (NoSuchElementException e) {
-            //throw new NormalException("模板不能为空");
+            // throw new NormalException("模板不能为空");
         } catch (Exception e) {
             e.printStackTrace();
-            //throw new NormalException(e.getMessage());
+            // throw new NormalException(e.getMessage());
         }
         return list;
     }
@@ -91,7 +91,7 @@ public class SmartEasyPoiExcelUtil {
         } catch (NoSuchElementException e) {
             // throw new NormalException("excel文件不能为空");
         } catch (Exception e) {
-            //throw new NormalException(e.getMessage());
+            // throw new NormalException(e.getMessage());
             System.out.println(e.getMessage());
         }
         return list;

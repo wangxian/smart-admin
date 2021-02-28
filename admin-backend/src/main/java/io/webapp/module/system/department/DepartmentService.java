@@ -1,13 +1,13 @@
 package io.webapp.module.system.department;
 
+import io.webapp.common.domain.ResponseDTO;
 import io.webapp.module.system.department.domain.dto.DepartmentCreateDTO;
 import io.webapp.module.system.department.domain.dto.DepartmentUpdateDTO;
 import io.webapp.module.system.department.domain.dto.DepartmentVO;
 import io.webapp.module.system.department.domain.entity.DepartmentEntity;
-import io.webapp.util.SmartBeanUtil;
-import io.webapp.common.domain.ResponseDTO;
 import io.webapp.module.system.employee.EmployeeDao;
 import io.webapp.module.system.employee.domain.dto.EmployeeDTO;
+import io.webapp.util.SmartBeanUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,7 +64,7 @@ public class DepartmentService {
             departmentVOList = filterDepartment(departmentVOList, departmentName);
         }
 
-        Map<Long, DepartmentVO> departmentMap = departmentVOList.stream().collect(Collectors.toMap(DepartmentVO :: getId, Function.identity()));
+        Map<Long, DepartmentVO> departmentMap = departmentVOList.stream().collect(Collectors.toMap(DepartmentVO::getId, Function.identity()));
         // 获取全部员工列表
         List<EmployeeDTO> employeeList = employeeDao.listAll();
         employeeList.forEach(employeeDTO -> {
@@ -103,7 +103,7 @@ public class DepartmentService {
                 List<DepartmentVO> filterResult = new ArrayList<>();
                 getParentDepartment(departmentVOList, parentId, filterResult);
                 for (DepartmentVO dto : filterResult) {
-                    if (! departmentMap.containsKey(dto.getId())) {
+                    if (!departmentMap.containsKey(dto.getId())) {
                         departmentMap.put(dto.getId(), dto);
                     }
                 }

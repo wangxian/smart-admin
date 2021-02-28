@@ -24,7 +24,7 @@ import java.util.Map;
  */
 public class SmartIPUtil {
 
-    public static final String IP_URL = "http://ip.taobao.com/service/getIpInfo.php";
+    public static final String IP_URL = "http:// ip.taobao.com/service/getIpInfo.php";
 
     public static String getLocalHostIP() {
         // 本地IP，如果没有配置外网IP则返回它
@@ -36,17 +36,17 @@ public class SmartIPUtil {
             InetAddress ip = null;
             // 是否找到外网IP
             boolean finded = false;
-            while (netInterfaces.hasMoreElements() && ! finded) {
+            while (netInterfaces.hasMoreElements() && !finded) {
                 NetworkInterface ni = netInterfaces.nextElement();
                 Enumeration<InetAddress> address = ni.getInetAddresses();
                 while (address.hasMoreElements()) {
                     ip = address.nextElement();
                     // 外网IP
-                    if (! ip.isSiteLocalAddress() && ! ip.isLoopbackAddress() && ip.getHostAddress().indexOf(":") == - 1) {
-                        netIp = ip.getHostAddress();
+                    if (!ip.isSiteLocalAddress() && !ip.isLoopbackAddress() && ip.getHostAddress().indexOf(":") == -1) {
+                        netIp  = ip.getHostAddress();
                         finded = true;
                         break;
-                    } else if (ip.isSiteLocalAddress() && ! ip.isLoopbackAddress() && ip.getHostAddress().indexOf(":") == - 1) {
+                    } else if (ip.isSiteLocalAddress() && !ip.isLoopbackAddress() && ip.getHostAddress().indexOf(":") == -1) {
                         // 内网IP
                         localIp = ip.getHostAddress();
                     }
@@ -55,7 +55,7 @@ public class SmartIPUtil {
         } catch (SocketException e) {
             e.getMessage();
         }
-        if (netIp != null && ! "".equals(netIp)) {
+        if (netIp != null && !"".equals(netIp)) {
             return netIp;
         } else {
             return localIp;
@@ -88,14 +88,14 @@ public class SmartIPUtil {
 
     private static String getXForwardedForIp(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
-        //ip 无效直接返回
-        if (! ipValid(ip)) {
+        // ip 无效直接返回
+        if (!ipValid(ip)) {
             return "";
         }
         if (ip.length() > 15) {
             String[] ips = ip.split(",");
             for (String strIp : ips) {
-                if (! ("unknown".equalsIgnoreCase(strIp))) {
+                if (!("unknown".equalsIgnoreCase(strIp))) {
                     ip = strIp;
                     break;
                 }
@@ -106,10 +106,7 @@ public class SmartIPUtil {
     }
 
     private static Boolean ipValid(String ip) {
-        if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
-            return false;
-        }
-        return true;
+        return !StringUtils.isEmpty(ip) && !"unknown".equalsIgnoreCase(ip);
     }
 
     private static String realIp(String ip) {

@@ -25,21 +25,22 @@ public enum FileServiceTypeEnum implements BaseEnum {
      */
     QI_NIU_OSS(3, FileServiceNameConst.QI_NIU_OSS, "七牛文件服务");
 
-    private Integer locationType;
+    private final Integer locationType;
 
-    private String serviceName;
+    private final String serviceName;
 
-    private String desc;
+    private final String desc;
 
     FileServiceTypeEnum(Integer locationType, String serviceName, String desc) {
         this.locationType = locationType;
-        this.serviceName = serviceName;
-        this.desc = desc;
+        this.serviceName  = serviceName;
+        this.desc         = desc;
     }
 
     public String getServiceName() {
         return serviceName;
     }
+
     @Override
     public Integer getValue() {
         return this.locationType;

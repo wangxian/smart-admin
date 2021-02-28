@@ -4,8 +4,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+
 /**
- *
  * @author yandanyang
  * @version 1.0
  * @company 1024lab.net

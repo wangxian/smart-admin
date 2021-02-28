@@ -14,14 +14,14 @@ import java.lang.reflect.Method;
  */
 public class AnnotationReloadObject extends AbstractSmartReloadObject {
 
-    private Object reloadObject;
+    private final Object reloadObject;
 
-    private Method method;
+    private final Method method;
 
     public AnnotationReloadObject(Object reloadObject, Method method) {
         super();
         this.reloadObject = reloadObject;
-        this.method = method;
+        this.method       = method;
         this.method.setAccessible(true);
     }
 

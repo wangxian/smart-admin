@@ -1,12 +1,10 @@
 package io.webapp.module.support.file.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import io.webapp.module.business.login.domain.RequestTokenBO;
-import io.webapp.util.SmartBaseEnumUtil;
-import io.webapp.util.SmartBeanUtil;
-import io.webapp.util.SmartPageUtil;
+import com.google.common.collect.Lists;
 import io.webapp.common.domain.PageResultDTO;
 import io.webapp.common.domain.ResponseDTO;
+import io.webapp.module.business.login.domain.RequestTokenBO;
 import io.webapp.module.support.file.FileDao;
 import io.webapp.module.support.file.constant.FileModuleTypeEnum;
 import io.webapp.module.support.file.constant.FileResponseCodeConst;
@@ -17,7 +15,9 @@ import io.webapp.module.support.file.domain.dto.FileQueryDTO;
 import io.webapp.module.support.file.domain.entity.FileEntity;
 import io.webapp.module.support.file.domain.vo.FileVO;
 import io.webapp.module.support.file.domain.vo.UploadVO;
-import com.google.common.collect.Lists;
+import io.webapp.util.SmartBaseEnumUtil;
+import io.webapp.util.SmartBeanUtil;
+import io.webapp.util.SmartPageUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -184,6 +184,7 @@ public class FileService {
 
     /**
      * 系统文件保存通用接口
+     *
      * @param addDTO
      * @return
      */

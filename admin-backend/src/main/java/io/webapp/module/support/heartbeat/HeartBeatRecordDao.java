@@ -46,6 +46,7 @@ public interface HeartBeatRecordDao extends BaseMapper<HeartBeatRecordEntity> {
 
     /**
      * 分页查询心跳记录
+     *
      * @return
      */
     List<HeartBeatRecordVO> pageQuery(Page page);

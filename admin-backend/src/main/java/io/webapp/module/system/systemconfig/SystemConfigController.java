@@ -1,15 +1,15 @@
 package io.webapp.module.system.systemconfig;
 
-import io.webapp.constant.SwaggerTagConst;
-import io.webapp.module.system.systemconfig.domain.dto.SystemConfigQueryDTO;
-import io.webapp.module.system.systemconfig.domain.dto.SystemConfigUpdateDTO;
-import io.webapp.module.system.systemconfig.domain.dto.SystemConfigVO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.webapp.common.anno.OperateLog;
 import io.webapp.common.domain.PageResultDTO;
 import io.webapp.common.domain.ResponseDTO;
+import io.webapp.constant.SwaggerTagConst;
 import io.webapp.module.system.systemconfig.domain.dto.SystemConfigAddDTO;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.webapp.module.system.systemconfig.domain.dto.SystemConfigQueryDTO;
+import io.webapp.module.system.systemconfig.domain.dto.SystemConfigUpdateDTO;
+import io.webapp.module.system.systemconfig.domain.dto.SystemConfigVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

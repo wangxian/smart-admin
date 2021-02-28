@@ -24,6 +24,7 @@ public interface TableDao {
 
     /**
      * 查询表描述
+     *
      * @param tableName
      * @return
      */
@@ -31,6 +32,7 @@ public interface TableDao {
 
     /**
      * 查询表列信息
+     *
      * @param tableName
      * @return
      */

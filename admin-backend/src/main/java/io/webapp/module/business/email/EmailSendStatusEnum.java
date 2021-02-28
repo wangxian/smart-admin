@@ -13,12 +13,12 @@ package io.webapp.module.business.email;
  */
 public enum EmailSendStatusEnum {
 
-    NOT_SEND(0,"未发送"),
+    NOT_SEND(0, "未发送"),
 
-    SEND(1,"已发送");
+    SEND(1, "已发送");
 
-    private Integer type;
-    private String desc;
+    private final Integer type;
+    private final String desc;
 
     EmailSendStatusEnum(Integer type, String desc) {
         this.type = type;

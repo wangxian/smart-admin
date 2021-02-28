@@ -1,11 +1,11 @@
 package io.webapp.module.business.log.orderoperatelog;
 
+import io.webapp.common.domain.ResponseDTO;
 import io.webapp.module.business.log.orderoperatelog.domain.dto.OrderOperateLogSaveDTO;
 import io.webapp.module.business.log.orderoperatelog.domain.entity.OrderOperateLogEntity;
 import io.webapp.module.business.log.orderoperatelog.domain.vo.OrderOperateLogVO;
 import io.webapp.util.SmartBeanUtil;
 import io.webapp.util.SmartStringUtil;
-import io.webapp.common.domain.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,7 +45,7 @@ public class OrderOperateLogService {
             orderOperateLogEntity.setOrderType(e.getOrderType().getType());
             entityList.add(orderOperateLogEntity);
         });
-        //批量添加
+        // 批量添加
         orderOperateLogDao.batchInsert(entityList);
     }
 

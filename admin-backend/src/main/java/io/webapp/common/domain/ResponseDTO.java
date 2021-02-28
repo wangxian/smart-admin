@@ -23,36 +23,36 @@ public class ResponseDTO<T> {
     }
 
     public ResponseDTO(ResponseCodeConst responseCodeConst, String msg) {
-        this.code = responseCodeConst.getCode();
-        this.msg = msg;
+        this.code    = responseCodeConst.getCode();
+        this.msg     = msg;
         this.success = responseCodeConst.isSuccess();
     }
 
     public ResponseDTO(ResponseCodeConst responseCodeConst, T data) {
         super();
-        this.code = responseCodeConst.getCode();
-        this.msg = responseCodeConst.getMsg();
-        this.data = data;
+        this.code    = responseCodeConst.getCode();
+        this.msg     = responseCodeConst.getMsg();
+        this.data    = data;
         this.success = responseCodeConst.isSuccess();
     }
 
     public ResponseDTO(ResponseCodeConst responseCodeConst, T data, String msg) {
         super();
-        this.code = responseCodeConst.getCode();
-        this.msg = msg;
-        this.data = data;
+        this.code    = responseCodeConst.getCode();
+        this.msg     = msg;
+        this.data    = data;
         this.success = responseCodeConst.isSuccess();
     }
 
     private ResponseDTO(ResponseCodeConst responseCodeConst) {
-        this.code = responseCodeConst.getCode();
-        this.msg = responseCodeConst.getMsg();
+        this.code    = responseCodeConst.getCode();
+        this.msg     = responseCodeConst.getMsg();
         this.success = responseCodeConst.isSuccess();
     }
 
     public ResponseDTO(ResponseDTO responseDTO) {
-        this.code = responseDTO.getCode();
-        this.msg = responseDTO.getMsg();
+        this.code    = responseDTO.getCode();
+        this.msg     = responseDTO.getMsg();
         this.success = responseDTO.isSuccess();
     }
 

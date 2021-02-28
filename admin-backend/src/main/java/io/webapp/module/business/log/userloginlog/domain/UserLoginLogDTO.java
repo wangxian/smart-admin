@@ -1,8 +1,10 @@
 package io.webapp.module.business.log.userloginlog.domain;
-import lombok.Data;
-import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+import java.util.Date;
 
 /**
  * [ 用户登录日志 ]

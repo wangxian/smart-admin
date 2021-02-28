@@ -1,15 +1,14 @@
 package io.webapp.module.system.datascope.service;
 
-import io.webapp.module.system.datascope.domain.dto.*;
-import io.webapp.module.system.datascope.domain.entity.DataScopeRoleEntity;
-import io.webapp.util.SmartBeanUtil;
+import com.google.common.collect.Lists;
 import io.webapp.common.constant.ResponseCodeConst;
 import io.webapp.common.domain.ResponseDTO;
 import io.webapp.module.system.datascope.DataScopeRoleDao;
 import io.webapp.module.system.datascope.constant.DataScopeTypeEnum;
 import io.webapp.module.system.datascope.constant.DataScopeViewTypeEnum;
-import com.google.common.collect.Lists;
 import io.webapp.module.system.datascope.domain.dto.*;
+import io.webapp.module.system.datascope.domain.entity.DataScopeRoleEntity;
+import io.webapp.util.SmartBeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -73,7 +72,7 @@ public class DataScopeService {
         DataScopeDTO dataScopeDTO;
         for (DataScopeTypeEnum typeEnum : enums) {
             dataScopeDTO =
-                DataScopeDTO.builder().dataScopeType(typeEnum.getType()).dataScopeTypeDesc(typeEnum.getDesc()).dataScopeTypeName(typeEnum.getName()).dataScopeTypeSort(typeEnum.getSort()).build();
+                    DataScopeDTO.builder().dataScopeType(typeEnum.getType()).dataScopeTypeDesc(typeEnum.getDesc()).dataScopeTypeName(typeEnum.getName()).dataScopeTypeSort(typeEnum.getSort()).build();
             dataScopeTypeList.add(dataScopeDTO);
         }
         Comparator<DataScopeDTO> comparator = (h1, h2) -> h1.getDataScopeTypeSort().compareTo(h2.getDataScopeTypeSort());

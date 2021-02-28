@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Optional;
 
 /**
- *
  * @author yandanyang
  * @version 1.0
  * @company 1024lab.net
@@ -19,12 +18,12 @@ public enum OrderOperateLogOrderTypeEnum {
 
     public static final String INFO = "";
 
-    private int type;
+    private final int type;
 
-    private String typeName;
+    private final String typeName;
 
     OrderOperateLogOrderTypeEnum(int type, String typeName) {
-        this.type = type;
+        this.type     = type;
         this.typeName = typeName;
     }
 

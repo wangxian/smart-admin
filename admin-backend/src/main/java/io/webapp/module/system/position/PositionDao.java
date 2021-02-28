@@ -39,6 +39,7 @@ public interface PositionDao extends BaseMapper<PositionEntity> {
 
     /**
      * 批量查询员工岗位信息
+     *
      * @param employeeIdList
      * @return
      */

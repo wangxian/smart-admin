@@ -1,11 +1,11 @@
 package io.webapp.module.support.file.domain.dto;
 
-import io.webapp.module.support.file.constant.FileModuleTypeEnum;
-import io.webapp.module.support.file.constant.FileServiceTypeEnum;
+import io.swagger.annotations.ApiModelProperty;
 import io.webapp.common.anno.ApiModelPropertyEnum;
 import io.webapp.common.domain.PageParamDTO;
 import io.webapp.common.validator.en.CheckEnum;
-import io.swagger.annotations.ApiModelProperty;
+import io.webapp.module.support.file.constant.FileModuleTypeEnum;
+import io.webapp.module.support.file.constant.FileServiceTypeEnum;
 import lombok.Data;
 
 /**

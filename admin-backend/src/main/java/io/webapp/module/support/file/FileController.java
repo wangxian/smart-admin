@@ -1,19 +1,19 @@
 package io.webapp.module.support.file;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.webapp.common.anno.NoNeedLogin;
+import io.webapp.common.domain.PageResultDTO;
+import io.webapp.common.domain.ResponseDTO;
 import io.webapp.constant.SwaggerTagConst;
 import io.webapp.module.business.login.domain.RequestTokenBO;
 import io.webapp.module.support.file.constant.FileServiceTypeEnum;
 import io.webapp.module.support.file.domain.dto.FileAddDTO;
 import io.webapp.module.support.file.domain.dto.FileQueryDTO;
+import io.webapp.module.support.file.domain.vo.FileVO;
 import io.webapp.module.support.file.domain.vo.UploadVO;
 import io.webapp.module.support.file.service.FileService;
 import io.webapp.util.SmartRequestTokenUtil;
-import io.webapp.common.anno.NoNeedLogin;
-import io.webapp.common.domain.PageResultDTO;
-import io.webapp.common.domain.ResponseDTO;
-import io.webapp.module.support.file.domain.vo.FileVO;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -88,6 +88,6 @@ public class FileController {
     @PostMapping("/api/file/save")
     public ResponseDTO<String> saveFile(@Valid @RequestBody FileAddDTO addDTO) {
         RequestTokenBO requestToken = SmartRequestTokenUtil.getRequestUser();
-        return fileService.saveFile(addDTO,requestToken);
+        return fileService.saveFile(addDTO, requestToken);
     }
 }

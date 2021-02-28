@@ -7,11 +7,11 @@ import java.util.Enumeration;
 import java.util.List;
 
 /**
-* @Description:    ip工具类
-* @Author:         sbq
-* @CreateDate:     2019/8/8 10:33
-* @Version:        1.0
-*/
+ * @Description: ip工具类
+ * @Author: sbq
+ * @CreateDate: 2019/8/8 10:33
+ * @Version: 1.0
+ */
 public class IpUtil {
     /**
      * 获得服务器的IP地址
@@ -21,17 +21,17 @@ public class IpUtil {
         InetAddress ip = null;
         try {
             boolean bFindIP = false;
-            Enumeration<NetworkInterface> netInterfaces = (Enumeration<NetworkInterface>) NetworkInterface
+            Enumeration<NetworkInterface> netInterfaces = NetworkInterface
                     .getNetworkInterfaces();
             while (netInterfaces.hasMoreElements()) {
                 if (bFindIP) {
                     break;
                 }
-                NetworkInterface ni = (NetworkInterface) netInterfaces
+                NetworkInterface ni = netInterfaces
                         .nextElement();
                 Enumeration<InetAddress> ips = ni.getInetAddresses();
                 while (ips.hasMoreElements()) {
-                    ip = (InetAddress) ips.nextElement();
+                    ip = ips.nextElement();
                     if (!ip.isLoopbackAddress()
                             && ip.getHostAddress().matches(
                             "(\\d{1,3}\\.){3}\\d{1,3}")) {
@@ -49,23 +49,23 @@ public class IpUtil {
     }
 
     /**
-    * @Description:    获得服务器的IP地址(多网卡)
-    * @Author:         sbq
-    * @CreateDate:     2019/8/8 10:34
-    * @Version:        1.0
-    */
+     * @Description: 获得服务器的IP地址(多网卡)
+     * @Author: sbq
+     * @CreateDate: 2019/8/8 10:34
+     * @Version: 1.0
+     */
     public static List<String> getLocalIPS() {
         InetAddress ip = null;
         List<String> ipList = new ArrayList<String>();
         try {
-            Enumeration<NetworkInterface> netInterfaces = (Enumeration<NetworkInterface>) NetworkInterface
+            Enumeration<NetworkInterface> netInterfaces = NetworkInterface
                     .getNetworkInterfaces();
             while (netInterfaces.hasMoreElements()) {
-                NetworkInterface ni = (NetworkInterface) netInterfaces
+                NetworkInterface ni = netInterfaces
                         .nextElement();
                 Enumeration<InetAddress> ips = ni.getInetAddresses();
                 while (ips.hasMoreElements()) {
-                    ip = (InetAddress) ips.nextElement();
+                    ip = ips.nextElement();
                     if (!ip.isLoopbackAddress()
                             && ip.getHostAddress().matches(
                             "(\\d{1,3}\\.){3}\\d{1,3}")) {

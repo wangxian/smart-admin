@@ -25,13 +25,13 @@ public enum EmployeeStatusEnum implements BaseEnum {
      */
     DISABLED(1, "禁用");
 
-    private Integer value;
+    private final Integer value;
 
-    private String desc;
+    private final String desc;
 
     EmployeeStatusEnum(Integer value, String desc) {
         this.value = value;
-        this.desc = desc;
+        this.desc  = desc;
     }
 
     /**

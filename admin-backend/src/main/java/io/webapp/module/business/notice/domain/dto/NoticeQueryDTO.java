@@ -1,7 +1,7 @@
 package io.webapp.module.business.notice.domain.dto;
 
-import io.webapp.common.domain.PageParamDTO;
 import io.swagger.annotations.ApiModelProperty;
+import io.webapp.common.domain.PageParamDTO;
 import lombok.Data;
 
 /**
@@ -28,7 +28,7 @@ public class NoticeQueryDTO extends PageParamDTO {
     @ApiModelProperty("消息标题")
     private String title;
 
-    @ApiModelProperty(value = "是否删除",hidden = true)
+    @ApiModelProperty(value = "是否删除", hidden = true)
     private Integer deleted;
 
 }

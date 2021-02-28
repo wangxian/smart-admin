@@ -1,14 +1,13 @@
 package io.webapp.module.system.privilege.controller;
 
-import io.webapp.constant.SwaggerTagConst;
-import io.webapp.module.system.privilege.domain.dto.*;
-import io.webapp.module.system.privilege.service.PrivilegeService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.webapp.common.anno.OperateLog;
 import io.webapp.common.domain.ResponseDTO;
 import io.webapp.common.domain.ValidateList;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.webapp.constant.SwaggerTagConst;
 import io.webapp.module.system.privilege.domain.dto.*;
+import io.webapp.module.system.privilege.service.PrivilegeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,7 +42,7 @@ public class PrivilegeController {
     @PostMapping("/privilege/menu/batchSaveMenu")
     public ResponseDTO<String> menuBatchSave(@Valid @RequestBody ValidateList<PrivilegeMenuDTO> menuList) {
         return privilegeService.menuBatchSave(menuList);
-//        return ResponseDTO.succ();
+        //        return ResponseDTO.succ();
     }
 
 
@@ -58,14 +57,14 @@ public class PrivilegeController {
     @PostMapping("/privilege/function/saveOrUpdate")
     public ResponseDTO<String> functionSaveOrUpdate(@Valid @RequestBody PrivilegeFunctionDTO privilegeFunctionDTO) {
         return privilegeService.functionSaveOrUpdate(privilegeFunctionDTO);
-//        return ResponseDTO.succ();
+        //        return ResponseDTO.succ();
     }
 
     @ApiOperation(value = "批量保存功能点")
     @PostMapping("/privilege/function/batchSave")
-    public ResponseDTO<String>  batchSaveFunctionList(@Valid @RequestBody ValidateList<PrivilegeFunctionDTO> functionList) {
+    public ResponseDTO<String> batchSaveFunctionList(@Valid @RequestBody ValidateList<PrivilegeFunctionDTO> functionList) {
         return privilegeService.batchSaveFunctionList(functionList);
-//        return ResponseDTO.succ();
+        //        return ResponseDTO.succ();
     }
 
 
