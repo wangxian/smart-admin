@@ -7,7 +7,8 @@
           icon="md-refresh"
           type="primary"
           v-privilege="'heart-beat-query'"
-        >刷新</Button>
+        >刷新
+        </Button>
       </FormItem>
     </Form>
     <Alert>
@@ -37,79 +38,70 @@
   </Card>
 </template>
 <script>
-import { heartBeatApi } from '@/api/heart-beat';
+  import { heartBeatApi } from '@/api/heart-beat';
 
-export default {
-  name: 'HeartBeatList',
-  components: {},
-  props: {},
-  data() {
-    return {
-      searchFrom: {
-        pageSize: 10,
-        pageNum: 1
-      },
-      tableLoading: false,
-      pageTotal: 1,
-      tableData: [],
-      columns: [
-        {
+  export default {
+    name: 'HeartBeatList',
+    components: {},
+    props: {},
+    data () {
+      return {
+        searchFrom: {
+          pageSize: 10,
+          pageNum: 1
+        },
+        tableLoading: false,
+        pageTotal: 1,
+        tableData: [],
+        columns: [{
           title: 'Id',
           key: 'id',
           width: 100
-        },
-        {
+        }, {
           title: '路径',
           key: 'projectPath'
-        },
-        {
+        }, {
           title: '进程号',
           key: 'processNo'
-        },
-        {
+        }, {
           title: '服务器ip',
           key: 'serverIp'
-        },
-        {
+        }, {
           title: '进程启动时间',
           key: 'processStartTime'
-        },
-        {
+        }, {
           title: '心跳时间 ',
           key: 'heartBeatTime'
+        }]
+      };
+    },
+    mounted () {
+      this.queryHeartBeatRecord();
+    },
+    methods: {
+      // 查询心跳记录
+      async queryHeartBeatRecord () {
+        try {
+          this.tableLoading = true;
+          let result = await heartBeatApi.queryHeartBeatRecord(this.searchFrom);
+          this.tableData = result.data.list;
+          this.pageTotal = result.data.total;
+          this.tableLoading = false;
+        } catch (e) {
+          // TODO zhuoda sentry
+          console.error(e);
+          this.tableLoading = false;
         }
-      ]
-    };
-  },
-  mounted() {
-    this.queryHeartBeatRecord();
-  },
-  methods: {
-    // 查询心跳记录
-    async queryHeartBeatRecord() {
-      try {
-        this.tableLoading = true;
-        let result = await heartBeatApi.queryHeartBeatRecord(this.searchFrom);
-        this.tableData = result.data.list;
-        this.pageTotal = result.data.total;
-        this.tableLoading = false;
-      } catch (e) {
-        //TODO zhuoda sentry
-        console.error(e);
-        this.tableLoading = false;
+      }, // 页码改变
+      changePage (pageNum) {
+        this.searchFrom.pageNum = pageNum;
+        this.queryHeartBeatRecord();
+      }, // 改变每页显示数据条数
+      changePageSize (pageSize) {
+        this.searchFrom.pageNum = 1;
+        this.searchFrom.pageSize = pageSize;
+        this.queryHeartBeatRecord();
       }
-    },
-    // 页码改变
-    changePage(pageNum) {
-      this.searchFrom.pageNum = pageNum;
-      this.queryHeartBeatRecord();
-    },
-    // 改变每页显示数据条数
-    changePageSize(pageSize) {
-      this.searchFrom.pageNum = 1;
-      this.searchFrom.pageSize = pageSize;
-      this.queryHeartBeatRecord();
     }
-  }
-};
+  };
 </script>

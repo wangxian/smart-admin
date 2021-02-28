@@ -1,4 +1,5 @@
 import { on } from '@/lib/util';
+
 export default {
   inserted: (el, binding, vnode) => {
     let triggerDom = document.querySelector(binding.value.trigger);
@@ -24,8 +25,9 @@ export default {
     const handleMousemove = e => {
       let xOffset = e.pageX - pageX + transformX;
       let yOffset = e.pageY - pageY + transformY;
-      if (canMove)
-        {bodyDom.style.transform = `translate(${xOffset}px, ${yOffset}px)`;}
+      if (canMove) {
+        bodyDom.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+      }
     };
     const handleMouseup = e => {
       canMove = false;

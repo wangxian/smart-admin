@@ -14,54 +14,48 @@ let axios = Axios.create({
   }
 });
 
-axios.interceptors.request.use(
-  function (config) {
-    // 在发送请求之前做些什么
-    if (cookie.getToken()) {
-      config.headers['x-access-token'] = cookie.getToken();
-    }
-    return config;
-  },
-  function (error) {
-    // 对请求错误做些什么
-    Spin.hide();
-    return Promise.reject(error);
+axios.interceptors.request.use(function (config) {
+  // 在发送请求之前做些什么
+  if (cookie.getToken()) {
+    config.headers['x-access-token'] = cookie.getToken();
   }
-);
+  return config;
+}, function (error) {
+  // 对请求错误做些什么
+  Spin.hide();
+  return Promise.reject(error);
+});
 // 添加响应拦截器
-axios.interceptors.response.use(
-  res => {
-    if (res.config.responseType === 'blob') {
-      let isReturnJson = res.headers && res.headers['content-type'] && res.headers['content-type'].indexOf("json") > -1;
-      //后端返回错误信息
-      if (isReturnJson) {
-        let reader = new FileReader()
-        reader.onload = function (event) {
-          let content = reader.result
-          let parseRes = JSON.parse(content) // 错误信息
-          return validateResponseCode({
-            data: parseRes
-          });
-        }
-        reader.readAsText(res.data);
-        return true
-      } else {
-        //下载文件
-        download(res);
-      }
+axios.interceptors.response.use(res => {
+  if (res.config.responseType === 'blob') {
+    let isReturnJson = res.headers && res.headers['content-type'] && res.headers['content-type'].indexOf('json') > -1;
+    // 后端返回错误信息
+    if (isReturnJson) {
+      let reader = new FileReader();
+      reader.onload = function (event) {
+        let content = reader.result;
+        let parseRes = JSON.parse(content); // 错误信息
+        return validateResponseCode({
+          data: parseRes
+        });
+      };
+      reader.readAsText(res.data);
+      return true;
     } else {
-      //正常json请求
-      return validateResponseCode(res);
+      // 下载文件
+      download(res);
     }
-  },
-  error => {
-    Spin.hide();
-    Message.error('服务内部错误');
-    console.log('1111', error);
-    // 对响应错误做点什么
-    return Promise.reject(error);
+  } else {
+    // 正常json请求
+    return validateResponseCode(res);
   }
-);
+}, error => {
+  Spin.hide();
+  Message.error('服务内部错误');
+  console.log('1111', error);
+  // 对响应错误做点什么
+  return Promise.reject(error);
+});
 
 function validateResponseCode (res) {
   let { data } = res;
@@ -97,11 +91,11 @@ function blobToText (blob) {
           reject();
         }
       } catch (e) {
-        //TODO handle the exception
+        // TODO handle the exception
         reject();
       }
-    }
-  })
+    };
+  });
 }
 
 export const postAxios = (url, data) => {
@@ -133,11 +127,11 @@ function download (res) {
     if (e.target.result.indexOf('Result') != -1 && JSON.parse(e.target.result).Result == false) {
       // 进行错误处理
     } else {
-      let fileName = "download";
+      let fileName = 'download';
       let contentDisposition = res.headers['Content-Disposition'];
-      contentDisposition = contentDisposition ? contentDisposition : res.headers['content-disposition'];
+      contentDisposition = contentDisposition ? contentDisposition: res.headers['content-disposition'];
       if (contentDisposition) {
-        fileName = window.decodeURI(contentDisposition.split('=')[1], "UTF-8");
+        fileName = window.decodeURI(contentDisposition.split('=')[1], 'UTF-8');
       }
       executeDownload(data, fileName);
     }
@@ -148,7 +142,7 @@ function download (res) {
 //  模拟点击a 标签进行下载
 function executeDownload (data, fileName) {
   if (!data) {
-    return
+    return;
   }
   let url = window.URL.createObjectURL(new Blob([data]));
   let link = document.createElement('a');

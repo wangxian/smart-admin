@@ -101,8 +101,8 @@
   import { topMenuArray } from '@/router';
   import Fullscreen from './components/fullscreen';
   import Language from './components/language';
-  import { mapMutations, mapActions, mapGetters } from 'vuex';
-  import { getNewTagList, routeEqual, getShowMenu } from '@/lib/menu-func';
+  import { mapActions, mapGetters, mapMutations } from 'vuex';
+  import { getNewTagList, routeEqual } from '@/lib/menu-func';
   import { routers } from '@/router/routers';
   import minLogo from '@/assets/images/logo-min.png';
   import maxLogo from '@/assets/images/logo.png';
@@ -123,9 +123,9 @@
     },
     data () {
       return {
-        //是否加载完了权限
-        isLoadedPrvileges: false, //用户所拥有的顶级菜单数组
-        userTopMenuArray: [], //当前顶级菜单名字
+        // 是否加载完了权限
+        isLoadedPrvileges: false, // 用户所拥有的顶级菜单数组
+        userTopMenuArray: [], // 当前顶级菜单名字
         currentTopMenuName: '',
         currentTopMenuTitle: '', // 是否折叠
         collapsed: false,
@@ -188,7 +188,7 @@
         this.setBreadCrumb(newRoute);
         // this.pushKeepAliveIncludes(newRoute);
         this.setTagNavList(getNewTagList(this.tagNavList, newRoute));
-        //更新左侧目录打开
+        // 更新左侧目录打开
         this.$refs.sideMenu.updateOpenName(newRoute.name);
         // 如果param参数 存在 noKeepAlive切位true
         let isParamNoKeepAlive = params && params.noKeepAlive === true;
@@ -196,13 +196,13 @@
         let isQueryNoKeepAlive = query && query.noKeepAlive === true;
         // 如果router meta 存在 noKeepAlive
         let isMetaNoKeepAlive = meta && meta.noKeepAlive === true;
-        //如果存在noKeepAlive且已经缓存了，需要去掉
+        // 如果存在noKeepAlive且已经缓存了，需要去掉
         if (isParamNoKeepAlive || isMetaNoKeepAlive || isQueryNoKeepAlive) {
           // 去掉keep-alive
           this.deleteKeepAliveIncludes(name);
           return;
         }
-        //默认缓存住所有
+        // 默认缓存住所有
         this.pushKeepAliveIncludes(name);
       }
     },
@@ -217,7 +217,7 @@
       this.buildTopMenu();
       // 设置初始语言
       this.setLocal(this.$i18n.locale);
-      //初始化左侧菜单
+      // 初始化左侧菜单
       this.initSideMenu();
       this.jumpRouter();
     },
@@ -243,7 +243,7 @@
       },
 
       initSideMenu () {
-        //如果是登录跳转过来
+        // 如果是登录跳转过来
         if (this.$store.state.user.isUpdatePrivilege) {
           this.isLoadedPrvileges = true;
           this.$Spin.show();
@@ -253,16 +253,16 @@
           this.$Spin.hide();
 
         } else {
-          //如果页面刷新，需要重新获取权限
+          // 如果页面刷新，需要重新获取权限
           (async () => {
             this.$Spin.show();
             let sessionResult = await loginApi.getSession();
-            //设置权限
+            // 设置权限
             this.$store.commit('setUserPrivilege', sessionResult.data.privilegeList);
             this.isLoadedPrvileges = true;
             this.buildTopMenu();
             this.buildMenuTree();
-            //刷新以后手动更新左侧菜单打开和选中
+            // 刷新以后手动更新左侧菜单打开和选中
             this.$refs.sideMenu.updateActiveName(this.$route.name);
             this.jumpRouter();
             this.$Spin.hide();
@@ -310,9 +310,9 @@
         let privilegeTree = [];
         let routerArray = this.getCurrentTopMenuChild();
         for (const router of routerArray) {
-          //过滤非菜单
+          // 过滤非菜单
           if (!router.meta.hideInMenu) {
-            //判断是否有权限
+            // 判断是否有权限
             if (this.$store.state.user.userLoginInfo.isSuperMan || this.$store.state.user.privilegeMenuKeyList.indexOf(router.name) !== -1) {
               let menu = {
                 name: router.name,
@@ -322,7 +322,7 @@
               };
               this.menuNameMatchedMap.set(menu.name, [menu.name]);
               privilegeTree.push(menu);
-              //存在孩子节点，开始递归
+              // 存在孩子节点，开始递归
               if (router.children && router.children.length > 0) {
                 this.recursion(router.children, menu);
               }
@@ -335,14 +335,14 @@
 
       recursion (children, parentMenu) {
         for (const router of children) {
-          //验证权限
+          // 验证权限
           if (this.$store.state.user.privilegeMenuKeyList.indexOf(router.name) === -1) {
             continue;
           }
 
-          //过滤非菜单
+          // 过滤非菜单
           if (!router.meta.hideInMenu) {
-            //验证权限
+            // 验证权限
             if (!this.$store.state.user.userLoginInfo.isSuperMan) {
               if (this.$store.state.user.privilegeMenuKeyList.indexOf(router.name) === -1) {
                 continue;
@@ -362,7 +362,7 @@
             let menuNameArray = this.menuNameMatchedMap.get(parentMenu.name);
             this.menuNameMatchedMap.set(menu.name, [...menuNameArray, menu.name]);
             parentMenu.children.push(menu);
-            //存在孩子节点，开始递归
+            // 存在孩子节点，开始递归
             if (router.children && router.children.length > 0) {
               this.recursion(router.children, menu);
             }
@@ -410,7 +410,7 @@
             this.turnToPage(this.$config.homeName);
             this.clearKeepAliveIncludes(this.$config.homeName);
           } else {
-            //如果是关闭单个tag，则从keepAliveIncludes将关闭的那个移除掉
+            // 如果是关闭单个tag，则从keepAliveIncludes将关闭的那个移除掉
             this.deleteKeepAliveIncludes(route.name);
             if (routeEqual(this.$route, route)) {
               this.closeTag(route);
@@ -499,5 +499,7 @@
     }
   }
 
-  .ivu-input-wrapper { padding-right: 20px; }
+  .ivu-input-wrapper {
+    padding-right: 20px;
+  }
 </style>

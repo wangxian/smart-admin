@@ -10,17 +10,15 @@
 </template>
 
 <script>
-export default {
-  name: 'ThreeContent',
-  components: {},
-  props: {},
-  data() {
-    return {
-    };
-  },
-  mounted() {
-  },
-  methods: {
-  }
-};
+  export default {
+    name: 'ThreeContent',
+    components: {},
+    props: {},
+    data () {
+      return {};
+    },
+    mounted () {
+    },
+    methods: {}
+  };
 </script>

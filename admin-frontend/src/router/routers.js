@@ -20,24 +20,17 @@ import { system } from './module/system';
  *  topMenu:(true)，表示为顶级菜单
  * }
  */
-// 登录模块
+  // 登录模块
 export const login = {
-  path: '/login',
-  name: 'login',
-  meta: {
-    hideInMenu: true,
-    title: 'Login - 登录',
-    noValidatePrivilege: true
-  },
-  component: () => import('@/views/login/login.vue')
-};
+    path: '/login',
+    name: 'login',
+    meta: {
+      hideInMenu: true,
+      title: 'Login - 登录',
+      noValidatePrivilege: true
+    },
+    component: () => import('@/views/login/login.vue')
+  };
 
 // 全部路由
-export const routers = [
-  login,
-  ...home,
-  ...error,
-  ...business, 
-  ...system,
-  ...support
-];
+export const routers = [login, ...home, ...error, ...business, ...system, ...support];

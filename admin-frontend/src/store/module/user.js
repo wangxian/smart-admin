@@ -1,7 +1,6 @@
 import cookie from '@/lib/cookie.js';
 import { loginApi } from '@/api/login';
-import { localSave, localRead } from '@/lib/local';
-import { getType } from '@/lib/util';
+import { localRead, localSave } from '@/lib/local';
 import { PRIVILEGE_TYPE_ENUM } from '@/constants/privilege';
 
 const localReadRouterPrivilege = () => {
@@ -28,13 +27,10 @@ const localReadRouterPrivilege = () => {
 
 export default {
   state: {
-    token: cookie.getToken(),
-    // session信息
+    token: cookie.getToken(), // session信息
     userLoginInfo: {},
-    isUpdatePrivilege: false,
-    // key为router name, value为 key的集合,用于v-privilege，页面功能点判断
-    privilegeFunctionPointsMap: new Map(),
-    // 菜单key权限集合，用于左侧是否有菜单权限判断
+    isUpdatePrivilege: false, // key为router name, value为 key的集合,用于v-privilege，页面功能点判断
+    privilegeFunctionPointsMap: new Map(), // 菜单key权限集合，用于左侧是否有菜单权限判断
     privilegeMenuKeyList: [],
     /**
      * key为 router path的首字母，value为集合
@@ -48,8 +44,7 @@ export default {
     setToken (state, token) {
       state.token = token;
       cookie.setToken(token);
-    },
-    // 保存用户登录信息
+    }, // 保存用户登录信息
     setUserLoginInfo (state, userLoginInfo) {
       state.userLoginInfo = userLoginInfo;
       localSave('userLoginInfo', JSON.stringify(userLoginInfo));
@@ -94,8 +89,7 @@ export default {
   },
   getters: {
     // 用户功能点权限
-    userFuncPrivilegeInfo: () => localRead('funcPrivilegeInfo'),
-    // 用户菜单权限
+    userFuncPrivilegeInfo: () => localRead('funcPrivilegeInfo'), // 用户菜单权限
     userMenuPrivilege: state => state.userLoginInfo.privilegeList
   },
   actions: {
@@ -103,19 +97,16 @@ export default {
     handleLogin ({ commit }, params) {
       params.loginName = params.loginName.trim();
       return new Promise((resolve, reject) => {
-        loginApi
-          .login(params)
-          .then(res => {
-            localStorage.clear();
-            const data = res.data;
-            commit('setToken', data.xaccessToken);
-            // 保存用户登录
-            commit('setUserLoginInfo', data);
-            resolve();
-          })
-          .catch(err => {
-            reject(err);
-          });
+        loginApi.login(params).then(res => {
+          localStorage.clear();
+          const data = res.data;
+          commit('setToken', data.xaccessToken);
+          // 保存用户登录
+          commit('setUserLoginInfo', data);
+          resolve();
+        }).catch(err => {
+          reject(err);
+        });
       });
     }
   }

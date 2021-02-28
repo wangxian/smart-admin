@@ -10,7 +10,7 @@
     </Alert>
     <Form class="tools" inline>
       <FormItem>
-        <Input placeholder="请输入" v-model="addData" />
+        <Input placeholder="请输入" v-model="addData"/>
       </FormItem>
       <FormItem>
         <Button @click="addContent4Query" type="primary">Query保存</Button>
@@ -24,71 +24,61 @@
 </template>
 
 <script>
-export default {
-  name: 'KeepAliveAddContent',
-  components: {},
-  props: {},
-  data() {
-    return {
-      addData: ''
-    };
-  },
-  computed: {},
-  watch: {},
-  filters: {},
-  methods: {
-    addContent4Query() {
-      if (this.addData === '') {
-        this.$Message.error('请输入内容');
-        return;
-      }
-
-      this.$Notice.success({
-        title: 'noKeepAlive跳转',
-        render: h => {
-          return h('pre', [
-            'this.$router.closeCurrentPageAndPush({\r\n' +
-              '    name: "KeepAliveContentList",\r\n' +
-              '    query: { noKeepAlive: true }\r\n' +
-              '});'
-          ]);
-        }
-      });
-
-      this.$router.closeCurrentPageAndPush({
-        name: 'KeepAliveContentList',
-        query: { noKeepAlive: true }
-      });
+  export default {
+    name: 'KeepAliveAddContent',
+    components: {},
+    props: {},
+    data () {
+      return {
+        addData: ''
+      };
     },
-    addContent4Param() {
-      if (this.addData === '') {
-        this.$Message.error('请输入内容');
-        return;
-      }
-
-      this.$Notice.success({
-        title: 'noKeepAlive跳转',
-        render: h => {
-          return h('pre', [
-            'this.$router.closeCurrentPageAndPush({\r\n' +
-              '    name: "KeepAliveContentList",\r\n' +
-              '    params: { noKeepAlive: true }\r\n' +
-              '});'
-          ]);
+    computed: {},
+    watch: {},
+    filters: {},
+    methods: {
+      addContent4Query () {
+        if (this.addData === '') {
+          this.$Message.error('请输入内容');
+          return;
         }
-      });
 
-      this.$router.closeCurrentPageAndPush({
-        name: 'KeepAliveContentList',
-        params: { noKeepAlive: true }
-      });
-    },
-    backPage() {
-      // 返回
-      this.$router.closeCurrentPage();
+        this.$Notice.success({
+          title: 'noKeepAlive跳转',
+          render: h => {
+            return h('pre', ['this.$router.closeCurrentPageAndPush({\r\n' + '    name: "KeepAliveContentList",\r\n' + '    query: { noKeepAlive: true }\r\n' + '});']);
+          }
+        });
+
+        this.$router.closeCurrentPageAndPush({
+          name: 'KeepAliveContentList',
+          query: { noKeepAlive: true }
+        });
+      },
+      addContent4Param () {
+        if (this.addData === '') {
+          this.$Message.error('请输入内容');
+          return;
+        }
+
+        this.$Notice.success({
+          title: 'noKeepAlive跳转',
+          render: h => {
+            return h('pre', ['this.$router.closeCurrentPageAndPush({\r\n' + '    name: "KeepAliveContentList",\r\n' + '    params: { noKeepAlive: true }\r\n' + '});']);
+          }
+        });
+
+        this.$router.closeCurrentPageAndPush({
+          name: 'KeepAliveContentList',
+          params: { noKeepAlive: true }
+        });
+      },
+      backPage () {
+        // 返回
+        this.$router.closeCurrentPage();
+      }
     }
-  }
-};
+  };
 </script>
 <style lang="less" scoped>
 </style>

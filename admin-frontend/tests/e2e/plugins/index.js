@@ -1,4 +1,4 @@
-// https://docs.cypress.io/guides/guides/plugins-guide.html
+// https:// docs.cypress.io/guides/guides/plugins-guide.html
 
 module.exports = (on, config) => Object.assign({}, config, {
   fixturesFolder: 'tests/e2e/fixtures',

@@ -1,8 +1,6 @@
 // 任务调度API
-import {
-  postAxios,
-  getAxios
-} from '@/lib/http';
+import { postAxios } from '@/lib/http';
+
 export const onlineUserApi = {
   // 查询在线员工列表
   getOnlineUserList: (data) => {

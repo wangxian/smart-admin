@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie';
 import config from '@/config';
+
 const { cookieExpires } = config;
 export const TOKEN_KEY = 'token';
 
@@ -12,8 +13,7 @@ export default {
   },
   getToken: () => {
     const token = Cookies.get(TOKEN_KEY);
-    if (token) return token;
-    else return null;
+    if (token) return token; else return null;
   },
   clearToken: () => {
     Cookies.remove(TOKEN_KEY);

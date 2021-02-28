@@ -10,7 +10,7 @@ import config from '@/config';
 
 const { homeName } = config;
 
-Vue.use(Router); 
+Vue.use(Router);
 const router = new Router({
   // routes: routers,
   routes: buildRouters(routers)
@@ -19,12 +19,10 @@ const router = new Router({
 const LOGIN_PAGE_NAME = 'login';
 
 // 防止用户刷新丢失登录信息
-if (
-  Object.keys(store.state.user.userLoginInfo).length === 0 &&
-  localRead('userLoginInfo')
-) {
+if (Object.keys(store.state.user.userLoginInfo).length === 0 && localRead('userLoginInfo')) {
   store.commit('setUserLoginInfo', JSON.parse(localRead('userLoginInfo')));
 }
+
 // 解决路由跳转相同的地址报错
 const originalPush = Router.prototype.push;
 Router.prototype.push = function (location) {
@@ -78,7 +76,7 @@ router.beforeEach((to, from, next) => {
       return;
     }
 
-    //如果是超管，直接放行
+    // 如果是超管，直接放行
     if (store.state.user.userLoginInfo.isSuperMan) {
       next();
       return;
@@ -106,7 +104,7 @@ router.afterEach(to => {
 function buildRouters (routerArray) {
   let lineRouters = [];
   for (let routerItem of routerArray) {
-    //如果是顶层菜单
+    // 如果是顶层菜单
     if (routerItem.meta.topMenu) {
       // for (let children of routerItem.children) {
       let lineRouterArray = convertRouterTree2Line(routerItem.children);
@@ -121,11 +119,11 @@ function buildRouters (routerArray) {
 }
 
 function convertRouterTree2Line (routerArray) {
-  //一级,比如 人员管理
+  // 一级,比如 人员管理
   let topArray = [];
   for (let router1Item of routerArray) {
     let level2Array = [];
-    //二级，比如员工管理
+    // 二级，比如员工管理
     if (router1Item.children) {
       for (let level2Item of router1Item.children) {
 
@@ -136,9 +134,9 @@ function convertRouterTree2Line (routerArray) {
           }
         }
 
-        //三级，
+        // 三级，
         if (level2Item.children) {
-          level2Array.push(...level2Item.children)
+          level2Array.push(...level2Item.children);
         }
 
         level2ItemCopy.children = [];
@@ -170,9 +168,7 @@ function recursionCheckRouter (routerArray) {
     if (!routerItem.name) {
       console.error('没有配置router name', routerItem);
     } else {
-      let existNameRouter = tempCheckObj.checkRouterNameMap.get(
-        routerItem.name
-      );
+      let existNameRouter = tempCheckObj.checkRouterNameMap.get(routerItem.name);
       if (typeof existNameRouter !== 'undefined') {
         console.error('存在相同的router name', routerItem, existNameRouter);
       } else {
@@ -188,9 +184,7 @@ function recursionCheckRouter (routerArray) {
         console.error('path 没有以/开头 ', routerItem);
       }
 
-      let existPathRouter = tempCheckObj.checkRouterPathMap.get(
-        routerItem.path
-      );
+      let existPathRouter = tempCheckObj.checkRouterPathMap.get(routerItem.path);
       if (typeof existPathRouter !== 'undefined') {
         console.error('存在相同的router path', routerItem, existPathRouter);
       } else {
@@ -204,7 +198,7 @@ function recursionCheckRouter (routerArray) {
   }
 }
 
-//如果是开发环境，需要检测router的规范性
+// 如果是开发环境，需要检测router的规范性
 if (process.env.NODE_ENV === 'development') {
   recursionCheckRouter(routers);
   delete tempCheckObj.checkRouterNameMap;

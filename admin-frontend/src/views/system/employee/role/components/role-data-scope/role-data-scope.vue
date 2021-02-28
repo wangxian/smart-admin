@@ -9,7 +9,8 @@
           style="margin-right: 20px;"
           type="primary"
           v-privilege="'update-data-scope'"
-        >保存</Button>
+        >保存
+        </Button>
         <Button @click.native="getDataScope()" type="warning" v-privilege="'query-data-scope'">刷新</Button>
       </Col>
     </Row>
@@ -32,7 +33,8 @@
               :key="index+'viewType'"
               :label="scope.viewType"
               v-for="(scope,index) in item.viewTypeList"
-            >{{scope.viewTypeName }}</Radio>
+            >{{scope.viewTypeName }}
+            </Radio>
           </RadioGroup>
         </Col>
         <!--Col 数据范围选中 end-->
@@ -46,99 +48,108 @@
 </template>
 
 <script>
-import { dataScopeApi } from '@/api/data-scope';
-export default {
-  name: 'RoleDataScope',
-  components: {},
-  props: {
-    // 角色id
-    roleId: {
-      type: Number,
-      required: true,
-      validator: value => {
-        return value >= 0;
-      }
-    }
-  },
-  data() {
-    return {
-      dataScopeList: {}
-    };
-  },
-  computed: {},
-  watch: {},
-  filters: {},
-  created() {},
-  mounted() {
-    this.getDataScope();
-  },
-  beforeCreate() {},
-  beforeMount() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {},
-  activated() {},
-  methods: {
-    // 更新
-    async updateDataScope() {
-      try {
-        let data = {
-          roleId: this.roleId,
-          batchSetList: this.dataScopeList
-        };
-        await dataScopeApi.updateDataScope(data);
-        this.$Message.success('保存成功');
-        this.getDataScope(this.employeeId);
-      } catch (e) {
-        //TODO zhuoda sentry
-        console.error(e);
+  import { dataScopeApi } from '@/api/data-scope';
+
+  export default {
+    name: 'RoleDataScope',
+    components: {},
+    props: {
+      // 角色id
+      roleId: {
+        type: Number,
+        required: true,
+        validator: value => {
+          return value >= 0;
+        }
       }
     },
-    // 获取数据
-    async getDataScope() {
-      try {
-        let result = await dataScopeApi.getDataScopeList();
-        this.dataScopeList = result.data;
-        this.getRoleDataScope();
-      } catch (e) {
-        //TODO zhuoda sentry
-        console.error(e);
-      }
+    data () {
+      return {
+        dataScopeList: {}
+      };
     },
-    // 获取数据范围根据角色id
-    async getRoleDataScope() {
-      try {
-        let result = await dataScopeApi.getDataScopeByRoleId(this.roleId);
-        let data = result.data;
-        this.dataScopeList.forEach((item, i) => {
-          let find = data.find(e => e.dataScopeType == item.dataScopeType);
-          if (find) {
-            this.$set(item, 'viewType', find.viewType);
-          } else {
-            this.$set(item, 'viewType', '');
-          }
-        });
-      } catch (e) {
-        //TODO zhuoda sentry
-        console.error(e);
+    computed: {},
+    watch: {},
+    filters: {},
+    created () {
+    },
+    mounted () {
+      this.getDataScope();
+    },
+    beforeCreate () {
+    },
+    beforeMount () {
+    },
+    beforeUpdate () {
+    },
+    updated () {
+    },
+    beforeDestroy () {
+    },
+    destroyed () {
+    },
+    activated () {
+    },
+    methods: {
+      // 更新
+      async updateDataScope () {
+        try {
+          let data = {
+            roleId: this.roleId,
+            batchSetList: this.dataScopeList
+          };
+          await dataScopeApi.updateDataScope(data);
+          this.$Message.success('保存成功');
+          this.getDataScope(this.employeeId);
+        } catch (e) {
+          // TODO zhuoda sentry
+          console.error(e);
+        }
+      }, // 获取数据
+      async getDataScope () {
+        try {
+          let result = await dataScopeApi.getDataScopeList();
+          this.dataScopeList = result.data;
+          this.getRoleDataScope();
+        } catch (e) {
+          // TODO zhuoda sentry
+          console.error(e);
+        }
+      }, // 获取数据范围根据角色id
+      async getRoleDataScope () {
+        try {
+          let result = await dataScopeApi.getDataScopeByRoleId(this.roleId);
+          let data = result.data;
+          this.dataScopeList.forEach((item, i) => {
+            let find = data.find(e => e.dataScopeType == item.dataScopeType);
+            if (find) {
+              this.$set(item, 'viewType', find.viewType);
+            } else {
+              this.$set(item, 'viewType', '');
+            }
+          });
+        } catch (e) {
+          // TODO zhuoda sentry
+          console.error(e);
+        }
       }
     }
-  }
-};
+  };
 </script>
 <style lang="less" scoped>
-.button-style {
-  margin: 20px 0 20px 0;
-  padding-left: 20px;
-  text-align: right;
-}
-.tab-data {
-  padding-left: 30px;
-  margin: 10px 0px;
-}
-.tab-margin {
-  text-align: center;
-  margin: 10px 0px;
-}
+  .button-style {
+    margin: 20px 0 20px 0;
+    padding-left: 20px;
+    text-align: right;
+  }
+
+  .tab-data {
+    padding-left: 30px;
+    margin: 10px 0px;
+  }
+
+  .tab-margin {
+    text-align: center;
+    margin: 10px 0px;
+  }
 </style>

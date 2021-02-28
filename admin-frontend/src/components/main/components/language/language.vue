@@ -13,42 +13,42 @@
 </template>
 
 <script>
-export default {
-  name: 'Language',
-  props: {
-    lang: {
-      type: String,
-      require: false
-    }
-  },
-  data () {
-    return {
-      langList: {
-        'zh-CN': '语言',
-        'zh-TW': '語言',
-        'en-US': 'Lang'
-      },
-      localList: {
-        'zh-CN': '中文简体',
-        'zh-TW': '中文繁体',
-        'en-US': 'English'
+  export default {
+    name: 'Language',
+    props: {
+      lang: {
+        type: String,
+        require: false
       }
-    };
-  },
-  watch: {
-    lang (lang) {
-      this.$i18n.locale = lang;
+    },
+    data () {
+      return {
+        langList: {
+          'zh-CN': '语言',
+          'zh-TW': '語言',
+          'en-US': 'Lang'
+        },
+        localList: {
+          'zh-CN': '中文简体',
+          'zh-TW': '中文繁体',
+          'en-US': 'English'
+        }
+      };
+    },
+    watch: {
+      lang (lang) {
+        this.$i18n.locale = lang;
+      }
+    },
+    computed: {
+      title () {
+        return this.langList[this.lang];
+      }
+    },
+    methods: {
+      selectLang (name) {
+        this.$emit('on-lang-change', name);
+      }
     }
-  },
-  computed: {
-    title () {
-      return this.langList[this.lang];
-    }
-  },
-  methods: {
-    selectLang (name) {
-      this.$emit('on-lang-change', name);
-    }
-  }
-};
+  };
 </script>

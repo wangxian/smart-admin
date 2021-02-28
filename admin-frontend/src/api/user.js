@@ -1,4 +1,4 @@
-import { postAxios, getAxios } from '@/lib/http';
+import { getAxios, postAxios } from '@/lib/http';
 
 export const login = ({ userName, password }) => {
   const data = {

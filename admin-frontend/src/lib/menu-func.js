@@ -1,6 +1,6 @@
-import { forEach, hasOneOf, objEqual } from '@/lib/util';
 import config from '@/config';
 import { localRead, localSave } from '@/lib/local';
+
 const { title, useI18n } = config;
 export const hasChild = item => {
   return item.children && item.children.length !== 0;
@@ -21,46 +21,24 @@ export const getShowMenu = (map = {}, menuList, access = false) => {
   let result = [];
   for (let menuItem of menuList) {
     let routerObj = JSON.parse(JSON.stringify(menuItem));
-    if (
-      map.hasOwnProperty(menuItem.name) &&
-      (menuItem.name !== 'home' && menuItem.name !== '_home')
-    ) {
+    if (map.hasOwnProperty(menuItem.name) && (menuItem.name !== 'home' && menuItem.name !== '_home')) {
       // 判断该菜单权限下是否为数组，若为数组，则为功能点权限否则为子菜单
       if (getType(map[routerObj.name]) === 'array') {
-        let funcPrivilege = localRead('funcPrivilegeInfo')
-          ? JSON.parse(localRead('funcPrivilegeInfo'))
-          : {};
-        localSave(
-          'funcPrivilegeInfo',
-          JSON.stringify({
-            ...funcPrivilege,
-            [routerObj.name]: map[routerObj.name]
-          })
-        );
-      } else if (
-        getType(map[routerObj.name]) !== 'array' &&
-        !routerObj.children
-      ) {
+        let funcPrivilege = localRead('funcPrivilegeInfo') ? JSON.parse(localRead('funcPrivilegeInfo')): {};
+        localSave('funcPrivilegeInfo', JSON.stringify({
+          ...funcPrivilege,
+          [routerObj.name]: map[routerObj.name]
+        }));
+      } else if (getType(map[routerObj.name]) !== 'array' && !routerObj.children) {
         // 判断是否为二级菜单，若是则需要多枚举一层赋值
-        let funcPrivilege = localRead('funcPrivilegeInfo')
-          ? JSON.parse(localRead('funcPrivilegeInfo'))
-          : {};
-        localSave(
-          'funcPrivilegeInfo',
-          JSON.stringify({
-            ...funcPrivilege,
-            [routerObj.name]: map[routerObj.name][routerObj.name]
-          })
-        );
-      } else if (
-        getType(map[routerObj.name]) !== 'array' &&
-        routerObj.children
-      ) {
+        let funcPrivilege = localRead('funcPrivilegeInfo') ? JSON.parse(localRead('funcPrivilegeInfo')): {};
+        localSave('funcPrivilegeInfo', JSON.stringify({
+          ...funcPrivilege,
+          [routerObj.name]: map[routerObj.name][routerObj.name]
+        }));
+      } else if (getType(map[routerObj.name]) !== 'array' && routerObj.children) {
         // 循环子菜单权限
-        routerObj.children = getShowMenu(
-          map[routerObj.name],
-          routerObj.children
-        );
+        routerObj.children = getShowMenu(map[routerObj.name], routerObj.children);
       }
       result.push(routerObj);
     }
@@ -69,10 +47,7 @@ export const getShowMenu = (map = {}, menuList, access = false) => {
 };
 // 获取数据类型
 export const getType = obj => {
-  return {}.toString
-    .call(obj)
-    .match(/\s([a-zA-Z]+)/)[1]
-    .toLowerCase();
+  return {}.toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
 };
 
 /**
@@ -86,7 +61,7 @@ export const setTagNavListInLocalStorage = list => {
  */
 export const getTagNavListFromLocalStorage = () => {
   const list = localStorage.tagNaveList;
-  return list ? JSON.parse(list) : [];
+  return list ? JSON.parse(list): [];
 };
 export const getBreadCrumbList = (route, homeRoute) => {
   let homeItem = {
@@ -97,25 +72,23 @@ export const getBreadCrumbList = (route, homeRoute) => {
   if (routeMatched.some(item => item.name === homeRoute.name)) {
     return [homeItem];
   }
-  let res = routeMatched
-    .filter(item => {
-      return item.meta === undefined || !item.meta.hideInBread;
-    })
-    .map(item => {
-      let meta = {
-        ...item.meta
-      };
-      if (meta.title && typeof meta.title === 'function') {
-        meta.__titleIsFunction__ = true;
-        meta.title = meta.title(route);
-      }
-      let obj = {
-        icon: (item.meta && item.meta.icon) || '',
-        name: item.name,
-        meta: meta
-      };
-      return obj;
-    });
+  let res = routeMatched.filter(item => {
+    return item.meta === undefined || !item.meta.hideInBread;
+  }).map(item => {
+    let meta = {
+      ...item.meta
+    };
+    if (meta.title && typeof meta.title === 'function') {
+      meta.__titleIsFunction__ = true;
+      meta.title = meta.title(route);
+    }
+    let obj = {
+      icon: (item.meta && item.meta.icon) || '',
+      name: item.name,
+      meta: meta
+    };
+    return obj;
+  });
   res = res.filter(item => {
     return !item.meta.hideInMenu;
   });
@@ -150,8 +123,7 @@ export const getNextRoute = (list, route) => {
     res = getHomeRoute(list);
   } else {
     const index = list.findIndex(item => routeEqual(item, route));
-    if (index === list.length - 1) res = list[list.length - 2];
-    else res = list[index + 1];
+    if (index === list.length - 1) res = list[list.length - 2]; else res = list[index + 1];
   }
   return res;
 };
@@ -177,8 +149,20 @@ export const getNewTagList = (list, newRoute) => {
   let newList = [...list];
   let index = newList.findIndex(item => item.name === name);
   if (index >= 0) {
-    newList[index] = { name, path, meta, query };
-  } else newList.push({ name, path, meta, query });
+    newList[index] = {
+      name,
+      path,
+      meta,
+      query
+    };
+  } else {
+    newList.push({
+      name,
+      path,
+      meta,
+      query
+    });
+  }
   return newList;
 };
 export const routeEqual = (route1, route2) => {
@@ -196,7 +180,9 @@ export const getRouteTitleHandled = route => {
     if (typeof meta.title === 'function') {
       meta.__titleIsFunction__ = true;
       title = meta.title(router);
-    } else title = meta.title;
+    } else {
+      title = meta.title;
+    }
   }
   meta.title = title;
   router.meta = meta;
@@ -217,12 +203,11 @@ export const showTitle = (item, vm) => {
   if (!title) return;
   if (useI18n) {
     if (title.includes('{{') && title.includes('}}') && useI18n) {
-      title = title.replace(/({{[\s\S]+?}})/, (m, str) =>
-        str.replace(/{{([\s\S]*)}}/, (m, _) => vm.$t(_.trim()))
-      );
-    } else if (__titleIsFunction__) title = item.meta.title;
-    else title = vm.$t(item.name);
-  } else title = (item.meta && item.meta.title) || item.name;
+      title = title.replace(/({{[\s\S]+?}})/, (m, str) => str.replace(/{{([\s\S]*)}}/, (m, _) => vm.$t(_.trim())));
+    } else if (__titleIsFunction__) title = item.meta.title; else title = vm.$t(item.name);
+  } else {
+    title = (item.meta && item.meta.title) || item.name;
+  }
   return title;
 };
 /**
@@ -233,7 +218,7 @@ export const showTitle = (item, vm) => {
 export const setTitle = (routeItem, vm) => {
   const handledRoute = getRouteTitleHandled(routeItem);
   const pageTitle = showTitle(handledRoute, vm);
-  const resTitle = pageTitle ? `${pageTitle} - ${title}` : title;
+  const resTitle = pageTitle ? `${pageTitle} - ${title}`: title;
   window.document.title = resTitle;
 };
 
@@ -251,10 +236,7 @@ export const findNodeUpperByClasses = (ele, classes) => {
   let parentNode = ele.parentNode;
   if (parentNode) {
     let classList = parentNode.classList;
-    if (
-      classList &&
-      classes.every(className => classList.contains(className))
-    ) {
+    if (classList && classes.every(className => classList.contains(className))) {
       return parentNode;
     } else {
       return findNodeUpperByClasses(parentNode, classes);
@@ -269,8 +251,7 @@ export const findNodeDownward = (ele, tag) => {
     let len = ele.childNodes.length;
     while (++i < len) {
       let child = ele.childNodes[i];
-      if (child.tagName === tagName) return child;
-      else return findNodeDownward(child, tag);
+      if (child.tagName === tagName) return child; else return findNodeDownward(child, tag);
     }
   }
 };

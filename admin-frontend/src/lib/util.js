@@ -1,4 +1,5 @@
 import moment from 'moment';
+
 /**
  * @param {String} url
  * @description 从URL中解析参数
@@ -18,10 +19,7 @@ export const getParams = url => {
  * @description 获取数据类型
  */
 export const getType = obj => {
-  return {}.toString
-    .call(obj)
-    .match(/\s([a-zA-Z]+)/)[1]
-    .toLowerCase();
+  return {}.toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
 };
 // 日期格式
 export const dateFormat = {
@@ -110,7 +108,7 @@ const isEarly = (timeStamp, currentTime) => {
  * @description 如果传入的数值小于10，即位数只有1位，则在前面补充0
  */
 const getHandledValue = num => {
-  return num < 10 ? '0' + num : num;
+  return num < 10 ? '0' + num: num;
 };
 
 /**
@@ -127,20 +125,10 @@ const getDate = (timeStamp, startType) => {
   const second = getHandledValue(d.getSeconds());
   let resStr = '';
   if (startType === 'year') {
-    resStr =
-      year +
-      '-' +
-      month +
-      '-' +
-      date +
-      ' ' +
-      hours +
-      ':' +
-      minutes +
-      ':' +
-      second;
+    resStr = year + '-' + month + '-' + date + ' ' + hours + ':' + minutes + ':' + second;
+  } else {
+    resStr = month + '-' + date + ' ' + hours + ':' + minutes;
   }
-  else resStr = month + '-' + date + ' ' + hours + ':' + minutes;
   return resStr;
 };
 
@@ -164,18 +152,28 @@ export const getRelativeTime = timeStamp => {
   // 如果IS_EARLY为false则差值取反
   if (!IS_EARLY) diff = -diff;
   let resStr = '';
-  const dirStr = IS_EARLY ? '前' : '后';
+  const dirStr = IS_EARLY ? '前': '后';
   // 少于等于59秒
-  if (diff <= 59) resStr = diff + '秒' + dirStr;
-  // 多于59秒，少于等于59分钟59秒
-  else if (diff > 59 && diff <= 3599) { resStr = Math.floor(diff / 60) + '分钟' + dirStr; }
+  if (diff <= 59) {
+    resStr = diff + '秒' + dirStr;
+  }// 多于59秒，少于等于59分钟59秒
+  else if (diff > 59 && diff <= 3599) {
+    resStr = Math.floor(diff / 60) + '分钟' + dirStr;
+  }
   // 多于59分钟59秒，少于等于23小时59分钟59秒
-  else if (diff > 3599 && diff <= 86399) { resStr = Math.floor(diff / 3600) + '小时' + dirStr; }
+  else if (diff > 3599 && diff <= 86399) {
+    resStr = Math.floor(diff / 3600) + '小时' + dirStr;
+  }
   // 多于23小时59分钟59秒，少于等于29天59分钟59秒
-  else if (diff > 86399 && diff <= 2623859) { resStr = Math.floor(diff / 86400) + '天' + dirStr; }
+  else if (diff > 86399 && diff <= 2623859) {
+    resStr = Math.floor(diff / 86400) + '天' + dirStr;
+  }
   // 多于29天59分钟59秒，少于364天23小时59分钟59秒，且传入的时间戳早于当前
-  else if (diff > 2623859 && diff <= 31567859 && IS_EARLY) { resStr = getDate(timeStamp); }
-  else resStr = getDate(timeStamp, 'year');
+  else if (diff > 2623859 && diff <= 31567859 && IS_EARLY) {
+    resStr = getDate(timeStamp);
+  } else {
+    resStr = getDate(timeStamp, 'year');
+  }
   return resStr;
 };
 
@@ -187,11 +185,7 @@ export const getExplorer = () => {
   const isExplorer = exp => {
     return ua.indexOf(exp) > -1;
   };
-  if (isExplorer('MSIE')) return 'IE';
-  else if (isExplorer('Firefox')) return 'Firefox';
-  else if (isExplorer('Chrome')) return 'Chrome';
-  else if (isExplorer('Opera')) return 'Opera';
-  else if (isExplorer('Safari')) return 'Safari';
+  if (isExplorer('MSIE')) return 'IE'; else if (isExplorer('Firefox')) return 'Firefox'; else if (isExplorer('Chrome')) return 'Chrome'; else if (isExplorer('Opera')) return 'Opera'; else if (isExplorer('Safari')) return 'Safari';
 };
 
 /**
@@ -237,8 +231,9 @@ export const off = (function () {
  * 如果没有传入key这个参数，则判断obj对象是否有键值对
  */
 export const hasKey = (obj, key) => {
-  if (key) return key in obj;
-  else {
+  if (key) {
+    return key in obj;
+  } else {
     let keysArr = Object.keys(obj);
     return keysArr.length;
   }
@@ -252,9 +247,13 @@ export const hasKey = (obj, key) => {
 export const objEqual = (obj1, obj2) => {
   const keysArr1 = Object.keys(obj1);
   const keysArr2 = Object.keys(obj2);
-  if (keysArr1.length !== keysArr2.length) return false;
-  else if (keysArr1.length === 0 && keysArr2.length === 0) return true;
-  /* eslint-disable-next-line */ else { return !keysArr1.some(key => obj1[key] != obj2[key]); }
+  if (keysArr1.length !== keysArr2.length) {
+    return false;
+  } else if (keysArr1.length === 0 && keysArr2.length === 0) {
+    return true;
+  }/* eslint-disable-next-line */ else {
+    return !keysArr1.some(key => obj1[key] != obj2[key]);
+  }
 };
 
 // 相关工具类
@@ -281,22 +280,12 @@ export const utils = {
         vm.$set(item, '_checked', false);
       }
     }
-  },
-  // 校验字符串是否相同 合同使用
+  }, // 校验字符串是否相同 合同使用
   contrastString (originStr, changeStr) {
-    let origin = originStr
-      .replace(/\s*/g, '')
-      .replace(/"/g, '\'')
-      .replace(/&nbsp;/g, '')
-      .replace(/disabled=\/'\/'/g, 'disabled');
-    let change = changeStr
-      .replace(/\s*/g, '')
-      .replace(/"/g, '\'')
-      .replace(/&nbsp;/g, '')
-      .replace(/disabled=\/'\/'/g, 'disabled');
+    let origin = originStr.replace(/\s*/g, '').replace(/"/g, '\'').replace(/&nbsp;/g, '').replace(/disabled=\/'\/'/g, 'disabled');
+    let change = changeStr.replace(/\s*/g, '').replace(/"/g, '\'').replace(/&nbsp;/g, '').replace(/disabled=\/'\/'/g, 'disabled');
     return origin === change;
-  },
-  // 获取当前日期getDateStr(0)、前几天getDateStr(-10)、后几天getDateStr(20)
+  }, // 获取当前日期getDateStr(0)、前几天getDateStr(-10)、后几天getDateStr(20)
   getDateStr (AddDayCount, format) {
     let date = new Date();
     // 获取AddDayCount天后的日期
@@ -306,18 +295,15 @@ export const utils = {
   getDate (date, format) {
     let year = date.getFullYear();
     // day获取当前几号，不足10补0
-    let day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+    let day = date.getDate() > 9 ? date.getDate(): '0' + date.getDate();
     // month获取当前月份的日期，不足10补0
-    let month =
-      date.getMonth() + 1 > 9
-        ? date.getMonth() + 1
-        : '0' + (date.getMonth() + 1);
+    let month = date.getMonth() + 1 > 9 ? date.getMonth() + 1: '0' + (date.getMonth() + 1);
     // h获取当前小时，不足10补0
-    let h = date.getHours() > 9 ? date.getHours() : '0' + date.getHours();
+    let h = date.getHours() > 9 ? date.getHours(): '0' + date.getHours();
     // s获取当前分钟，不足10补0
-    let m = date.getMinutes() > 9 ? date.getMinutes() : '0' + date.getMinutes();
+    let m = date.getMinutes() > 9 ? date.getMinutes(): '0' + date.getMinutes();
     // s获取当前秒数，不足10补0
-    let s = date.getSeconds() > 9 ? date.getSeconds() : '0' + date.getSeconds();
+    let s = date.getSeconds() > 9 ? date.getSeconds(): '0' + date.getSeconds();
     let resultDate = '';
     if (format === dateFormat.YMD) {
       resultDate = year + '-' + month + '-' + day;
@@ -329,8 +315,7 @@ export const utils = {
       resultDate = year + '-' + month + '-' + day + ' ' + h + ':' + m + ':' + s;
     }
     return resultDate;
-  },
-  // 获取周一和周日日期，返回两种格式时间
+  }, // 获取周一和周日日期，返回两种格式时间
   getDateWeek () {
     let now = new Date();
     let nowTime = now.getTime();
@@ -346,8 +331,7 @@ export const utils = {
       firstDate: monday,
       lastDate: sunday
     };
-  },
-  // 获取月初与月末日期，返回两种时间格式
+  }, // 获取月初与月末日期，返回两种时间格式
   getDateMonth () {
     let dateFirter = new Date();
     let dateLast = new Date();
@@ -365,8 +349,7 @@ export const utils = {
       firstDate: dateFirter,
       lastDate: dateLast
     };
-  },
-  // 计算天数
+  }, // 计算天数
   getDayBetweenDate (date) {
     date = this.getDate(new Date(date), 'YMD');
     let startTime = Date.parse(new Date(date)); // IE支持“yyyy/MM/dd”格式
@@ -383,7 +366,7 @@ export const utils = {
     let firstYear = first.getFullYear();
     let secondYear = second.getFullYear();
     let intervalYear = secondYear - firstYear;
-    return intervalYear < 0 ? 0 : intervalYear;
+    return intervalYear < 0 ? 0: intervalYear;
   },
   getDateIntervalYearFixed2 (firstDate, secondDate) {
     if (!firstDate || !secondDate) {
@@ -403,8 +386,7 @@ export const utils = {
     // 得到差的多少年 保留两位小数
     let resultYear = parseFloat((day / (30 * 12)).toFixed(2));
     return resultYear;
-  },
-  // 数字转化为中文大写
+  }, // 数字转化为中文大写
   // 代码如下所示：
   convertCurrency (money) {
     // 汉字的数字
@@ -495,14 +477,13 @@ export const utils = {
   }
 };
 
-
 export const dateTimeRangeConvert = (timerange) => {
   // timerange
   let arr = [];
   if (timerange[0] === '') {
     arr.push(null);
   } else {
-    arr.push(moment(timerange[0]).format("YYYY-MM-DD 00:00:00"));
+    arr.push(moment(timerange[0]).format('YYYY-MM-DD 00:00:00'));
   }
 
   if (timerange[1] === '') {

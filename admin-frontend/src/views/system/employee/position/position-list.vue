@@ -19,7 +19,8 @@
             icon="md-refresh"
             type="default"
             v-privilege="'search-position'"
-          >重置</Button>
+          >重置
+          </Button>
         </FormItem>
         <FormItem>
           <Button
@@ -27,7 +28,8 @@
             icon="md-add"
             type="primary"
             v-privilege="'add-position'"
-          >添加</Button>
+          >添加
+          </Button>
         </FormItem>
       </Form>
       <!-- Form 搜索按钮区 end -->
@@ -95,272 +97,265 @@
 </template>
 
 <script>
-import { positionApi } from '@/api/position';
-export default {
-  name: 'PositionList',
-  components: {},
-  props: {},
-  data() {
-    return {
-      isShowPage: true,
-      searchValue: '',
-      isShowEditModal: false,
-      isShowAddModal: false,
-      // table是否Loading
-      isShowTablesLoading: true,
-      isShowSaveLoading: true,
-      isShowUpdateLoading: true,
-      pageTotal: 0,
-      // 更新的数据
-      updateItem: {
-        id: 0,
-        positionName: 'positionName',
-        remark: ''
-      },
-      // 添加保存的数据
-      saveItem: {
-        positionName: '',
-        remark: ''
-      },
-      saveItemInt: {},
-      // table表头
-      columns: [
-        {
+  import { positionApi } from '@/api/position';
+
+  export default {
+    name: 'PositionList',
+    components: {},
+    props: {},
+    data () {
+      return {
+        isShowPage: true,
+        searchValue: '',
+        isShowEditModal: false,
+        isShowAddModal: false, // table是否Loading
+        isShowTablesLoading: true,
+        isShowSaveLoading: true,
+        isShowUpdateLoading: true,
+        pageTotal: 0, // 更新的数据
+        updateItem: {
+          id: 0,
+          positionName: 'positionName',
+          remark: ''
+        }, // 添加保存的数据
+        saveItem: {
+          positionName: '',
+          remark: ''
+        },
+        saveItemInt: {}, // table表头
+        columns: [{
           title: 'id',
           key: 'id',
           width: 100
-        },
-        {
+        }, {
           title: '岗位名称',
           key: 'positionName',
           width: 200
-        },
-        {
+        }, {
           title: '岗位描述',
           key: 'remark'
-        },
-        {
+        }, {
           title: '操作',
           key: 'action',
           width: 150,
           align: 'center',
           className: 'action-hide',
           render: (h, params) => {
-            return this.$tableAction(h, [
-              {
-                title: '编辑',
-                directives: [
-                  {
-                    name: 'privilege',
-                    value: 'update-position'
-                  }
-                ],
-                action: () => {
-                  this.updateItem = {
-                    id: params.row.id,
-                    positionName: params.row.positionName,
-                    remark: params.row.remark
-                  };
-                  this.isShowEditModal = true;
-                }
-              },
-              {
-                title: '删除',
-                directives: [
-                  {
-                    name: 'privilege',
-                    value: 'delete-position'
-                  }
-                ],
-                action: () => {
-                  this.$Modal.confirm({
-                    title: '友情提醒',
-                    content: '确定要删除吗？',
-                    onOk: () => {
-                      this.deletePositionById(params.row.id);
-                    }
-                  });
-                }
+            return this.$tableAction(h, [{
+              title: '编辑',
+              directives: [{
+                name: 'privilege',
+                value: 'update-position'
+              }],
+              action: () => {
+                this.updateItem = {
+                  id: params.row.id,
+                  positionName: params.row.positionName,
+                  remark: params.row.remark
+                };
+                this.isShowEditModal = true;
               }
-            ]);
+            }, {
+              title: '删除',
+              directives: [{
+                name: 'privilege',
+                value: 'delete-position'
+              }],
+              action: () => {
+                this.$Modal.confirm({
+                  title: '友情提醒',
+                  content: '确定要删除吗？',
+                  onOk: () => {
+                    this.deletePositionById(params.row.id);
+                  }
+                });
+              }
+            }]);
           }
+        }], // table数据
+        data: [],
+        updateValidate: {
+          positionName: [{
+            required: true,
+            message: '请输入岗位名称',
+            trigger: 'blur'
+          }],
+          remark: [{
+            required: true,
+            message: '请输入岗位描述',
+            trigger: 'blur'
+          }]
+        },
+        saveValidate: {
+          positionName: [{
+            required: true,
+            message: '请输入岗位名称',
+            trigger: 'blur'
+          }],
+          remark: [{
+            required: true,
+            message: '请输入岗位描述',
+            trigger: 'blur'
+          }]
+        },
+        searchFrom: {
+          positionName: '',
+          pageNum: 1,
+          pageSize: 10,
+          searchCount: true,
+          sort: false
+        },
+        searchFromInt: {},
+        isShowdeleteLoading: false
+      };
+    },
+    computed: {},
+    watch: {},
+    filters: {},
+    created () {
+    },
+    mounted () {
+      Object.assign(this.searchFromInt, this.searchFrom);
+      Object.assign(this.saveItemInt, this.saveItem);
+      this.getPositionListPage();
+    },
+    beforeCreate () {
+    },
+    beforeMount () {
+    },
+    beforeUpdate () {
+    },
+    updated () {
+    },
+    beforeDestroy () {
+    },
+    destroyed () {
+    },
+    activated () {
+    },
+    methods: {
+      // 分页查询所有岗位
+      async getPositionListPage () {
+        try {
+          this.isShowTablesLoading = true;
+          this.isShowPage = true;
+          let result = await positionApi.getPositionListPage(this.searchFrom);
+          this.isShowTablesLoading = false;
+          let datas = result.data;
+          this.data = datas.list;
+          this.pageTotal = datas.total;
+        } catch (e) {
+          this.isShowTablesLoading = false;
+          // TODO zhuoda sentry
+          console.error(e);
         }
-      ],
-      // table数据
-      data: [],
-      updateValidate: {
-        positionName: [
-          { required: true, message: '请输入岗位名称', trigger: 'blur' }
-        ],
-        remark: [{ required: true, message: '请输入岗位描述', trigger: 'blur' }]
-      },
-      saveValidate: {
-        positionName: [
-          { required: true, message: '请输入岗位名称', trigger: 'blur' }
-        ],
-        remark: [{ required: true, message: '请输入岗位描述', trigger: 'blur' }]
-      },
-      searchFrom: {
-        positionName: '',
-        pageNum: 1,
-        pageSize: 10,
-        searchCount: true,
-        sort: false
-      },
-      searchFromInt: {},
-      isShowdeleteLoading: false
-    };
-  },
-  computed: {},
-  watch: {},
-  filters: {},
-  created() {},
-  mounted() {
-    Object.assign(this.searchFromInt, this.searchFrom);
-    Object.assign(this.saveItemInt, this.saveItem);
-    this.getPositionListPage();
-  },
-  beforeCreate() {},
-  beforeMount() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {},
-  activated() {},
-  methods: {
-    // 分页查询所有岗位
-    async getPositionListPage() {
-      try {
-        this.isShowTablesLoading = true;
-        this.isShowPage = true;
-        let result = await positionApi.getPositionListPage(this.searchFrom);
-        this.isShowTablesLoading = false;
-        let datas = result.data;
-        this.data = datas.list;
-        this.pageTotal = datas.total;
-      } catch (e) {
-        this.isShowTablesLoading = false;
-        //TODO zhuoda sentry
-        console.error(e);
-      }
-    },
-    // 页码改变
-    changePage(pageNum) {
-      this.searchFrom.pageNum = pageNum;
-      this.getPositionListPage();
-    },
-    // 改变每页显示数据条数
-    changePageSize(pageSize) {
-      this.searchFrom.pageNum = 1;
-      this.searchFrom.pageSize = pageSize;
-      this.getPositionListPage();
-    },
-    // 检验参数后 更新岗位
-    validateAndUpdataPosition() {
-      this.$refs['updateRef'].validate(valid => {
-        this.isShowUpdateLoading = true;
-        if (valid) {
-          this.updatePosition();
-        } else {
+      }, // 页码改变
+      changePage (pageNum) {
+        this.searchFrom.pageNum = pageNum;
+        this.getPositionListPage();
+      }, // 改变每页显示数据条数
+      changePageSize (pageSize) {
+        this.searchFrom.pageNum = 1;
+        this.searchFrom.pageSize = pageSize;
+        this.getPositionListPage();
+      }, // 检验参数后 更新岗位
+      validateAndUpdataPosition () {
+        this.$refs['updateRef'].validate(valid => {
+          this.isShowUpdateLoading = true;
+          if (valid) {
+            this.updatePosition();
+          } else {
+            this.isShowUpdateLoading = false;
+            this.$nextTick(() => {
+              this.isShowUpdateLoading = true;
+            });
+          }
+        });
+      }, // 更新岗位
+      async updatePosition () {
+        try {
+          let result = await positionApi.updatePosition(this.updateItem);
+          this.$Message.success('修改成功');
+          await this.getPositionListPage();
+          this.cancelUpdateData();
+        } catch (e) {
           this.isShowUpdateLoading = false;
           this.$nextTick(() => {
             this.isShowUpdateLoading = true;
           });
+          // TODO zhuoda sentry
+          console.error(e);
+        } finally {
+          this.isShowUpdateLoading = false;
         }
-      });
-    },
-    // 更新岗位
-    async updatePosition() {
-      try {
-        let result = await positionApi.updatePosition(this.updateItem);
-        this.$Message.success('修改成功');
-        await this.getPositionListPage();
-        this.cancelUpdateData();
-      } catch (e) {
-        this.isShowUpdateLoading = false;
-        this.$nextTick(() => {
-          this.isShowUpdateLoading = true;
-        });
-        //TODO zhuoda sentry
-        console.error(e);
-      } finally {
-        this.isShowUpdateLoading = false;
-      }
-    },
-    // 清除编辑模态框数据
-    cancelUpdateData() {
-      this.updateItem = {};
-      // 清空form规则检查
-      this.$refs['updateRef'].resetFields();
-      this.isShowEditModal = false;
-    },
-    // 搜索
-    searchData() {
-      this.pageNum = 1;
-      this.getPositionListPage();
-    },
-    // 重置
-    clearSearch() {
-      Object.assign(this.searchFrom, this.searchFromInt);
-      this.getPositionListPage();
-    },
-    // 添加岗位
-    validateAndAddPosition() {
-      try {
-        this.$refs['saveRef'].validate(valid => {
+      }, // 清除编辑模态框数据
+      cancelUpdateData () {
+        this.updateItem = {};
+        // 清空form规则检查
+        this.$refs['updateRef'].resetFields();
+        this.isShowEditModal = false;
+      }, // 搜索
+      searchData () {
+        this.pageNum = 1;
+        this.getPositionListPage();
+      }, // 重置
+      clearSearch () {
+        Object.assign(this.searchFrom, this.searchFromInt);
+        this.getPositionListPage();
+      }, // 添加岗位
+      validateAndAddPosition () {
+        try {
+          this.$refs['saveRef'].validate(valid => {
+            this.isShowSaveLoading = true;
+            if (valid) {
+              this.addPosition();
+            } else {
+              this.isShowSaveLoading = false;
+              this.$nextTick(() => {
+                this.isShowSaveLoading = true;
+              });
+            }
+          });
+        } catch (e) {
+          // TODO zhuoda sentry
+          console.error(e);
+        }
+      }, // 添加岗位 - 异步
+      async addPosition () {
+        try {
+          let result = await positionApi.addPosition(this.saveItem);
+          this.$Message.success('添加成功');
           this.isShowSaveLoading = true;
-          if (valid) {
-            this.addPosition();
-          } else {
-            this.isShowSaveLoading = false;
-            this.$nextTick(() => {
-              this.isShowSaveLoading = true;
-            });
-          }
-        });
-      } catch (e) {
-        //TODO zhuoda sentry
-        console.error(e);
-      }
-    },
-    // 添加岗位 - 异步
-    async addPosition() {
-      try {
-        let result = await positionApi.addPosition(this.saveItem);
-        this.$Message.success('添加成功');
-        this.isShowSaveLoading = true;
-        await this.getPositionListPage();
-        this.cancelSaveData();
-      } catch (e) {
-        //TODO zhuoda sentry
-        console.error(e);
-        this.isShowSaveLoading = false;
-      }
-    },
-    // 清除添加模态框数据
-    cancelSaveData() {
-      Object.assign(this.saveItem, this.saveItemInt);
-      // 清空form规则检查
-      this.$refs['saveRef'].resetFields();
-      this.isShowAddModal = false;
-    },
-    // 根据ID删除岗位
-    async deletePositionById(id) {
-      try {
-        this.isShowdeleteLoading = true;
-        let result = await positionApi.deletePosition(id);
-        this.isShowdeleteLoading = false;
-        this.$Message.success('删除成功');
-        await this.getPositionListPage();
-        this.cancelSaveData();
-      } catch (e) {
-        //TODO zhuoda sentry
-        console.error(e);
-        this.isShowdeleteLoading = false;
+          await this.getPositionListPage();
+          this.cancelSaveData();
+        } catch (e) {
+          // TODO zhuoda sentry
+          console.error(e);
+          this.isShowSaveLoading = false;
+        }
+      }, // 清除添加模态框数据
+      cancelSaveData () {
+        Object.assign(this.saveItem, this.saveItemInt);
+        // 清空form规则检查
+        this.$refs['saveRef'].resetFields();
+        this.isShowAddModal = false;
+      }, // 根据ID删除岗位
+      async deletePositionById (id) {
+        try {
+          this.isShowdeleteLoading = true;
+          let result = await positionApi.deletePosition(id);
+          this.isShowdeleteLoading = false;
+          this.$Message.success('删除成功');
+          await this.getPositionListPage();
+          this.cancelSaveData();
+        } catch (e) {
+          // TODO zhuoda sentry
+          console.error(e);
+          this.isShowdeleteLoading = false;
+        }
       }
     }
-  }
-};
+  };
 </script>
 <style lang="less" scoped>
 </style>

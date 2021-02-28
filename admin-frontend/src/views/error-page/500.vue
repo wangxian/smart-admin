@@ -3,17 +3,18 @@
 </template>
 
 <script>
-import error404 from '@/assets/images/error-page/error-500.svg';
-import ErrorContent from './error-content.vue';
-export default {
-  name: 'error500',
-  components: {
-    ErrorContent
-  },
-  data () {
-    return {
-      src: error404
-    };
-  }
-};
+  import error404 from '@/assets/images/error-page/error-500.svg';
+  import ErrorContent from './error-content.vue';
+
+  export default {
+    name: 'error500',
+    components: {
+      ErrorContent
+    },
+    data () {
+      return {
+        src: error404
+      };
+    }
+  };
 </script>

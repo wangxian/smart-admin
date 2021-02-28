@@ -1,4 +1,4 @@
-import store from '@/store';
 export default {
-  install(Vue, options) {}
+  install (Vue, options) {
+  }
 };

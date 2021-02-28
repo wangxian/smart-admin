@@ -1,15 +1,12 @@
 // 打印类属性、方法定义
 /* eslint-disable */
-//第二个参数表明是否要关闭当前窗口
-const Print = function(dom, close, options) {
+// 第二个参数表明是否要关闭当前窗口
+const Print = function (dom, close, options) {
   if (!(this instanceof Print)) return new Print(dom, close, options);
 
-  this.options = this.extend(
-    {
-      noPrint: '.no-print'
-    },
-    options
-  );
+  this.options = this.extend({
+    noPrint: '.no-print'
+  }, options);
 
   if (typeof dom === 'string') {
     this.dom = document.querySelector(dom);
@@ -20,32 +17,29 @@ const Print = function(dom, close, options) {
   this.init(close);
 };
 Print.prototype = {
-  init: function(close) {
+  init: function (close) {
     var content = this.getStyle() + this.getHtml();
     this.writeIframe(content, close);
   },
-  extend: function(obj, obj2) {
+  extend: function (obj, obj2) {
     for (var k in obj2) {
       obj[k] = obj2[k];
     }
     return obj;
   },
 
-  getStyle: function() {
+  getStyle: function () {
     var str = '',
       styles = document.querySelectorAll('style,link');
     for (var i = 0; i < styles.length; i++) {
       str += styles[i].outerHTML;
     }
-    str +=
-      '<style>body, html{height: auto; overflow: auto !important;}' +
-      (this.options.noPrint ? this.options.noPrint : '.no-print') +
-      '{display:none;}</style>';
+    str += '<style>body, html{height: auto; overflow: auto !important;}' + (this.options.noPrint ? this.options.noPrint: '.no-print') + '{display:none;}</style>';
 
     return str;
   },
 
-  getHtml: function() {
+  getHtml: function () {
     var inputs = document.querySelectorAll('input');
     var textareas = document.querySelectorAll('textarea');
     var selects = document.querySelectorAll('select');
@@ -85,7 +79,7 @@ Print.prototype = {
     return this.dom.outerHTML;
   },
 
-  writeIframe: function(content, close) {
+  writeIframe: function (content, close) {
     var w,
       doc,
       iframe = document.createElement('iframe'),
@@ -99,14 +93,14 @@ Print.prototype = {
     doc.write(content);
     doc.close();
     this.toPrint(w, close);
-    setTimeout(function() {
+    setTimeout(function () {
       document.body.removeChild(iframe);
     }, 500);
   },
 
-  toPrint: function(frameWindow, close) {
+  toPrint: function (frameWindow, close) {
     try {
-      setTimeout(function() {
+      setTimeout(function () {
         frameWindow.focus();
         try {
           if (!frameWindow.document.execCommand('print', false, null)) {
@@ -126,7 +120,7 @@ Print.prototype = {
   }
 };
 const MyPlugin = {};
-MyPlugin.install = function(Vue, options) {
+MyPlugin.install = function (Vue, options) {
   // 4. 添加实例方法
   Vue.prototype.$print = Print;
 };

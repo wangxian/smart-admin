@@ -1,7 +1,7 @@
 <template>
   <Submenu :name="`${parentName}`">
     <template slot="title">
-      <CommonIcon :type="parentItem.icon || ''" />
+      <CommonIcon :type="parentItem.icon || ''"/>
       <span>{{ showTitle(parentItem) }}</span>
     </template>
     <template v-for="item in children">
@@ -18,7 +18,7 @@
       <template v-else>
         <side-menu-item :key="`menu-${item.name}`" :parent-item="item" v-if="showChildren(item)"></side-menu-item>
         <MenuItem :key="`menu-${item.name}`" :name="getNameOrHref(item)" v-else>
-          <CommonIcon :key="`menu-${item.name}-common-icon`" :type="item.icon || ''" />
+          <CommonIcon :key="`menu-${item.name}-common-icon`" :type="item.icon || ''"/>
           <span :key="`menu-${item.name}-span`">{{ showTitle(item) }}</span>
         </MenuItem>
       </template>
@@ -26,10 +26,11 @@
   </Submenu>
 </template>
 <script>
-import mixin from './mixin';
-import itemMixin from './item-mixin';
-export default {
-  name: 'SideMenuItem',
-  mixins: [mixin, itemMixin]
-};
+  import mixin from './mixin';
+  import itemMixin from './item-mixin';
+
+  export default {
+    name: 'SideMenuItem',
+    mixins: [mixin, itemMixin]
+  };
 </script>

@@ -11,7 +11,8 @@
             size="small"
             type="primary"
             v-privilege="'add-role'"
-          >添加</Button>
+          >添加
+          </Button>
         </div>
         <!-- Menu 角色列表 start -->
         <Menu
@@ -96,7 +97,8 @@
           @on-ok="confirmDeleteRole()"
           title="删除角色"
           v-model="isShowRemoveRoleModal"
-        >确定删除"{{ruleDetail.name}}"这个角色吗？</Modal>
+        >确定删除"{{ruleDetail.name}}"这个角色吗？
+        </Modal>
         <!--Modal 删除角色 end-->
       </Card>
     </Col>
@@ -108,13 +110,16 @@
         <!-- Menu 切换功能 start -->
         <Menu :active-name="displayTab" @on-select="selectTab" mode="horizontal" style="z-index: 1">
           <MenuItem :name="1">
-            <Icon type="ios-hammer" />功能权限
+            <Icon type="ios-hammer"/>
+            功能权限
           </MenuItem>
           <MenuItem :name="2">
-            <Icon type="ios-paper" />数据范围
+            <Icon type="ios-paper"/>
+            数据范围
           </MenuItem>
           <MenuItem :name="3">
-            <Icon type="ios-people" />成员管理
+            <Icon type="ios-people"/>
+            成员管理
           </MenuItem>
         </Menu>
         <!-- Menu 切换功能 end -->
@@ -131,209 +136,194 @@
   <!-- Row 角色管理 end -->
 </template>
 <script>
-import RoleTree from './components/role-tree/role-tree';
-import RoleList from './components/role-list/role-list';
-import RoleDataScope from './components/role-data-scope/role-data-scope';
-import { roleApi } from '@/api/role';
+  import RoleTree from './components/role-tree/role-tree';
+  import RoleList from './components/role-list/role-list';
+  import RoleDataScope from './components/role-data-scope/role-data-scope';
+  import { roleApi } from '@/api/role';
 
-export default {
-  name: 'RoleManage',
-  components: {
-    RoleTree,
-    RoleList,
-    RoleDataScope
-  },
-  props: {},
-  data() {
-    return {
-      roleList: {},
-      roleId: 0,
-      // 删除角色对话框隐藏
-      isShowRemoveRoleModal: false,
-      // 修改角色对话框隐藏
-      isShowUpdateRoleModal: false,
-      // 增加角色对话框隐藏
-      isShowAddRoleModal: false,
-      // 增加角色信息
-      ruleDetail: {
-        name: '',
-        id: '',
-        detail: ''
-      },
-      // 默认选中Menu标签为功能权限
-      displayTab: 1,
-      // 是否第一次请求数据
-      isFirst: true
-    };
-  },
-  computed: {},
-  watch: {},
-  filters: {},
-  created() {},
-  mounted() {
-    // 初始化加载数据
-    this.getAllRole();
-  },
-  beforeCreate() {},
-  beforeMount() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {},
-  activated() {},
-  methods: {
-    // 初始化加载数据方法
-    async getAllRole() {
-      try {
-        let response = await roleApi.getAllRole();
-        this.roleList = response.data;
-        if (this.roleList && this.roleList.length > 0) {
-          this.roleId = this.roleList[0].id;
-          if (this.isFirst) {
-            this.$nextTick(() => {
-              this.$refs.sideMenu.updateOpened();
-              this.$refs.sideMenu.updateActiveName();
-            });
-            this.isFirst = false;
+  export default {
+    name: 'RoleManage',
+    components: {
+      RoleTree,
+      RoleList,
+      RoleDataScope
+    },
+    props: {},
+    data () {
+      return {
+        roleList: {},
+        roleId: 0, // 删除角色对话框隐藏
+        isShowRemoveRoleModal: false, // 修改角色对话框隐藏
+        isShowUpdateRoleModal: false, // 增加角色对话框隐藏
+        isShowAddRoleModal: false, // 增加角色信息
+        ruleDetail: {
+          name: '',
+          id: '',
+          detail: ''
+        }, // 默认选中Menu标签为功能权限
+        displayTab: 1, // 是否第一次请求数据
+        isFirst: true
+      };
+    },
+    computed: {},
+    watch: {},
+    filters: {},
+    created () {
+    },
+    mounted () {
+      // 初始化加载数据
+      this.getAllRole();
+    },
+    beforeCreate () {
+    },
+    beforeMount () {
+    },
+    beforeUpdate () {
+    },
+    updated () {
+    },
+    beforeDestroy () {
+    },
+    destroyed () {
+    },
+    activated () {
+    },
+    methods: {
+      // 初始化加载数据方法
+      async getAllRole () {
+        try {
+          let response = await roleApi.getAllRole();
+          this.roleList = response.data;
+          if (this.roleList && this.roleList.length > 0) {
+            this.roleId = this.roleList[0].id;
+            if (this.isFirst) {
+              this.$nextTick(() => {
+                this.$refs.sideMenu.updateOpened();
+                this.$refs.sideMenu.updateActiveName();
+              });
+              this.isFirst = false;
+            }
           }
+        } catch (e) {
+          // TODO zhuoda sentry
+          console.error(e);
         }
-      } catch (e) {
-        //TODO zhuoda sentry
-        console.error(e);
+      }, // 增加角色方法
+      async addRole (roleDesc, roleName) {
+        this.$Spin.show();
+        try {
+          await roleApi.addRole(roleDesc, roleName);
+          this.hideAddRoleModal();
+          await this.getAllRole(); // 刷新
+        } catch (e) {
+          // TODO zhuoda sentry
+          console.error(e);
+        } finally {
+          this.$Spin.hide();
+        }
+      }, // 提交添加角色
+      submitRole () {
+        // 添加
+        if (this.ruleDetail.name !== '' && this.ruleDetail.name.length <= 20) {
+          this.addRole(this.ruleDetail.detail, this.ruleDetail.name);
+        } else {
+          this.$Message.warning('请先完善角色信息');
+        }
+      }, // 编辑角色方法
+      async updateRole () {
+        this.$Spin.show();
+        try {
+          let response = await roleApi.updateRole(this.ruleDetail.id, this.ruleDetail.detail, this.ruleDetail.name);
+          this.roleList = response.data;
+          this.hideUpdateRoleModal();
+          await this.getAllRole(); // 刷新
+        } catch (e) {
+          // TODO zhuoda sentry
+          console.error(e);
+        } finally {
+          this.$Spin.hide();
+        }
+      }, // 删除角色方法
+      async deleteRole (id) {
+        this.$Spin.show();
+        try {
+          await roleApi.deleteRole(id);
+          this.$Message.success('删除成功');
+          await this.getAllRole(); // 刷新
+        } catch (e) {
+          // TODO zhuoda sentry
+          console.error(e);
+        } finally {
+          this.$Spin.hide();
+        }
+      }, // 删除单个角色
+      deleteSingleRole (item) {
+        this.isShowRemoveRoleModal = true;
+        this.ruleDetail.id = item.id;
+        this.ruleDetail.name = item.roleName;
+      }, // 编辑角色页面
+      showUpdateRoleModal (item) {
+        console.log(item);
+        this.isShowUpdateRoleModal = true;
+        this.ruleDetail.id = item.id;
+        this.ruleDetail.name = item.roleName;
+        this.ruleDetail.detail = item.remark;
+      }, // 添加角色页面
+      showAddRoleModal () {
+        this.isShowAddRoleModal = true;
+        this.ruleDetail.name = '';
+        this.ruleDetail.detail = '';
+      }, // 关闭更新弹窗
+      hideUpdateRoleModal () {
+        this.isShowUpdateRoleModal = false;
+      }, // 关闭添加弹窗
+      hideAddRoleModal () {
+        this.isShowAddRoleModal = false;
+      }, // 功能选择
+      selectTab (position) {
+        this.displayTab = position;
+      }, // 角色选择
+      selectRole (item, index) {
+        this.roleId = item.id;
+      }, // 确定删除
+      confirmDeleteRole () {
+        this.deleteRole(this.ruleDetail.id);
+        this.isShowRemoveRoleModal = false;
+      }, // 取消删除
+      cancelDeleteRole () {
+        this.isShowRemoveRoleModal = false;
       }
-    },
-    // 增加角色方法
-    async addRole(roleDesc, roleName) {
-      this.$Spin.show();
-      try {
-        await roleApi.addRole(roleDesc, roleName);
-        this.hideAddRoleModal();
-        await this.getAllRole(); // 刷新
-      } catch (e) {
-        //TODO zhuoda sentry
-        console.error(e);
-      } finally {
-        this.$Spin.hide();
-      }
-    },
-    // 提交添加角色
-    submitRole() {
-      // 添加
-      if (this.ruleDetail.name !== '' && this.ruleDetail.name.length <= 20) {
-        this.addRole(this.ruleDetail.detail, this.ruleDetail.name);
-      } else {
-        this.$Message.warning('请先完善角色信息');
-      }
-    },
-    // 编辑角色方法
-    async updateRole() {
-      this.$Spin.show();
-      try {
-        let response = await roleApi.updateRole(
-          this.ruleDetail.id,
-          this.ruleDetail.detail,
-          this.ruleDetail.name
-        );
-        this.roleList = response.data;
-        this.hideUpdateRoleModal();
-        await this.getAllRole(); // 刷新
-      } catch (e) {
-        //TODO zhuoda sentry
-        console.error(e);
-      } finally {
-        this.$Spin.hide();
-      }
-    },
-    // 删除角色方法
-    async deleteRole(id) {
-      this.$Spin.show();
-      try {
-        await roleApi.deleteRole(id);
-        this.$Message.success('删除成功');
-        await this.getAllRole(); // 刷新
-      } catch (e) {
-        //TODO zhuoda sentry
-        console.error(e);
-      } finally {
-        this.$Spin.hide();
-      }
-    },
-    // 删除单个角色
-    deleteSingleRole(item) {
-      this.isShowRemoveRoleModal = true;
-      this.ruleDetail.id = item.id;
-      this.ruleDetail.name = item.roleName;
-    },
-    // 编辑角色页面
-    showUpdateRoleModal(item) {
-      console.log(item);
-      this.isShowUpdateRoleModal = true;
-      this.ruleDetail.id = item.id;
-      this.ruleDetail.name = item.roleName;
-      this.ruleDetail.detail = item.remark;
-    },
-    // 添加角色页面
-    showAddRoleModal() {
-      this.isShowAddRoleModal = true;
-      this.ruleDetail.name = '';
-      this.ruleDetail.detail = '';
-    },
-    // 关闭更新弹窗
-    hideUpdateRoleModal() {
-      this.isShowUpdateRoleModal = false;
-    },
-    // 关闭添加弹窗
-    hideAddRoleModal() {
-      this.isShowAddRoleModal = false;
-    },
-    // 功能选择
-    selectTab(position) {
-      this.displayTab = position;
-    },
-    // 角色选择
-    selectRole(item, index) {
-      this.roleId = item.id;
-    },
-    // 确定删除
-    confirmDeleteRole() {
-      this.deleteRole(this.ruleDetail.id);
-      this.isShowRemoveRoleModal = false;
-    },
-    // 取消删除
-    cancelDeleteRole() {
-      this.isShowRemoveRoleModal = false;
     }
-  }
-};
+  };
 </script>
 <style lang="less" scoped>
-.role-list {
-  line-height: 30px;
-  padding: 10px 0;
+  .role-list {
+    line-height: 30px;
+    padding: 10px 0;
 
-  .role-name {
-    position: relative;
+    .role-name {
+      position: relative;
+    }
+
+    &::after {
+      display: none;
+    }
+
+    button {
+      margin-left: 3px;
+    }
   }
 
-  &::after {
-    display: none;
+  .ivu-menu-item-active:not(.ivu-menu-submenu) {
+    z-index: 0 !important;
   }
 
-  button {
-    margin-left: 3px;
+  .suspension-box {
+    z-index: 999;
+    padding: 0 8px;
+
+    p {
+      padding: 3px 0;
+    }
   }
-}
-
-.ivu-menu-item-active:not(.ivu-menu-submenu) {
-  z-index: 0 !important;
-}
-
-.suspension-box {
-  z-index: 999;
-  padding: 0 8px;
-
-  p {
-    padding: 3px 0;
-  }
-}
 </style>

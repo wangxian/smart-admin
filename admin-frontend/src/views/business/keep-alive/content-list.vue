@@ -25,56 +25,44 @@
 </template>
 
 <script>
-export default {
-  name: 'KeepAliveContentList',
-  components: {},
-  props: {},
-  data() {
-    return {
-      sourceData: [
-        { name: '张三' },
-        { name: '李四' },
-        { name: '王二' },
-        { name: '唐三' },
-        { name: '赵大' },
-        { name: '李二' }
-      ],
-      columns: [
-        {
+  export default {
+    name: 'KeepAliveContentList',
+    components: {},
+    props: {},
+    data () {
+      return {
+        sourceData: [{ name: '张三' }, { name: '李四' }, { name: '王二' }, { name: '唐三' }, { name: '赵大' }, { name: '李二' }],
+        columns: [{
           title: '名称',
           key: 'name'
-        }
-      ],
-      tableData: [],
-      searchString: ''
-    };
-  },
-  mounted() {
-    if (this.$route.query.data) {
-      this.sourceData = [{ name: this.$route.query.data }, ...this.sourceData];
-    }
-    this.searchContent();
-  },
-  methods: {
-    searchContent() {
-      this.tableData = [];
-      this.sourceData.forEach(val => {
-        if (
-          val.name.indexOf(this.searchString) !== -1 ||
-          this.searchString == ''
-        ) {
-          this.tableData.push(val);
-        }
-      });
+        }],
+        tableData: [],
+        searchString: ''
+      };
     },
-    addContent() {
-      this.$router.push({
-        path: '/keep-alive/add-content',
-        query: {}
-      });
+    mounted () {
+      if (this.$route.query.data) {
+        this.sourceData = [{ name: this.$route.query.data }, ...this.sourceData];
+      }
+      this.searchContent();
+    },
+    methods: {
+      searchContent () {
+        this.tableData = [];
+        this.sourceData.forEach(val => {
+          if (val.name.indexOf(this.searchString) !== -1 || this.searchString == '') {
+            this.tableData.push(val);
+          }
+        });
+      },
+      addContent () {
+        this.$router.push({
+          path: '/keep-alive/add-content',
+          query: {}
+        });
+      }
     }
-  }
-};
+  };
 </script>
 <style lang="less" scoped>
 </style>

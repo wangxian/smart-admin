@@ -31,42 +31,51 @@
           <FormItem label="电子邮箱:">{{detail.email}}</FormItem>
         </Col>
         <Col span="8">
-          <FormItem label="状态:">{{detail.isDisabled?"禁用":"启用"}}</FormItem>
+          <FormItem label="状态:">{{detail.isDisabled?'禁用':'启用'}}</FormItem>
         </Col>
       </Row>
     </Form>
   </Modal>
 </template>
 <script>
-export default {
-  name: 'EmployeeTableDetail',
-  components: {},
-  props: {},
-  data() {
-    return {
-      isShowDetailModal: false,
-      detail: {}
-    };
-  },
-  computed: {},
-  watch: {},
-  filters: {},
-  created() {},
-  mounted() {},
-  beforeCreate() {},
-  beforeMount() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {},
-  activated() {},
-  methods: {
-    showModal(detail) {
-      this.isShowDetailModal = true;
-      this.detail = detail;
+  export default {
+    name: 'EmployeeTableDetail',
+    components: {},
+    props: {},
+    data () {
+      return {
+        isShowDetailModal: false,
+        detail: {}
+      };
+    },
+    computed: {},
+    watch: {},
+    filters: {},
+    created () {
+    },
+    mounted () {
+    },
+    beforeCreate () {
+    },
+    beforeMount () {
+    },
+    beforeUpdate () {
+    },
+    updated () {
+    },
+    beforeDestroy () {
+    },
+    destroyed () {
+    },
+    activated () {
+    },
+    methods: {
+      showModal (detail) {
+        this.isShowDetailModal = true;
+        this.detail = detail;
+      }
     }
-  }
-};
+  };
 </script>
 <style lang="less" scoped>
 </style>

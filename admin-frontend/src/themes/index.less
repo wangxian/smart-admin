@@ -1,4 +1,5 @@
 @import '~view-design/src/styles/index.less';
+
 /**************
     导航栏
 **************/
@@ -18,12 +19,13 @@
 @tableColor: #eee;
 @black: #444;
 
-.side-menu-wrapper { 
+.side-menu-wrapper {
   // 一级菜单 高亮颜色
   .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu),
-  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu){
+  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu) {
     color: #fff;
   }
+
   .ivu-menu-dark {
     .ivu-menu {
       .ivu-menu-submenu {
@@ -42,39 +44,39 @@
       .ivu-menu-item,
       .ivu-menu-submenu-has-parent-submenu {
         padding: 9px 0 9px 65px !important;
-        background: url('../assets/images/slider/sub_slider_default.png') 30px 0
-          no-repeat !important;
+        background: url('../assets/images/slider/sub_slider_default.png') 30px 0 no-repeat !important;
 
         &:hover {
-          background: url('../assets/images/slider/sub_slider_default.png') 30px
-            0 no-repeat !important;
+          background: url('../assets/images/slider/sub_slider_default.png') 30px 0 no-repeat !important;
         }
 
         &.ivu-menu-item-active {
-          background: url('../assets/images/slider/sub_slider_active.png') 30px
-            0 no-repeat !important;
+          background: url('../assets/images/slider/sub_slider_active.png') 30px 0 no-repeat !important;
           border-right: 5px @primary-color solid;
 
           &:hover {
-            background: url('../assets/images/slider/sub_slider_active.png')
-              30px 0 no-repeat !important;
+            background: url('../assets/images/slider/sub_slider_active.png') 30px 0 no-repeat !important;
             border-right: 5px @primary-color solid;
           }
         }
       }
+
       .ivu-menu-submenu-has-parent-submenu {
         padding-left: 41px !important;
+
         .ivu-menu-submenu-title {
           padding: 0 24px !important;
         }
+
         &.ivu-menu-child-item-active {
-          background: url('../assets/images/slider/sub_slider_active.png') 30px
-            0 no-repeat !important;
+          background: url('../assets/images/slider/sub_slider_active.png') 30px 0 no-repeat !important;
           border-right: 0;
         }
+
         .ivu-menu {
           padding-top: 10px;
         }
+
         .ivu-menu-item,
         .ivu-menu-item-active:hover {
           background: none !important;
@@ -103,10 +105,12 @@
       color: @primary-color;
     }
   }
+
   .ivu-tooltip {
     line-height: 38px;
   }
 }
+
 // 收缩导航栏鼠标经过下拉
 .menu-dropdown {
   width: 160px;
@@ -114,27 +118,31 @@
   background: #001529;
   border-radius: 3px;
   color: #fff;
+
   .ivu-dropdown-item {
     color: #fff;
     height: 40px;
     line-height: 40px;
     padding: 0 20px;
     box-sizing: border-box;
+
     .menu-title {
       // padding:5px 0;
     }
+
     &:hover {
       background: none;
       border-right: 4px @primary-color solid;
     }
   }
 }
+
 /**************
     header
 **************/
 @layout-header-height: 52px;
 
-//面包屑
+// 面包屑
 .ivu-breadcrumb {
   color: #515a6e;
 }
@@ -157,33 +165,40 @@
   table {
     border-spacing: 0;
     width: 100%;
+
     tr {
       &.ivu-table-row-hover {
         tr, td {
           animation: tableHover 0.5s;
         }
       }
+
       th, td {
         border: 1px @tableColor solid;
         border-left: 0;
         border-top: 0;
         text-align: center;
+
         &.ivu-table-column-left {
           text-align: left;
         }
+
         &:nth-child(1) {
           border-left: 0;
         }
+
         .ivu-table-cell {
           padding: 0 8px;
           overflow: inherit;
         }
+
         .table-line {
           background: @tableColor;
           height: 1px;
           margin: 8px -18px;
         }
       }
+
       th {
         color: @garyA200;
         background: @garyA100;
@@ -192,6 +207,7 @@
         color: #808080;
         text-align: left;
       }
+
       td {
         font-weight: normal;
         padding: 2px 0;
@@ -199,7 +215,8 @@
         text-align: left;
         font-size: 12px;
         border-bottom: 1px solid #F7F7F9;
-        .ivu-table-cell-with-expand{
+
+        .ivu-table-cell-with-expand {
           height: 32px;
           line-height: 32px;
         }
@@ -227,6 +244,7 @@
   padding: 12px 16px;
   font-size: 14px;
   font-weight: bold;
+
   .ivu-icon {
     color: #666;
   }
@@ -234,6 +252,7 @@
 
 .ivu-select-dropdown {
   z-index: 10000;
+
   &::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -248,17 +267,19 @@
 .ivu-table-fixed-body {
   overflow: inherit;
 }
-.ivu-card{
+
+.ivu-card {
   box-shadow: none !important;
 }
+
 // 表单类
-.ivu-btn{
-  &:focus{
+.ivu-btn {
+  &:focus {
     box-shadow: none;
   }
 }
 
-.ivu-spin-fix{
+.ivu-spin-fix {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
@@ -271,58 +292,61 @@
 textarea.ivu-input,
 .ivu-btn,
 .ivu-checkbox-wrapper,
-.ivu-form .ivu-form-item-label{
+.ivu-form .ivu-form-item-label {
   font-size: 12px;
 }
-.ivu-btn-large{
+
+.ivu-btn-large {
   font-size: 14px;
 }
+
 .ivu-select-item,
-.ivu-dropdown-item{
+.ivu-dropdown-item {
   font-size: 12px !important;
 }
 
 /****自定义样式***/
 
 .search-card .ivu-form-item {
-    margin-bottom: 0px !important;
+  margin-bottom: 0px !important;
 }
 
-.marginRight10{
+.marginRight10 {
   margin-right: 10px !important;
 }
-.marginLeft10{
+
+.marginLeft10 {
   margin-left: 10px !important;
 }
 
-.marginBottom10{
+.marginBottom10 {
   margin-bottom: 10px !important;
 }
 
-.float-right{
-  float:right;
+.float-right {
+  float: right;
 }
 
-.float-left{
-  float:left;
+.float-left {
+  float: left;
 }
 
-.error-color{
- color: #ed4014; 
+.error-color {
+  color: #ed4014;
 }
 
-.smart-query-card .ivu-card-body{
+.smart-query-card .ivu-card-body {
   padding: 10px !important;
 }
 
-.smart-query-form-row:not(:first-child){
+.smart-query-form-row:not(:first-child) {
   margin-top: 8px;
 }
 
-.smart-query-form-row span{
+.smart-query-form-row span {
   margin-right: 8px;
 }
 
-.smart-query-table-page{
+.smart-query-table-page {
   margin-top: 10px;
 }

@@ -17,14 +17,11 @@ import './themes/index.less';
 import '@/assets/icons/iconfont.css';
 import 'slick-carousel/slick/slick.css';
 import { Decimal } from 'decimal.js';
-
 // 枚举管理
 import Enum from 'vue-enum';
 import enumInfo from '@/constants';
-
 // 处理table操作按钮
 import tableAction from './lib/table-action';
-
 // 时间
 import moment from 'moment';
 

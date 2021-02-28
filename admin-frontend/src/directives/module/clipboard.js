@@ -1,4 +1,5 @@
 import Clipboard from 'clipboard';
+
 export default {
   bind: (el, binding) => {
     const clipboard = new Clipboard(el, {

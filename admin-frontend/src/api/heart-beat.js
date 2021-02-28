@@ -1,4 +1,5 @@
-import { postAxios, getAxios } from '@/lib/http';
+import { postAxios } from '@/lib/http';
+
 export const heartBeatApi = {
   // 分页查询所有岗位
   queryHeartBeatRecord: data => {
