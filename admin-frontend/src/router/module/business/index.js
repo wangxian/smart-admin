@@ -5,6 +5,7 @@ import { emailSetting } from './email';
 import { keepAlive } from './keep-alive';
 import { notice } from './notice';
 import { threeRouter } from './three-router';
+// import { console } from 'vuedraggable/src/util/helper';
 
 // 业务
 export const business = [{

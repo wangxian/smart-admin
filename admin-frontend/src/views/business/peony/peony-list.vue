@@ -234,13 +234,18 @@
           pageNum: 1,
           pageSize: PAGE_SIZE_INIT,
           orders: []
-        }, // 是否展示更多搜索条件
+        },
+
+        // 是否展示更多搜索条件
         showMoreQueryConditionFlag: false, /*  -------------------------表格相关数据------------------------- */
+
         // 表格分页
         mainTablePage: {
           total: 0,
           pageSizeOps: PAGE_SIZE_OPTIONS
-        }, // 表格
+        },
+
+        // 表格
         mainTable: {
           // 加载中
           loading: false, // 表格数据
@@ -308,27 +313,36 @@
         }
       };
     },
+
     computed: {},
     watch: {},
     filters: {},
+
     created () {
     },
+
     mounted () {
-      alert('1123');
       this.queryList();
     },
+
     beforeCreate () {
     },
+
     beforeMount () {
     },
+
     beforeUpdate () {
     },
+
     updated () {
     },
+
     beforeDestroy () {
     },
+
     destroyed () {
     },
+
     activated () {
     },
 
@@ -400,7 +414,8 @@
           }];
         }
         this.queryList();
-      }, /*-------------------------查询相关 end------------------------- */
+      },
+      /*-------------------------查询相关 end------------------------- */
 
       /*-------------------------批量操作 begin------------------------- */
       // 显示批量删除弹窗
@@ -417,7 +432,9 @@
         this.$Message.success('刪除成功');
         this.$Spin.hide();
         this.queryList();
-      }, // 清空选中
+      },
+
+      // 清空选中
       clearMainTableSelection () {
         this.mainTableSelectArray = [];
       }, // 校验是否有选中
@@ -428,7 +445,8 @@
           return false;
         }
         return true;
-      }, /*-------------------------批量操作 end------------------------- */
+      },
+      /*-------------------------批量操作 end------------------------- */
 
       /*-------------------------导入导出 begin------------------------- */
       // 导出全部
@@ -442,7 +460,9 @@
         } finally {
           this.allExportBtnLoading = false;
         }
-      }, // 批量导出
+      },
+
+      // 批量导出
       async batchExport () {
         if (!this.validateMainTableSelection()) {
           return;
@@ -455,7 +475,8 @@
         } finally {
           this.batchExportBtnLoading = false;
         }
-      }, /*-------------------------导入导出 end------------------------- */
+      },
+      /*-------------------------导入导出 end------------------------- */
 
       /*-------------------------添加，修改 表单 begin------------------------- */
       // 显示添加表单
@@ -463,11 +484,13 @@
         this.saveModal.isUpdate = false;
         this.saveModal.show = true;
       },
+
       showEditPeonyForm (updateObject) {
         this.saveModal.isUpdate = true;
         this.saveModal.updateData = updateObject;
         this.saveModal.show = true;
       },
+
       saveFormClose () {
         this.saveModal.show = false;
         this.queryList();

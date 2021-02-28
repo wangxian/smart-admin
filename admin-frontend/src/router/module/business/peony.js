@@ -1,4 +1,5 @@
 import Main from '@/components/main';
+
 // t_peony路由
 export const peony = [{
   path: '/peony',
@@ -8,7 +9,9 @@ export const peony = [{
     title: '牡丹管理',
     icon: 'icon iconfont iconyoujianguanli'
   },
-  children: [//  牡丹花 列表
+
+  children: [
+    // 牡丹花 列表
     {
       path: '/peony/peony-list',
       name: 'PeonyList',
@@ -35,7 +38,9 @@ export const peony = [{
         }]
       },
       component: () => import('@/views/business/peony/peony-list.vue')
-    }, //  牡丹花 列表 1
+    },
+
+    // 牡丹花 列表 1
     {
       path: '/peony/peony-list1',
       name: 'PeonyList1',

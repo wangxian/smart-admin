@@ -20,7 +20,8 @@ import { system } from './module/system';
  *  topMenu:(true)，表示为顶级菜单
  * }
  */
-  // 登录模块
+
+// 登录模块
 export const login = {
     path: '/login',
     name: 'login',
