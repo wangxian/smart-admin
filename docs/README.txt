@@ -5,7 +5,7 @@ EmployeeController.updatePwd
 PrivilegeController functionSaveOrUpdate和menuBatchSave、batchSaveFunctionList
 
 3 超管默认账号
-sa/123456
+admin/s6321
 
 4 执行脚本：
 先执行：doc/smart-admin.sql
