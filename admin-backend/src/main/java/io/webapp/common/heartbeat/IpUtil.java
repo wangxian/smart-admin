@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @Description: ip工具类
  * @Author: sbq
- * @CreateDate: 2019/8/8 10:33
+ * @dateDate: 2019/8/8 10:33
  * @Version: 1.0
  */
 public class IpUtil {
@@ -51,7 +51,7 @@ public class IpUtil {
     /**
      * @Description: 获得服务器的IP地址(多网卡)
      * @Author: sbq
-     * @CreateDate: 2019/8/8 10:34
+     * @dateDate: 2019/8/8 10:34
      * @Version: 1.0
      */
     public static List<String> getLocalIPS() {

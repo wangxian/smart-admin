@@ -1,8 +1,8 @@
 package io.webapp.interceptor;
 
 import com.alibaba.fastjson.JSONObject;
-import io.webapp.common.anno.NoNeedLogin;
-import io.webapp.common.anno.NoValidPrivilege;
+import io.webapp.common.annotation.NoNeedLogin;
+import io.webapp.common.annotation.NoValidPrivilege;
 import io.webapp.common.domain.ResponseDTO;
 import io.webapp.constant.CommonConst;
 import io.webapp.module.business.login.LoginResponseCodeConst;
@@ -28,9 +28,6 @@ import java.util.List;
  *
  * @author yandanyang
  * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2019 1024lab.netInc. All rights reserved.
- * @date
  * @since JDK1.8
  */
 @Component

@@ -4,10 +4,9 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author: zhuoda
- * @create: 2020-03-20 09:07 PM from win10
+ * @author zhuoda
+ * @date 2020-03-20 09:07
  */
-
 @Slf4j
 @Data
 public class OrderItemDTO {

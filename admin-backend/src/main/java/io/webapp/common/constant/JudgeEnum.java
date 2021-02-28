@@ -9,10 +9,6 @@ import java.util.Optional;
  * [ 是与否]
  *
  * @author yandanyang
- * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2019 1024lab.netInc. All rights reserved.
- * @date
  * @since JDK1.8
  */
 public enum JudgeEnum implements BaseEnum {

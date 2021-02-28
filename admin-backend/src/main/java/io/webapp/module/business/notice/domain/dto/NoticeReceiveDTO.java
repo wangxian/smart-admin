@@ -2,7 +2,7 @@ package io.webapp.module.business.notice.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
-import io.webapp.common.anno.ApiModelPropertyEnum;
+import io.webapp.common.annotation.ApiModelPropertyEnum;
 import io.webapp.common.constant.JudgeEnum;
 import lombok.Data;
 
@@ -13,8 +13,6 @@ import java.util.Date;
  *
  * @author yandanyang
  * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2018 1024lab.netInc. All rights reserved.
  * @date 2019/7/12 0012 上午 11:53
  * @since JDK1.8
  */

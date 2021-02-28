@@ -1,4 +1,4 @@
-package io.webapp.common.anno;
+package io.webapp.common.annotation;
 
 import java.lang.annotation.*;
 
@@ -6,10 +6,6 @@ import java.lang.annotation.*;
  * [ 用户操作日志 ]
  *
  * @author yandanyang
- * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2019 1024lab.netInc. All rights reserved.
- * @date
  * @since JDK1.8
  */
 @Retention(RetentionPolicy.RUNTIME)

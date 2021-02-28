@@ -40,9 +40,6 @@ import java.util.Map;
  * [ 根据SwaggerTagConst内部类动态生成Swagger group ]
  *
  * @author yandanyang
- * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2018 1024lab.netInc. All rights reserved.
  * @date 2019/8/7 0007 下午 19:20
  * @since JDK1.8
  */

@@ -12,8 +12,6 @@ import java.util.Map;
  *
  * @author yandanyang
  * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2018 1024lab.netInc. All rights reserved.
  * @date 2019/5/11 0011 上午 8:33
  * @since JDK1.8
  */
@@ -54,8 +52,10 @@ public class CodeGeneratorComponent {
         String modulePath = modulePackage.replaceAll("\\.", "/");
         String javaPackagePath = "java/" + modulePath + File.separator;
         String xmlPackagePath = "mapper/" + modulePath + File.separator;
-        String frontPackagePath = "web" + File.separator;
+
+        String frontPackagePath = "admin-frontend" + File.separator;
         Map<String, String> templateMap = new HashMap<>();
+
         // 后端
         templateMap.put("templates/codegenerator/java/Controller.java.vm", javaPackagePath + "controller" + File.separator + moduleClass + "Controller.java");
         templateMap.put("templates/codegenerator/java/Dao.java.vm", javaPackagePath + "dao" + File.separator + moduleClass + "Dao.java");
@@ -67,6 +67,7 @@ public class CodeGeneratorComponent {
         templateMap.put("templates/codegenerator/java/ExcelVO.java.vm", javaPackagePath + "domain" + File.separator + "vo" + File.separator + moduleClass + "ExcelVO.java");
         templateMap.put("templates/codegenerator/java/QueryDTO.java.vm", javaPackagePath + "domain" + File.separator + "dto" + File.separator + moduleClass + "QueryDTO.java");
         templateMap.put("templates/codegenerator/java/Service.java.vm", javaPackagePath + "service" + File.separator + moduleClass + "Service.java");
+
         // 前端
         String webPackageName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, moduleClass).replaceAll("_", "-");
         templateMap.put("templates/codegenerator/web/Api.js.vm", frontPackagePath + "api" + File.separator + webPackageName + ".js");

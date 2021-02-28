@@ -1,7 +1,7 @@
 package io.webapp.module.system.role.roleprivilege.domain.dto;
 
 import io.swagger.annotations.ApiModelProperty;
-import io.webapp.common.anno.ApiModelPropertyEnum;
+import io.webapp.common.annotation.ApiModelPropertyEnum;
 import io.webapp.module.system.privilege.constant.PrivilegeTypeEnum;
 import lombok.Data;
 

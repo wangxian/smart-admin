@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @Description: 心跳服务
  * @Author: simajinqiang
- * @Date: 2018/7/9 16:26
+ * @date: 2018/7/9 16:26
  */
 public abstract class AbstractHeartBeatCommand implements HeartBeatRecordCommendInterface {
 

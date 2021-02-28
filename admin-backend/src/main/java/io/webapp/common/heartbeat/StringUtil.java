@@ -6,9 +6,6 @@ import java.util.Iterator;
  * [  ]
  *
  * @author yandanyang
- * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2018 1024lab.netInc. All rights reserved.
  * @date 2019/8/8 0008 下午 16:27
  * @since JDK1.8
  */

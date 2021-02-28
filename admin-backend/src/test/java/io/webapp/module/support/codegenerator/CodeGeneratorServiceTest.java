@@ -50,8 +50,8 @@ public class CodeGeneratorServiceTest extends BaseTest {
         List<CodeGeneratorQueryColumnDTO> queryColumnList = Lists.newArrayList(id, kind, name, color);
 
         CodeGeneratorDTO codeGenerator = CodeGeneratorDTO.builder()
-                                                         .author("卓大")// class 注释作者
-                                                         .company("1024创新实验室( www.1024lab.net )")// class注释公司名字
+                                                         .author("AUTHOR")// class 注释作者
+                                                         .company("xxx.com")// class注释公司名字
                                                          .tableName("t_peony")// 表名
                                                          .tablePrefix("t_")// 表名前缀
                                                          .basePackage("io.webapp")// 包名
@@ -60,7 +60,7 @@ public class CodeGeneratorServiceTest extends BaseTest {
                                                          .build();// 构建
 
         // 当需要代码生成的时候，请将注释去掉
-        //        codeGeneratorService.codeGenerator(codeGenerator);
+        // codeGeneratorService.codeGenerator(codeGenerator);
     }
 
 }

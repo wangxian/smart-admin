@@ -1,7 +1,7 @@
 package io.webapp.module.support.file.domain.dto;
 
 import io.swagger.annotations.ApiModelProperty;
-import io.webapp.common.anno.ApiModelPropertyEnum;
+import io.webapp.common.annotation.ApiModelPropertyEnum;
 import io.webapp.common.validator.en.CheckEnum;
 import io.webapp.module.support.file.constant.FileServiceTypeEnum;
 import lombok.Data;
@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 /**
  * @Description: 文件保存DTO
  * @Author: sbq
- * @CreateDate: 2019/9/11 15:05
+ * @dateDate: 2019/9/11 15:05
  * @Version: 1.0
  */
 @Data

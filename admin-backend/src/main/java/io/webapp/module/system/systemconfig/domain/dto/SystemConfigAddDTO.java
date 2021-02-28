@@ -11,9 +11,6 @@ import javax.validation.constraints.NotBlank;
  *
  * @author yandanyang
  * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2019 1024lab.netInc. All rights reserved.
- * @date
  * @since JDK1.8
  */
 @Data

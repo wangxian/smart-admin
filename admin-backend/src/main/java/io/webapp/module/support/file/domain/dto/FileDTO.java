@@ -1,7 +1,7 @@
 package io.webapp.module.support.file.domain.dto;
 
 import io.swagger.annotations.ApiModelProperty;
-import io.webapp.common.anno.ApiModelPropertyEnum;
+import io.webapp.common.annotation.ApiModelPropertyEnum;
 import io.webapp.module.support.file.constant.FileServiceTypeEnum;
 import lombok.Data;
 
@@ -12,9 +12,6 @@ import java.sql.Date;
  *
  * @author yandanyang
  * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2019 1024lab.netInc. All rights reserved.
- * @date
  * @since JDK1.8
  */
 @Data

@@ -11,7 +11,7 @@ import java.util.List;
  * 分页基础参数
  *
  * @author lihaifan
- * @Date Created in 2017/10/28 16:19
+ * @date Created in 2017/10/28 16:19
  */
 @Data
 public class PageParamDTO {

@@ -18,9 +18,6 @@ import java.util.concurrent.TimeUnit;
  * [ redis 一顿操作 ]
  *
  * @author yandanyang
- * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2018 1024lab.netInc. All rights reserved.
  * @date 2019/3/26 0026 下午 18:12
  * @since JDK1.8
  */

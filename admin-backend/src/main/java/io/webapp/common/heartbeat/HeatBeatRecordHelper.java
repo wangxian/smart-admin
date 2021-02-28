@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * @Description: 心跳工具类
  * @Author: simajinqiang
- * @Date: 2018/7/9 11:48
+ * @date: 2018/7/9 11:48
  */
 public class HeatBeatRecordHelper {
 

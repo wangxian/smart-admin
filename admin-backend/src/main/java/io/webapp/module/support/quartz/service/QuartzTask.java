@@ -19,16 +19,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Date;
 
-/**
- * [  ]
- *
- * @author yandanyang
- * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2019 1024lab.netInc. All rights reserved.
- * @date
- * @since JDK1.8
- */
 @Slf4j
 public class QuartzTask extends QuartzJobBean {
 

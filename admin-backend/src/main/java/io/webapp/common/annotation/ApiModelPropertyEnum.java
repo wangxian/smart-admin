@@ -1,4 +1,4 @@
-package io.webapp.common.anno;
+package io.webapp.common.annotation;
 
 import io.webapp.common.domain.BaseEnum;
 

@@ -14,8 +14,6 @@ import java.util.stream.Collectors;
  *
  * @author yandanyang
  * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2018 1024lab.netInc. All rights reserved.
  * @date 2019/4/29 0029 下午 13:52
  * @since JDK1.8
  */

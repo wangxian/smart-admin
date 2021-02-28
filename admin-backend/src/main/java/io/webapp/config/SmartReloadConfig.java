@@ -12,8 +12,6 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author yandanyang
  * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2018 1024lab.netInc. All rights reserved.
  * @date 2019/3/28 0028 下午 20:15
  * @since JDK1.8
  */

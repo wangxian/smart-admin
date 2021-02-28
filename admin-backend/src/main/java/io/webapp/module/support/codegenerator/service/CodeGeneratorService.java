@@ -31,8 +31,6 @@ import java.util.stream.Collectors;
  *
  * @author yandanyang
  * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2018 1024lab.netInc. All rights reserved.
  * @date 2019/5/11 0011 上午 9:36
  * @since JDK1.8
  */
@@ -61,6 +59,7 @@ public class CodeGeneratorService {
         if (StringUtils.isEmpty(basePackage)) {
             basePackage = "io.webapp";
         }
+
         String moduleClass = this.tableName2Class(codeGenerator.getTableName(), codeGenerator.getTablePrefix());
         String moduleVar = this.tableName2Var(codeGenerator.getTableName(), codeGenerator.getTablePrefix());
         String modulePackage = codeGenerator.getModulePackage();
@@ -71,11 +70,13 @@ public class CodeGeneratorService {
         List<String> queryImports = this.buildQueryImport(queryFieldList);
         List<String> dtoImports = this.buildDTOImport(columnList);
         List<String> entityImports = this.buildEntityImport(columnList);
+
         Properties p = new Properties();
         p.put("file.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
         p.put("directive.foreach.counter.name", "velocityCount");
         p.put("directive.foreach.counter.initial.value", "1");
         Velocity.init(p);
+
         Map<String, Object> map = new HashMap<>();
         map.put("company", codeGenerator.getCompany());
         map.put("tableName", codeGenerator.getTableName());
@@ -93,6 +94,7 @@ public class CodeGeneratorService {
         map.put("entityImports", entityImports);
         map.put("webModuleName", CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, moduleClass).replaceAll("_", "-"));
         map.put("upperCamel", CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, moduleClass));
+
         // 前端的变量
         map.put("ViewUIMessage", "$Message");
         map.put("VueRefs", "$refs");
@@ -170,6 +172,7 @@ public class CodeGeneratorService {
             if (!directory.exists()) {
                 directory.mkdirs();
             }
+
             FileWriter writer;
             try {
                 writer = new FileWriter(filePath);

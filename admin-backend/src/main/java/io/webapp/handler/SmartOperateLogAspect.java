@@ -3,7 +3,7 @@ package io.webapp.handler;
 import com.alibaba.fastjson.JSON;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.webapp.common.anno.OperateLog;
+import io.webapp.common.annotation.OperateLog;
 import io.webapp.common.constant.JudgeEnum;
 import io.webapp.module.business.log.LogService;
 import io.webapp.module.business.log.useroperatelog.domain.UserOperateLogEntity;
@@ -34,9 +34,6 @@ import java.lang.reflect.Method;
  *
  * @author yandanyang
  * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2019 1024lab.netInc. All rights reserved.
- * @date
  * @since JDK1.8
  */
 @Slf4j

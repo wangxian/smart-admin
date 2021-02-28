@@ -6,7 +6,7 @@ import java.util.*;
 
 /**
  * @author: zhuoda
- * @create: 2020-02-03 17:37 PM from win10
+ * @date: 2020-02-03 17:37 PM from win10
  */
 public class ValidateList<E> implements List<E> {
 

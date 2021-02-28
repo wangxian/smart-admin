@@ -9,7 +9,7 @@ import java.util.List;
  * Page返回对象
  *
  * @Author lihaifan
- * @Date Created in 2017/10/31 15:05
+ * @date Created in 2017/10/31 15:05
  */
 @Data
 public class PageResultDTO<T> {

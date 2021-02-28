@@ -6,16 +6,6 @@ import io.webapp.common.domain.BaseEnum;
 import java.util.Arrays;
 import java.util.Optional;
 
-/**
- * [  ]
- *
- * @author yandanyang
- * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2019 1024lab.netInc. All rights reserved.
- * @date
- * @since JDK1.8
- */
 public enum PrivilegeTypeEnum implements BaseEnum {
 
 

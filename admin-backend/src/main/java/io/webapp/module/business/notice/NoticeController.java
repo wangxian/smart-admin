@@ -2,7 +2,7 @@ package io.webapp.module.business.notice;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.webapp.common.anno.NoValidPrivilege;
+import io.webapp.common.annotation.NoValidPrivilege;
 import io.webapp.common.domain.PageParamDTO;
 import io.webapp.common.domain.PageResultDTO;
 import io.webapp.common.domain.ResponseDTO;
@@ -19,8 +19,6 @@ import javax.validation.Valid;
  *
  * @author yandanyang
  * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2019 1024lab.netInc. All rights reserved.
  * @date 2019-07-11 16:19:48
  * @since JDK1.8
  */

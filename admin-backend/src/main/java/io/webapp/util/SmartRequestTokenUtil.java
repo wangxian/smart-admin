@@ -7,14 +7,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * @author yandanyang
- * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2019 1024lab.netInc. All rights reserved.
- * @date
- * @since JDK1.8
- */
 public class SmartRequestTokenUtil {
 
     private static final String USER_KEY = "smart_admin_user";

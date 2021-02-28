@@ -12,8 +12,6 @@ import springfox.documentation.swagger.common.SwaggerPluginSupport;
  *
  * @author yandanyang
  * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2018 1024lab.netInc. All rights reserved.
  * @date 2019/8/9 0009 上午 9:46
  * @since JDK1.8
  */

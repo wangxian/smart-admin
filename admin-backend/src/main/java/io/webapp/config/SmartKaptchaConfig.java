@@ -14,8 +14,6 @@ import java.util.Properties;
  *
  * @author yandanyang
  * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2018 1024lab.netInc. All rights reserved.
  * @date 2019/7/4 0004 上午 9:40
  * @since JDK1.8
  */

@@ -21,7 +21,7 @@ package io.webapp.common.swagger;
 
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
-import io.webapp.common.anno.ApiModelPropertyEnum;
+import io.webapp.common.annotation.ApiModelPropertyEnum;
 import io.webapp.common.domain.BaseEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.annotation.AnnotationUtils;

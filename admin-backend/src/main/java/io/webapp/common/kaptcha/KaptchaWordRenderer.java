@@ -12,9 +12,6 @@ import java.util.Random;
  * [ 验证码字体生成 ]
  *
  * @author yandanyang
- * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2018 1024lab.netInc. All rights reserved.
  * @date 2019/7/6 0006 上午 9:43
  * @since JDK1.8
  */

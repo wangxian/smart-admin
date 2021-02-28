@@ -2,7 +2,7 @@ package io.webapp.module.system.department;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.webapp.common.anno.OperateLog;
+import io.webapp.common.annotation.OperateLog;
 import io.webapp.common.domain.ResponseDTO;
 import io.webapp.constant.SwaggerTagConst;
 import io.webapp.module.system.department.domain.dto.DepartmentCreateDTO;

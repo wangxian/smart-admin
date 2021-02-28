@@ -2,7 +2,7 @@ package io.webapp.module.support.file;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.webapp.common.anno.NoNeedLogin;
+import io.webapp.common.annotation.NoNeedLogin;
 import io.webapp.common.domain.PageResultDTO;
 import io.webapp.common.domain.ResponseDTO;
 import io.webapp.constant.SwaggerTagConst;
@@ -25,7 +25,7 @@ import javax.validation.Valid;
 /**
  * @Description: 文件服务
  * @Author: sbq
- * @CreateDate: 2019/7/18 9:36
+ * @dateDate: 2019/7/18 9:36
  * @Version: 1.0
  */
 @RestController

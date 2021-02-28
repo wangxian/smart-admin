@@ -1,6 +1,6 @@
 package io.webapp.module.system.datascope.service;
 
-import io.webapp.common.anno.DataScope;
+import io.webapp.common.annotation.DataScope;
 import io.webapp.module.business.login.domain.RequestTokenBO;
 import io.webapp.module.system.datascope.constant.DataScopeWhereInTypeEnum;
 import io.webapp.module.system.datascope.domain.dto.DataScopeSqlConfigDTO;
@@ -27,8 +27,6 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author yandanyang
  * @version 1.0
- * @company 1024lab.net
- * @copyright (c) 2018 1024lab.netInc. All rights reserved.
  * @date 2019/4/29 0029 上午 10:12
  * @since JDK1.8
  */

@@ -1,7 +1,7 @@
 package io.webapp.module.support.file.domain.dto;
 
 import io.swagger.annotations.ApiModelProperty;
-import io.webapp.common.anno.ApiModelPropertyEnum;
+import io.webapp.common.annotation.ApiModelPropertyEnum;
 import io.webapp.common.domain.PageParamDTO;
 import io.webapp.common.validator.en.CheckEnum;
 import io.webapp.module.support.file.constant.FileModuleTypeEnum;
@@ -11,7 +11,7 @@ import lombok.Data;
 /**
  * @Description: 文件信息查询dto
  * @Author: sbq
- * @CreateDate: 2019/7/3 17:38
+ * @dateDate: 2019/7/3 17:38
  * @Version: 1.0
  */
 @Data
