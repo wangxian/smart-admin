@@ -266,21 +266,23 @@ public class EmployeeService {
             updateDTO.setLoginPwd(employeeEntity.getLoginPwd());
         }
         EmployeeEntity entity = SmartBeanUtil.copy(updateDTO, EmployeeEntity.class);
-        entity.setupdatedAt(new Date());
+        entity.setUpdatedAt(new Date());
         if (StringUtils.isEmpty(entity.getBirthday())) {
             entity.setBirthday(null);
         }
+
         if (CollectionUtils.isNotEmpty(updateDTO.getPositionIdList())) {
             // 删除旧的关联关系 添加新的关联关系
             positionService.removePositionRelation(entity.getId());
             PositionRelationAddDTO positionRelAddDTO = new PositionRelationAddDTO(updateDTO.getPositionIdList(), entity.getId());
             positionService.addPositionRelation(positionRelAddDTO);
         }
+
         entity.setIsDisabled(employeeEntity.getIsDisabled());
         entity.setIsLeave(employeeEntity.getIsLeave());
         entity.setCreateUser(employeeEntity.getCreateUser());
-        entity.setcreatedAt(employeeEntity.getcreatedAt());
-        entity.setupdatedAt(new Date());
+        entity.setCreatedAt(employeeEntity.getCreatedAt());
+        entity.setUpdatedAt(new Date());
         employeeDao.updateById(entity);
         employeeCache.remove(employeeId);
         return ResponseDTO.succ();

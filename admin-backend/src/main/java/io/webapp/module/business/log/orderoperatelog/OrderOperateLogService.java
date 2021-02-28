@@ -41,7 +41,7 @@ public class OrderOperateLogService {
             }
             orderOperateLogEntity.setOperateRemark(e.getOperateRemark());
             orderOperateLogEntity.setExtData(e.getExtData());
-            orderOperateLogEntity.setcreatedAt(new Date());
+            orderOperateLogEntity.setCreatedAt(new Date());
             orderOperateLogEntity.setOrderType(e.getOrderType().getType());
             entityList.add(orderOperateLogEntity);
         });

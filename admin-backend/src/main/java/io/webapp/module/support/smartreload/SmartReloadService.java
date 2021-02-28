@@ -91,11 +91,13 @@ public class SmartReloadService {
         ReloadItemEntity entity = new ReloadItemEntity();
         entity.setTag(updateDTO.getTag());
         ReloadItemEntity reloadItemEntity = reloadItemDao.selectById(entity.getTag());
+
         if (null == reloadItemEntity) {
             return ResponseDTO.wrap(ResponseCodeConst.NOT_EXISTS);
         }
+
         reloadItemEntity.setIdentification(updateDTO.getIdentification());
-        reloadItemEntity.setupdatedAt(new Timestamp(System.currentTimeMillis()));
+        reloadItemEntity.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
         reloadItemEntity.setArgs(updateDTO.getArgs());
         reloadItemDao.updateById(reloadItemEntity);
         return ResponseDTO.succ();

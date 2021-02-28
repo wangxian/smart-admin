@@ -106,8 +106,8 @@ public class NoticeService {
      */
     public ResponseDTO<String> add(NoticeAddDTO addDTO, RequestTokenBO requestToken) {
         NoticeEntity entity = SmartBeanUtil.copy(addDTO, NoticeEntity.class);
-        entity.setcreatedAt(new Date());
-        entity.setupdatedAt(new Date());
+        entity.setCreatedAt(new Date());
+        entity.setUpdatedAt(new Date());
         entity.setCreateUser(requestToken.getRequestUserId());
         entity.setSendStatus(JudgeEnum.NO.getValue());
         entity.setDeleted(JudgeEnum.NO.getValue());
