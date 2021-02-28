@@ -8,16 +8,16 @@ import java.util.Date;
  * @Description:
  */
 public class IdGeneratorLastNumberDTO {
-    private Date updateTime;
+    private Date updatedAt;
     private Long lastNumber;
     private Date databaseTime;
 
-    public Date getUpdateTime() {
-        return updateTime;
+    public Date getupdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setupdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public Long getLastNumber() {

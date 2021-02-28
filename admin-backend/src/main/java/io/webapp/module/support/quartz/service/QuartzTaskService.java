@@ -110,8 +110,8 @@ public class QuartzTaskService {
     private ResponseDTO<String> saveTask(QuartzTaskDTO quartzTaskDTO) throws Exception {
         QuartzTaskEntity taskEntity = SmartBeanUtil.copy(quartzTaskDTO, QuartzTaskEntity.class);
         taskEntity.setTaskStatus(TaskStatusEnum.NORMAL.getStatus());
-        taskEntity.setUpdateTime(new Date());
-        taskEntity.setCreateTime(new Date());
+        taskEntity.setupdatedAt(new Date());
+        taskEntity.setcreatedAt(new Date());
         quartzTaskDao.insert(taskEntity);
         this.createQuartzTask(scheduler, taskEntity);
         return ResponseDTO.succ();
@@ -125,7 +125,7 @@ public class QuartzTaskService {
         QuartzTaskEntity taskEntity = SmartBeanUtil.copy(quartzTaskDTO, QuartzTaskEntity.class);
         // 任务状态不能更新
         taskEntity.setTaskStatus(updateEntity.getTaskStatus());
-        taskEntity.setUpdateTime(new Date());
+        taskEntity.setupdatedAt(new Date());
         quartzTaskDao.updateById(taskEntity);
         this.updateQuartzTask(scheduler, taskEntity);
         return ResponseDTO.succ();

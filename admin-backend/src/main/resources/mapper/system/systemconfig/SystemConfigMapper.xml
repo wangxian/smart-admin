@@ -18,8 +18,8 @@
             config_group,
             is_using,
             remark,
-            create_time,
-            update_time
+            created_at,
+            updated_at
         FROM
             t_system_config
         <where>
@@ -42,8 +42,8 @@
         config_group,
         is_using,
         remark,
-        create_time,
-        update_time
+        created_at,
+        updated_at
         FROM
         t_system_config where config_group= #{group}
     </select>
@@ -57,8 +57,8 @@
             config_group,
             is_using,
             remark,
-            create_time,
-            update_time
+            created_at,
+            updated_at
         FROM
             t_system_config
         WHERE
@@ -76,8 +76,8 @@
         config_group,
         is_using,
         remark,
-        create_time,
-        update_time
+        created_at,
+        updated_at
         FROM
         t_system_config
         WHERE
@@ -93,8 +93,8 @@
         config_group,
         is_using,
         remark,
-        create_time,
-        update_time
+        created_at,
+        updated_at
         FROM
         t_system_config
         WHERE  config_group = #{group} AND config_key =  #{configKey}

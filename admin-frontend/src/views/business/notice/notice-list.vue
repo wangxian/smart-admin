@@ -110,7 +110,7 @@ export default {
         },
         {
           title: '创建时间',
-          key: 'createTime'
+          key: 'createdAt'
         },
         {
           title: '消息创建人',

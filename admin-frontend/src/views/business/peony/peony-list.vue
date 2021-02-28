@@ -57,7 +57,7 @@
                             split-panels
                             style="width: 200px"
                             type="daterange"
-                            v-model="queryForm.createTimeRange"
+                            v-model="queryForm.createdAtRange"
                     ></DatePicker>
                 </span>
                 <span>
@@ -67,7 +67,7 @@
                             split-panels
                             style="width: 200px"
                             type="daterange"
-                            v-model="queryForm.updateTimeRange"
+                            v-model="queryForm.updatedAtRange"
                     ></DatePicker>
                 </span>
             </Row>
@@ -126,7 +126,7 @@
                     highlight-row
                     ref="mainTable"
             >
-            
+
                  <template slot-scope="{ row, index }" slot="imageUrl">
                      <img width="40" height="40" v-if="index % 2 === 0" src="http://q8deiydpv.bkt.clouddn.com/image/peony1.jpg"/>
                        <img v-if="index % 2 === 1"  width="40" height="40" src="http://q8deiydpv.bkt.clouddn.com/image/peony2.jpg"/>
@@ -232,8 +232,8 @@
                    name:null,
                    //颜色
                    color:null,
-                    createTimeRange: ["",""],
-                    updateTimeRange: ["",""],
+                    createdAtRange: ["",""],
+                    updatedAtRange: ["",""],
                     pageNum: 1,
                     pageSize: PAGE_SIZE_INIT,
                     orders: []
@@ -292,14 +292,14 @@
                         },
                                                 {
                             title: '创建时间',
-                            key: 'createTime',
-                            tableColumn: 't_peony.create_time',
+                            key: 'createdAt',
+                            tableColumn: 't_peony.created_at',
                             sortable: 'custom'
                         },
                                                 {
                             title: '更新时间',
-                            key: 'updateTime',
-                            tableColumn: 't_peony.update_time',
+                            key: 'updatedAt',
+                            tableColumn: 't_peony.updated_at',
                             sortable: 'custom'
                         },
                                                 {
@@ -347,13 +347,13 @@
         methods: {
             /* -------------------------查询相关 begin------------------------- */
             convertQueryParam(){
-                let createTimeArray = dateTimeRangeConvert(this.queryForm.createTimeRange);
-                let updateTimeArray = dateTimeRangeConvert(this.queryForm.updateTimeRange);
+                let createdAtArray = dateTimeRangeConvert(this.queryForm.createdAtRange);
+                let updatedAtArray = dateTimeRangeConvert(this.queryForm.updatedAtRange);
                 return {...this.queryForm,
-                    createTimeBegin:createTimeArray[0],
-                    createTimeEnd:createTimeArray[1],
-                    updateTimeBegin:updateTimeArray[0],
-                    updateTimeEnd:updateTimeArray[1]
+                    createdAtBegin:createdAtArray[0],
+                    createdAtEnd:createdAtArray[1],
+                    updatedAtBegin:updatedAtArray[0],
+                    updatedAtEnd:updatedAtArray[1]
                 };
             },
             //查询
@@ -376,8 +376,8 @@
                     kind:null,
                     name:null,
                     color:null,
-                    createTimeRange: ["",""],
-                    updateTimeRange: ["",""],
+                    createdAtRange: ["",""],
+                    updatedAtRange: ["",""],
                     pageNum: 1,
                     pageSize: pageSize,
                     orders: []

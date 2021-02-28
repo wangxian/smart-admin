@@ -44,8 +44,8 @@ public class NoticeManage {
         NoticeReceiveRecordEntity recordEntity = new NoticeReceiveRecordEntity();
         recordEntity.setEmployeeId(requestToken.getRequestUserId());
         recordEntity.setNoticeId(entity.getId());
-        recordEntity.setCreateTime(new Date());
-        recordEntity.setUpdateTime(new Date());
+        recordEntity.setcreatedAt(new Date());
+        recordEntity.setupdatedAt(new Date());
         noticeReceiveRecordDao.insert(recordEntity);
     }
 
@@ -60,8 +60,8 @@ public class NoticeManage {
         NoticeReceiveRecordEntity recordEntity = new NoticeReceiveRecordEntity();
         recordEntity.setEmployeeId(requestToken.getRequestUserId());
         recordEntity.setNoticeId(noticeId);
-        recordEntity.setCreateTime(new Date());
-        recordEntity.setUpdateTime(new Date());
+        recordEntity.setcreatedAt(new Date());
+        recordEntity.setupdatedAt(new Date());
         noticeReceiveRecordDao.insert(recordEntity);
     }
 

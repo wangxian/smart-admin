@@ -266,7 +266,7 @@ public class EmployeeService {
             updateDTO.setLoginPwd(employeeEntity.getLoginPwd());
         }
         EmployeeEntity entity = SmartBeanUtil.copy(updateDTO, EmployeeEntity.class);
-        entity.setUpdateTime(new Date());
+        entity.setupdatedAt(new Date());
         if (StringUtils.isEmpty(entity.getBirthday())) {
             entity.setBirthday(null);
         }
@@ -279,8 +279,8 @@ public class EmployeeService {
         entity.setIsDisabled(employeeEntity.getIsDisabled());
         entity.setIsLeave(employeeEntity.getIsLeave());
         entity.setCreateUser(employeeEntity.getCreateUser());
-        entity.setCreateTime(employeeEntity.getCreateTime());
-        entity.setUpdateTime(new Date());
+        entity.setcreatedAt(employeeEntity.getcreatedAt());
+        entity.setupdatedAt(new Date());
         employeeDao.updateById(entity);
         employeeCache.remove(employeeId);
         return ResponseDTO.succ();

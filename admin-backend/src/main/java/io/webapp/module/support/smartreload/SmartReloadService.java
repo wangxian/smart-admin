@@ -95,7 +95,7 @@ public class SmartReloadService {
             return ResponseDTO.wrap(ResponseCodeConst.NOT_EXISTS);
         }
         reloadItemEntity.setIdentification(updateDTO.getIdentification());
-        reloadItemEntity.setUpdateTime(new Timestamp(System.currentTimeMillis()));
+        reloadItemEntity.setupdatedAt(new Timestamp(System.currentTimeMillis()));
         reloadItemEntity.setArgs(updateDTO.getArgs());
         reloadItemDao.updateById(reloadItemEntity);
         return ResponseDTO.succ();

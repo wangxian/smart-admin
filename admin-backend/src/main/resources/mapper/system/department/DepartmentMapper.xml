@@ -14,8 +14,8 @@
         d.manager_id,
         d.parent_id,
         d.sort,
-        d.update_time,
-        d.create_time
+        d.updated_at,
+        d.created_at
     </sql>
 
     <select id="countSubDepartment" resultType="integer">

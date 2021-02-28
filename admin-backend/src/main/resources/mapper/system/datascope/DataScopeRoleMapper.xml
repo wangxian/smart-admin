@@ -5,11 +5,11 @@
     <resultMap id="DataScopeRoleEntity" type="io.webapp.module.system.datascope.domain.entity.DataScopeRoleEntity"></resultMap>
 
     <select id="listByRoleId" resultMap="DataScopeRoleEntity">
-        select id,data_scope_type,view_type,role_id,update_time,create_time from t_role_data_scope where role_id = #{roleId}
+        select id,data_scope_type,view_type,role_id,updated_at,created_at from t_role_data_scope where role_id = #{roleId}
     </select>
 
     <select id="listByRoleIdList" resultMap="DataScopeRoleEntity">
-        select id,data_scope_type,view_type,role_id,update_time,create_time from t_role_data_scope where role_id IN
+        select id,data_scope_type,view_type,role_id,updated_at,created_at from t_role_data_scope where role_id IN
         <foreach collection="roleIdList" item="item" open="(" close= ")"  separator=",">
             #{item}
         </foreach>
@@ -21,7 +21,7 @@
     </delete>
 
     <insert id="batchInsert" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.List">
-        INSERT INTO t_role_data_scope (data_scope_type,view_type,role_id,update_time,create_time) VALUES
+        INSERT INTO t_role_data_scope (data_scope_type,view_type,role_id,updated_at,created_at) VALUES
         <foreach collection="list" item="item" separator=",">
             (
             #{item.dataScopeType},

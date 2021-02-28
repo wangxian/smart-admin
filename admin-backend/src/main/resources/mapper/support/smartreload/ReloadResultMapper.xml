@@ -13,6 +13,6 @@
         WHERE
             tag = #{tag}
         ORDER BY
-            create_time DESC
+            created_at DESC
     </select>
 </mapper>

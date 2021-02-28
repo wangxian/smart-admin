@@ -25,7 +25,7 @@ public class CodeGeneratorServiceTest extends BaseTest {
     @Test
     public void testGenerate() throws Exception {
         /**
-         * !!! 所有查询条件均包含了createTime和updateTime的 范围查询 !!!
+         * !!! 所有查询条件均包含了createdAt和updatedAt的 范围查询 !!!
          */
 
         // t_peony 牡丹花表

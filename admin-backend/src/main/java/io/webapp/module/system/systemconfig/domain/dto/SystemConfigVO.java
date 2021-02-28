@@ -37,9 +37,9 @@ public class SystemConfigVO {
     private String remark;
 
     @ApiModelProperty("创建时间")
-    private Date createTime;
+    private Date createdAt;
 
     @ApiModelProperty("上次修改时间")
-    private Date updateTime;
+    private Date updatedAt;
 
 }

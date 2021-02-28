@@ -32,7 +32,7 @@ public class QuartzTaskLogVO {
     private String processLog;
 
     @ApiModelProperty("创建时间")
-    private Date createTime;
+    private Date createdAt;
 
 
     @ApiModelProperty("主机ip")

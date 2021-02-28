@@ -68,7 +68,7 @@ export default {
       columns: [
         {
           title: '创建时间',
-          key: 'createTime'
+          key: 'createdAt'
         },
         {
           title: '发送状态',
@@ -88,7 +88,7 @@ export default {
         },
         {
           title: '更新时间',
-          key: 'updateTime'
+          key: 'updatedAt'
         },
         {
           title: '邮件内容',

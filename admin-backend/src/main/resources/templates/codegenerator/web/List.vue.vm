@@ -47,7 +47,7 @@
                             split-panels
                             style="width: 200px"
                             type="daterange"
-                            v-model="queryForm.createTimeRange"
+                            v-model="queryForm.createdAtRange"
                     ></DatePicker>
                 </span>
                 <span>
@@ -57,7 +57,7 @@
                             split-panels
                             style="width: 200px"
                             type="daterange"
-                            v-model="queryForm.updateTimeRange"
+                            v-model="queryForm.updatedAtRange"
                     ></DatePicker>
                 </span>
             </Row>
@@ -212,8 +212,8 @@
                    //${queryField.columnDesc}
                    ${queryField.fieldName}:null,
 #end
-                    createTimeRange: ["",""],
-                    updateTimeRange: ["",""],
+                    createdAtRange: ["",""],
+                    updatedAtRange: ["",""],
                     pageNum: 1,
                     pageSize: PAGE_SIZE_INIT,
                     orders: []
@@ -292,13 +292,13 @@
         methods: {
             /* -------------------------查询相关 begin------------------------- */
             convertQueryParam(){
-                let createTimeArray = dateTimeRangeConvert(this.queryForm.createTimeRange);
-                let updateTimeArray = dateTimeRangeConvert(this.queryForm.updateTimeRange);
+                let createdAtArray = dateTimeRangeConvert(this.queryForm.createdAtRange);
+                let updatedAtArray = dateTimeRangeConvert(this.queryForm.updatedAtRange);
                 return {...this.queryForm,
-                    createTimeBegin:createTimeArray[0],
-                    createTimeEnd:createTimeArray[1],
-                    updateTimeBegin:updateTimeArray[0],
-                    updateTimeEnd:updateTimeArray[1]
+                    createdAtBegin:createdAtArray[0],
+                    createdAtEnd:createdAtArray[1],
+                    updatedAtBegin:updatedAtArray[0],
+                    updatedAtEnd:updatedAtArray[1]
                 };
             },
             //查询
@@ -320,8 +320,8 @@
 #foreach ($queryField in $queryFieldList)
                     ${queryField.fieldName}:null,
 #end
-                    createTimeRange: ["",""],
-                    updateTimeRange: ["",""],
+                    createdAtRange: ["",""],
+                    updatedAtRange: ["",""],
                     pageNum: 1,
                     pageSize: pageSize,
                     orders: []

@@ -7,8 +7,8 @@
         id,
         position_name,
         remark,
-        update_time,
-        create_time
+        updated_at,
+        created_at
     </sql>
 
     <select id="selectByPage" resultType="io.webapp.module.system.position.domain.entity.PositionEntity">
@@ -21,7 +21,7 @@
                 AND INSTR(position_name,#{queryDTO.positionName})
             </if>
         </where>
-        order by create_time desc
+        order by created_at desc
     </select>
 
     <select id="selectRelation" resultType="io.webapp.module.system.position.domain.dto.PositionRelationResultDTO">
@@ -29,8 +29,8 @@
         job.position_name,
         rel.position_id,
         rel.employee_id,
-        rel.update_time,
-        rel.create_time
+        rel.updated_at,
+        rel.created_at
         FROM
         t_position_relation rel
         LEFT JOIN t_position job ON rel.position_id = job.id
@@ -49,8 +49,8 @@
         job.position_name,
         rel.position_id,
         rel.employee_id,
-        rel.update_time,
-        rel.create_time
+        rel.updated_at,
+        rel.created_at
         FROM
         t_position_relation rel
         LEFT JOIN t_position job ON rel.position_id = job.id

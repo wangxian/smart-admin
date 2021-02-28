@@ -21,7 +21,7 @@
     <!-- 查询上次id -->
     <select id="selectLastNumber" resultMap="idGeneratorLastNumberDTO">
        select
-        update_time,last_number, now() as database_time
+        updated_at,last_number, now() as database_time
         from t_id_generator
          where id = #{id}
          for update
@@ -37,7 +37,7 @@
 
     <!-- 更新id_generator -->
     <update id="updateLastNumber">
-        update t_id_generator set last_number = #{lastNumber}, update_time = now() where id = #{generatorId}
+        update t_id_generator set last_number = #{lastNumber}, updated_at = now() where id = #{generatorId}
     </update>
 
     <update id="replaceIdGeneratorRecord">

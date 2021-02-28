@@ -129,7 +129,7 @@ public class CodeGeneratorService {
         List<String> entityImports = Lists.newArrayList();
         if (CollectionUtils.isNotEmpty(columnList)) {
             columnList.forEach(e -> {
-                if (!e.getFieldName().equals("createTime") && !e.getFieldName().equals("updateTime") && !e.getFieldName().equals("id")) {
+                if (!e.getFieldName().equals("createdAt") && !e.getFieldName().equals("updatedAt") && !e.getFieldName().equals("id")) {
                     importPackage(entityImports, e.getFieldType());
                 }
             });

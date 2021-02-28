@@ -30,7 +30,7 @@
 
 
     <insert id="batchInsert" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.List">
-        INSERT INTO t_order_operate_log (order_id,order_type, operate_type, operate_content, operate_remark, employee_id, employee_name,ext_data,update_time,create_time) VALUES
+        INSERT INTO t_order_operate_log (order_id,order_type, operate_type, operate_content, operate_remark, employee_id, employee_name,ext_data,updated_at,created_at) VALUES
         <foreach collection="list" item="item" separator=",">
             (#{item.orderId},
             #{item.orderType},
@@ -40,8 +40,8 @@
             #{item.employeeId},
             #{item.employeeName},
             #{item.extData},
-            #{item.updateTime}
-            #{item.createTime}
+            #{item.updatedAt}
+            #{item.createdAt}
             )
         </foreach>
     </insert>

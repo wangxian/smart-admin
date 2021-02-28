@@ -118,7 +118,7 @@ export default {
         },
         {
           title: '上传时间',
-          key: 'createTime'
+          key: 'createdAt'
         },
         {
           title: '操作',

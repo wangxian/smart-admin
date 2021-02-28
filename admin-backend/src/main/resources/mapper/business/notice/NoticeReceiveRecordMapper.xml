@@ -10,7 +10,7 @@
     </delete>
 
     <insert id="batchInsert" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.List">
-        INSERT INTO t_notice_receive_record (notice_id, employee_id, update_time, create_time) VALUES
+        INSERT INTO t_notice_receive_record (notice_id, employee_id, updated_at, created_at) VALUES
         <foreach collection="list" item="item" separator=",">
             (
             #{item.noticeId},
@@ -29,8 +29,8 @@
         nrr.id,
         nrr.employee_id,
         nrr.notice_id,
-        nrr.create_time,
-        nrr.update_time
+        nrr.created_at,
+        nrr.updated_at
         from t_notice_receive_record nrr
         where nrr.employee_id = #{employeeId} and nrr.notice_id=#{noticeId}
     </select>

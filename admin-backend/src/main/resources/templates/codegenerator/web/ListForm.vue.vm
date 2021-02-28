@@ -2,7 +2,7 @@
   <div>
     <Form ref="form" :rules="formValidate" :label-width="90" :model="form">
 #foreach ($column in $columnList)
-#if($column.columnName != 'id' && $column.fieldName != 'updateTime' && $column.fieldName != 'createTime')
+#if($column.columnName != 'id' && $column.fieldName != 'updatedAt' && $column.fieldName != 'createdAt')
           <FormItem label="${column.columnDesc}" prop="${column.fieldName}">
 #if($column.isNumber)
             <Input type="number" v-model.number="form.${column.fieldName}" />
@@ -42,7 +42,7 @@
         //表单数据
         form: {
 #foreach ($column in $columnList)
-#if($column.columnName != 'id' && $column.fieldName != 'updateTime' && $column.fieldName != 'createTime')
+#if($column.columnName != 'id' && $column.fieldName != 'updatedAt' && $column.fieldName != 'createdAt')
          //${column.columnDesc}
          ${column.fieldName}:null,
 #end
@@ -51,7 +51,7 @@
         //表单验证
         formValidate: {
 #foreach ($column in $columnList)
-#if($column.columnName != 'id' && $column.fieldName != 'updateTime' && $column.fieldName != 'createTime')
+#if($column.columnName != 'id' && $column.fieldName != 'updatedAt' && $column.fieldName != 'createdAt')
         //${column.columnDesc}
 #if($column.isNumber)
         ${column.fieldName}:[{ type:'number',required: true, message: '请输入${column.columnDesc}', trigger: 'blur' }],
@@ -103,7 +103,7 @@
     resetForm() {
         this.form = {
 #foreach ($column in $columnList)
-#if($column.columnName != 'id' && $column.fieldName != 'updateTime' && $column.fieldName != 'createTime')
+#if($column.columnName != 'id' && $column.fieldName != 'updatedAt' && $column.fieldName != 'createdAt')
           //${column.columnDesc}
           ${column.fieldName}:null,
 #end

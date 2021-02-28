@@ -18,11 +18,11 @@ public class BaseEntity {
     /**
      * 更新时间
      */
-    private Date updateTime;
+    private Date updatedAt;
 
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Date createdAt;
 
 }

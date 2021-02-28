@@ -41,5 +41,5 @@ public class SupplierOrderOperateVO {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Date createdAt;
 }

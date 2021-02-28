@@ -31,10 +31,10 @@ public class PeonyExcelVO {
     private String imageUrl;
 
     @Excel(name = "创建时间", format = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
+    private Date createdAt;
 
     @Excel(name = "更新时间", format = "yyyy-MM-dd HH:mm:ss")
-    private Date updateTime;
+    private Date updatedAt;
 
 
 }

@@ -17,8 +17,8 @@
         tl.process_duration,
         tl.process_log,
         tl.ip_address,
-        tl.update_time,
-        tl.create_time
+        tl.updated_at,
+        tl.created_at
     </sql>
 
 
@@ -32,7 +32,7 @@
                 AND tl.task_id = #{queryDTO.taskId}
             </if>
         </where>
-        order BY tl.create_time DESC
+        order BY tl.created_at DESC
     </select>
 
 </mapper>

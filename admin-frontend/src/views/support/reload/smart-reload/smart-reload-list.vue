@@ -96,11 +96,11 @@ export default {
         },
         {
           title: '更新时间',
-          key: 'updateTime'
+          key: 'updatedAt'
         },
         {
           title: '创建时间',
-          key: 'createTime'
+          key: 'createdAt'
         },
         {
           title: '操作',
@@ -219,7 +219,7 @@ export default {
         },
         {
           title: '创建时间',
-          key: 'createTime',
+          key: 'createdAt',
           width: 180
         }
       ]

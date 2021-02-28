@@ -65,5 +65,5 @@ public class OrderOperateLogVO {
      * 创建时间
      */
     @ApiModelProperty("创建时间")
-    private Date createTime;
+    private Date createdAt;
 }

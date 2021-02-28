@@ -12,8 +12,8 @@
         rp.id,
         rp.role_id,
         rp.privilege_key,
-        rp.update_time,
-        rp.create_time
+        rp.updated_at,
+        rp.created_at
     </sql>
 
 
@@ -32,7 +32,7 @@
 
 
     <insert id="batchInsert" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.List">
-        INSERT INTO t_role_privilege (role_id, privilege_key, update_time, create_time) VALUES
+        INSERT INTO t_role_privilege (role_id, privilege_key, updated_at, created_at) VALUES
         <foreach collection="list" item="item" separator=",">
             (
                 #{item.roleId},
@@ -55,7 +55,7 @@
         <foreach collection="roleIds" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>
-        order by p.create_time desc
+        order by p.created_at desc
     </select>
 
     <select id="listByRoleId" resultMap="PrivilegeEntity">

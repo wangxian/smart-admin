@@ -322,7 +322,7 @@ export default {
         {
           title: '运行时间',
           width: 190,
-          key: 'createTime'
+          key: 'createdAt'
         }
       ],
       // table数据

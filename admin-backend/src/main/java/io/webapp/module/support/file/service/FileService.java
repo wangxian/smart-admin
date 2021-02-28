@@ -181,7 +181,7 @@ public class FileService {
     public ResponseDTO<String> saveFile(FileAddDTO addDTO, RequestTokenBO requestToken) {
         FileEntity entity = SmartBeanUtil.copy(addDTO, FileEntity.class);
         entity.setCreaterUser(requestToken.getRequestUserId());
-        entity.setCreateTime(new Date());
+        entity.setcreatedAt(new Date());
         fileDao.insert(entity);
         return ResponseDTO.succ();
     }

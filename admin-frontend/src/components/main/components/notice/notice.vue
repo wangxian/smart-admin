@@ -18,7 +18,7 @@
             <img alt src="@/assets/images/message.png" />
             <div class="info">
               <p class="title">{{item.title}}</p>
-              <p class="time">{{item.updateTime}}</p>
+              <p class="time">{{item.updatedAt}}</p>
             </div>
           </div>
           <InfiniteLoading @infinite="scroll" ref="infiniteLoading">
@@ -32,7 +32,7 @@
           <Icon @click="detailModalOpen=false" class="close" type="md-close" />
         </div>
         <div class="detail">{{noticeDetail.content}}</div>
-        <p class="time">{{noticeDetail.updateTime}}</p>
+        <p class="time">{{noticeDetail.updatedAt}}</p>
       </div>
     </div>
   </div>
@@ -66,7 +66,7 @@ export default {
       noticeDetail: {
         title: '',
         content: '',
-        updateTime: ''
+        updatedAt: ''
       }
     };
   },

@@ -35,9 +35,9 @@ public class IdGeneratorManager {
             lastNumber = lastNumber + 1;
         }
 
-        Date updateTime = idGeneratorLastNumberDTO.getUpdateTime();
-        if (updateTime == null) {
-            updateTime = idGeneratorLastNumberDTO.getDatabaseTime();
+        Date updatedAt = idGeneratorLastNumberDTO.getupdatedAt();
+        if (updatedAt == null) {
+            updatedAt = idGeneratorLastNumberDTO.getDatabaseTime();
         }
 
         Long startValue = -1L, endValue = -1L;
@@ -48,7 +48,7 @@ public class IdGeneratorManager {
                 break;
             default:
                 SimpleDateFormat format = new SimpleDateFormat(idGeneratorPOJO.getIdGeneratorRuleTypeEnum().getExt());
-                if (format.format(idGeneratorLastNumberDTO.getDatabaseTime()).equals(format.format(updateTime))) {
+                if (format.format(idGeneratorLastNumberDTO.getDatabaseTime()).equals(format.format(updatedAt))) {
                     startValue = lastNumber.longValue();
                     endValue   = startValue + stepLength;
                 } else {

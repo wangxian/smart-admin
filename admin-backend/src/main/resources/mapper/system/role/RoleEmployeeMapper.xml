@@ -11,8 +11,8 @@
         er.id,
         er.role_id,
         er.employee_id,
-        er.update_time,
-        er.create_time
+        er.updated_at,
+        er.created_at
     </sql>
 
 
@@ -41,8 +41,8 @@
         e.is_leave,
         e.is_disabled,
         e.remark,
-        e.update_time,
-        e.create_time
+        e.updated_at,
+        e.created_at
         FROM
         t_role_employee er
         left join t_employee e on er.employee_id = e.id
@@ -73,8 +73,8 @@
             e.is_leave,
             e.is_disabled,
             e.remark,
-            e.update_time,
-            e.create_time
+            e.updated_at,
+            e.created_at
         FROM
         t_role_employee er
         left join t_employee e on er.employee_id = e.id
@@ -109,7 +109,7 @@
     </delete>
 
     <insert id="batchInsert" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.List">
-        INSERT INTO t_role_employee (role_id, employee_id, update_time, create_time) VALUES
+        INSERT INTO t_role_employee (role_id, employee_id, updated_at, created_at) VALUES
         <foreach collection="list" item="item" separator=",">
             (
             #{item.roleId},

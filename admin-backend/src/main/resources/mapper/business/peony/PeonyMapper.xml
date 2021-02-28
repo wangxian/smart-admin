@@ -13,8 +13,8 @@
           name,
           color,
           image_url,
-          create_time,
-          update_time
+          created_at,
+          updated_at
         from t_peony
         <where>
             <if test="queryDTO.id != null">
@@ -30,18 +30,18 @@
                 AND INSTR(color,#{queryDTO.color})
             </if>
 
-            <if test="queryDTO.createTimeBegin != null ">
-                AND create_time &gt;= #{queryDTO.createTimeBegin}
+            <if test="queryDTO.createdAtBegin != null ">
+                AND created_at &gt;= #{queryDTO.createdAtBegin}
             </if>
-            <if test="queryDTO.createTimeEnd != null ">
-                AND create_time &lt;= #{queryDTO.createTimeEnd}
+            <if test="queryDTO.createdAtEnd != null ">
+                AND created_at &lt;= #{queryDTO.createdAtEnd}
             </if>
 
-            <if test="queryDTO.updateTimeBegin != null ">
-                AND update_time &gt;= #{queryDTO.updateTimeBegin}
+            <if test="queryDTO.updatedAtBegin != null ">
+                AND updated_at &gt;= #{queryDTO.updatedAtBegin}
             </if>
-            <if test="queryDTO.updateTimeEnd != null ">
-                AND update_time &lt;= #{queryDTO.updateTimeEnd}
+            <if test="queryDTO.updatedAtEnd != null ">
+                AND updated_at &lt;= #{queryDTO.updatedAtEnd}
             </if>
         </where>
     </select>
@@ -53,8 +53,8 @@
            name,
            color,
            image_url,
-           create_time,
-           update_time
+           created_at,
+           updated_at
         from t_peony
         <where>
             <if test="queryDTO.id != null">
@@ -70,18 +70,18 @@
                 AND INSTR(color,#{queryDTO.color})
             </if>
 
-            <if test="queryDTO.createTimeBegin != null ">
-                AND create_time &gt;= #{queryDTO.createTimeBegin}
+            <if test="queryDTO.createdAtBegin != null ">
+                AND created_at &gt;= #{queryDTO.createdAtBegin}
             </if>
-            <if test="queryDTO.createTimeEnd != null ">
-                AND create_time &lt;= #{queryDTO.createTimeEnd}
+            <if test="queryDTO.createdAtEnd != null ">
+                AND created_at &lt;= #{queryDTO.createdAtEnd}
             </if>
 
-            <if test="queryDTO.updateTimeBegin != null ">
-                AND update_time &gt;= #{queryDTO.updateTimeBegin}
+            <if test="queryDTO.updatedAtBegin != null ">
+                AND updated_at &gt;= #{queryDTO.updatedAtBegin}
             </if>
-            <if test="queryDTO.updateTimeEnd != null ">
-                AND update_time &lt;= #{queryDTO.updateTimeEnd}
+            <if test="queryDTO.updatedAtEnd != null ">
+                AND updated_at &lt;= #{queryDTO.updatedAtEnd}
             </if>
         </where>
     </select>
@@ -93,8 +93,8 @@
          name,
          color,
          image_url,
-         create_time,
-         update_time
+         created_at,
+         updated_at
         from t_peony
         where id in
         <foreach collection="idList" open="(" close=")" separator="," item="item">

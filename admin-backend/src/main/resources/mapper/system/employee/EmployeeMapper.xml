@@ -23,8 +23,8 @@
         e.is_disabled,
         e.remark,
         e.is_delete,
-        e.update_time,
-        e.create_time
+        e.updated_at,
+        e.created_at
     </sql>
 
     <select id="selectEmployeeList" resultMap="EmployeeDTO">
@@ -67,7 +67,7 @@
                 </foreach>
             </if>
         </where>
-        order by e.create_time desc
+        order by e.created_at desc
     </select>
 
 
@@ -115,7 +115,7 @@
         <include refid="baseSql"></include>
         FROM
         t_employee e
-        order by e.create_time desc
+        order by e.created_at desc
     </select>
 
     <select id="countByDepartmentId" resultType="integer">
@@ -135,7 +135,7 @@
         t_employee e
         WHERE
         e.department_id = #{departmentId}
-        order by e.create_time desc
+        order by e.created_at desc
     </select>
 
 
@@ -149,7 +149,7 @@
         <foreach collection="departmentIds" item="item" separator=",">
             #{item}
         </foreach>
-        order by e.create_time desc
+        order by e.created_at desc
     </select>
 
     <select id="getEmployeeByIds" resultMap="EmployeeDTO">
@@ -161,7 +161,7 @@
         <foreach collection="ids" item="item" separator=",">
             #{item}
         </foreach>
-        order by e.create_time desc
+        order by e.created_at desc
     </select>
 
 

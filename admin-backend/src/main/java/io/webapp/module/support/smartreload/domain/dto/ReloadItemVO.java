@@ -36,12 +36,12 @@ public class ReloadItemVO {
      * 更新时间
      */
     @ApiModelProperty("最后更新时间")
-    private Date updateTime;
+    private Date updatedAt;
 
     /**
      * 创建时间
      */
     @ApiModelProperty("创建时间")
-    private Date createTime;
+    private Date createdAt;
 
 }

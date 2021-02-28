@@ -94,7 +94,7 @@ export default {
         },
         {
           title: '创建时间',
-          key: 'createTime'
+          key: 'createdAt'
         },
         {
           title: '操作',

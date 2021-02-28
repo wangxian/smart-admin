@@ -30,14 +30,14 @@ public class PeonyQueryDTO extends PageParamDTO {
     private String color;
 
     @ApiModelProperty("创建时间-开始")
-    private Date createTimeBegin;
+    private Date createdAtBegin;
 
     @ApiModelProperty("创建时间-截止")
-    private Date createTimeEnd;
+    private Date createdAtEnd;
 
     @ApiModelProperty("上次更新时间-开始")
-    private Date updateTimeBegin;
+    private Date updatedAtBegin;
 
     @ApiModelProperty("上次更新创建时间-开始")
-    private Date updateTimeEnd;
+    private Date updatedAtEnd;
 }

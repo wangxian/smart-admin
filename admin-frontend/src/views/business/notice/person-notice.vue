@@ -32,7 +32,7 @@
     </Card>
     <Modal :loading="saveLoading" :title="formData.title" class="detail-modal" v-model="editModal">
       <div class="detail">{{formData.content}}</div>
-      <p class="time">{{formData.updateTime}}</p>
+      <p class="time">{{formData.updatedAt}}</p>
       <div slot="footer">
         <Button @click="cancelSave" size="large" type="primary">知道了</Button>
       </div>

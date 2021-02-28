@@ -3,7 +3,7 @@
     <Card>
       <p slot="title">{{notice.title}}</p>
       <p>{{content}}</p>
-      <p>{{notice.updateTime}}</p>
+      <p>{{notice.updatedAt}}</p>
     </Card>
   </div>
 </template>

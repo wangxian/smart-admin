@@ -21,15 +21,15 @@
             n.create_user,
             e.actual_name as createUserName,
             n.send_status,
-            n.create_time
+            n.created_at
         from t_notice n
         left join t_employee e on e.id = n.create_user
         <where>
             <if test="queryDTO.startDate != null and queryDTO.startDate != ''">
-                AND DATE_FORMAT(n.create_time, '%Y-%m-%d') &gt;= #{queryDTO.startDate}
+                AND DATE_FORMAT(n.created_at, '%Y-%m-%d') &gt;= #{queryDTO.startDate}
             </if>
             <if test="queryDTO.endDate != null and queryDTO.endDate != ''">
-                AND DATE_FORMAT(n.create_time, '%Y-%m-%d') &lt;= #{queryDTO.endDate}
+                AND DATE_FORMAT(n.created_at, '%Y-%m-%d') &lt;= #{queryDTO.endDate}
             </if>
             <if test="queryDTO.title != null and queryDTO.title != ''">
                 AND INSTR(n.title,#{queryDTO.title})
@@ -38,7 +38,7 @@
                 AND n.deleted = #{queryDTO.deleted}
             </if>
         </where>
-        ORDER by n.create_time desc
+        ORDER by n.created_at desc
     </select>
 
 
@@ -50,12 +50,12 @@
         n.send_status,
         n.create_user,
         e.actual_name as createUserName,
-        n.create_time
+        n.created_at
         from t_notice n
         left join t_employee e on e.id = n.create_user
         where n.id not in (select notice_id from t_notice_receive_record nrr where nrr.employee_id = #{employeeId})
         and n.send_status = #{sendStatus}
-        ORDER by n.create_time desc
+        ORDER by n.created_at desc
     </select>
 
 
@@ -66,17 +66,17 @@
         n.create_user,
         n.send_status,
         e.actual_name as createUserName,
-        n.create_time,
-        nrr.create_time as receiveTime
+        n.created_at,
+        nrr.created_at as receiveTime
         from t_notice n
         left join t_employee e on e.id = n.create_user
         left join t_notice_receive_record nrr on nrr.notice_id=n.id and nrr.employee_id=#{queryDTO.employeeId}
         <where>
             <if test="queryDTO.startDate != null and queryDTO.startDate != ''">
-                AND DATE_FORMAT(n.create_time, '%Y-%m-%d') &gt;= #{queryDTO.startDate}
+                AND DATE_FORMAT(n.created_at, '%Y-%m-%d') &gt;= #{queryDTO.startDate}
             </if>
             <if test="queryDTO.endDate != null and queryDTO.endDate != ''">
-                AND DATE_FORMAT(n.create_time, '%Y-%m-%d') &lt;= #{queryDTO.endDate}
+                AND DATE_FORMAT(n.created_at, '%Y-%m-%d') &lt;= #{queryDTO.endDate}
             </if>
             <if test="queryDTO.title != null and queryDTO.title != ''">
                 AND INSTR(n.title,#{queryDTO.title})
@@ -85,7 +85,7 @@
                 AND n.send_status = #{queryDTO.sendStatus}
             </if>
         </where>
-        ORDER by n.create_time desc
+        ORDER by n.created_at desc
     </select>
 
 
@@ -99,8 +99,8 @@
         n.send_status,
         n.create_user,
         e.actual_name as createUserName,
-        n.create_time,
-        n.update_time
+        n.created_at,
+        n.updated_at
         from t_notice n
         left join t_employee e on e.id = n.create_user
         where n.id = #{id}

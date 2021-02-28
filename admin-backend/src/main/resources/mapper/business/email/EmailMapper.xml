@@ -11,15 +11,15 @@
           title,
           to_emails,
           send_status,
-          create_time,
-          update_time
+          created_at,
+          updated_at
         from t_email
         <where>
             <if test="queryDTO.startDate != null and queryDTO.startDate != ''">
-                AND DATE_FORMAT(create_time, '%Y-%m-%d') &gt;= #{queryDTO.startDate}
+                AND DATE_FORMAT(created_at, '%Y-%m-%d') &gt;= #{queryDTO.startDate}
             </if>
             <if test="queryDTO.endDate != null and queryDTO.endDate != ''">
-                AND DATE_FORMAT(create_time, '%Y-%m-%d') &lt;= #{queryDTO.endDate}
+                AND DATE_FORMAT(created_at, '%Y-%m-%d') &lt;= #{queryDTO.endDate}
             </if>
             <if test="queryDTO.title != null and queryDTO.title != ''">
                 AND INSTR(title,#{queryDTO.title})

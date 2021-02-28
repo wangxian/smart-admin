@@ -17,15 +17,15 @@
           param,
           result,
           fail_reason,
-          update_time,
-          create_time
+          updated_at,
+          created_at
         from t_user_operate_log
         <where>
             <if test="queryDTO.startDate != null and queryDTO.startDate != ''">
-                AND DATE_FORMAT(create_time, '%Y-%m-%d') &gt;= #{queryDTO.startDate}
+                AND DATE_FORMAT(created_at, '%Y-%m-%d') &gt;= #{queryDTO.startDate}
             </if>
             <if test="queryDTO.endDate != null and queryDTO.endDate != ''">
-                AND DATE_FORMAT(create_time, '%Y-%m-%d') &lt;= #{queryDTO.endDate}
+                AND DATE_FORMAT(created_at, '%Y-%m-%d') &lt;= #{queryDTO.endDate}
             </if>
             <if test="queryDTO.userName != null and queryDTO.userName != ''">
                 AND INSTR(user_name,#{queryDTO.userName})
@@ -34,7 +34,7 @@
                 AND result = #{queryDTO.resultFlag}
             </if>
         </where>
-        order by create_time desc
+        order by created_at desc
     </select>
 
     <delete id="deleteById">

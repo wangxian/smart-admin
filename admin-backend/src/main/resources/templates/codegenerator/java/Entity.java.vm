@@ -22,7 +22,7 @@ import lombok.Data;
 public class ${moduleClass}Entity extends BaseEntity{
 #foreach ($column in $columnList)
 
-#if($column.columnName != 'id' && $column.fieldName != 'updateTime' && $column.fieldName != 'createTime')
+#if($column.columnName != 'id' && $column.fieldName != 'updatedAt' && $column.fieldName != 'createdAt')
     /**
      * $column.columnDesc
      */

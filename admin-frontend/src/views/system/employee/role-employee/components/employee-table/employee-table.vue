@@ -201,7 +201,7 @@ export default {
         },
 
         {
-          key: 'createTime',
+          key: 'createdAt',
           width: 180,
           title: '创建时间',
           align: 'left'

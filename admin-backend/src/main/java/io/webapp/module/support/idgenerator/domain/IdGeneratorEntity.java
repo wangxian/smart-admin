@@ -42,6 +42,6 @@ public class IdGeneratorEntity extends BaseEntity implements Serializable {
      * 备注
      */
     private String remark;
-    private Date updateTime;
-    private Date createTime;
+    private Date updatedAt;
+    private Date createdAt;
 }

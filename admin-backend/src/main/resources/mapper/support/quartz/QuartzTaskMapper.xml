@@ -13,8 +13,8 @@
         t.task_cron,
         t.task_status,
         t.remark,
-        t.update_time,
-        t.create_time
+        t.updated_at,
+        t.created_at
     </sql>
 
 

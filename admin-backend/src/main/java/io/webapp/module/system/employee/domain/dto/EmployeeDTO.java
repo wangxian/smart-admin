@@ -62,7 +62,7 @@ public class EmployeeDTO {
 
     @ApiModelProperty("创建时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Date createTime;
+    private Date createdAt;
 
     @ApiModelProperty("岗位关联信息")
     private List<PositionRelationResultDTO> positionRelationList;

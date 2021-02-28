@@ -49,10 +49,10 @@ public class DepartmentVO {
     private List<EmployeeDTO> employees;
 
     @ApiModelProperty("上次更新时间")
-    private Date updateTime;
+    private Date updatedAt;
 
     @ApiModelProperty("创建时间")
-    private Date createTime;
+    private Date createdAt;
 
 
 }

@@ -41,6 +41,6 @@ public class ReloadResultVO {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Date createdAt;
 
 }

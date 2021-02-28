@@ -44,11 +44,11 @@ public class FileDTO {
     @ApiModelProperty("上传人")
     private Long createUser;
 
-    @ApiModelProperty("updateTime")
-    private Date updateTime;
+    @ApiModelProperty("updatedAt")
+    private Date updatedAt;
 
     @ApiModelProperty("创建时间")
-    private Date createTime;
+    private Date createdAt;
 
     @ApiModelProperty("文件展示url（可用于下载,注:七牛云下载url要拼接 ?attname=文件名.jpg）")
     private String fileUrl;
