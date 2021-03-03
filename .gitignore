@@ -1,6 +1,6 @@
 
 *.iml
-
+!docs/*.sql
 **/target/
 
 **/node_modules/
