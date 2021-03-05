@@ -15,9 +15,10 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
 
+    <springboot.version>2.2.5.RELEASE</springboot.version>
+
     <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
     <log4j.web.version>2.10.0</log4j.web.version>
-    <springboot.version>2.2.5.RELEASE</springboot.version>
     <velocity.version>1.7</velocity.version>
     <velocity-engine-core.version>2.0</velocity-engine-core.version>
     <swagger.version>2.7.0</swagger.version>
