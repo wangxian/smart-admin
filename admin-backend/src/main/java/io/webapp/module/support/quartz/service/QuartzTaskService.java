@@ -251,6 +251,7 @@ public class QuartzTaskService {
         trigger.getJobDataMap().put(QuartzConst.QUARTZ_PARAMS_KEY, taskEntity.getTaskParams());
 
         scheduler.rescheduleJob(triggerKey, trigger);
+
         // 如果更新之前任务是暂停状态，此时再次暂停任务
         if (TaskStatusEnum.PAUSE.getStatus().equals(taskEntity.getTaskStatus())) {
             this.pauseQuartzTask(scheduler, Long.valueOf(taskEntity.getId()));

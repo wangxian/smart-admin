@@ -44,7 +44,8 @@ public class SmartReloadService {
     @Value("${smart-reload.time-interval}")
     private Long timeInterval;
 
-    @PostConstruct
+    // 简介：SmartReload是一个可以在不重启进程的情况下动态重新加载配置或者执行某些预先设置的代码。
+    // @PostConstruct
     public void init() {
         smartReloadManager.addCommand(smartReloadCommand, 10, timeInterval, TimeUnit.SECONDS);
     }

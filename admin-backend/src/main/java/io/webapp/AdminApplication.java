@@ -8,10 +8,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * [ admin 项目启动类 ]
- *
- * @author yandanyang
- * @version 1.0
- * @since JDK1.8
  */
 @SpringBootApplication(scanBasePackages = {"io.webapp", "cn.afterturn.easypoi"})
 @EnableCaching

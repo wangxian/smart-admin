@@ -91,6 +91,7 @@
     </Layout>
   </Layout>
 </template>
+
 <script>
   import ABackTop from './components/a-back-top';
   import SideMenu from './components/side-menu';

@@ -36,7 +36,11 @@ public class HeartBeatService extends AbstractHeartBeatCommand {
     @Autowired
     private SmartHeartBeatConfig heartBeatConfig;
 
-    @PostConstruct
+    // 监听服务是否存活，方便业务监控
+    // @PostConstruct基本
+    // https://blog.csdn.net/qq360694660/article/details/82877222
+    // Constructor(构造方法) -> @Autowired(依赖注入) -> @PostConstruct(注释的方法)
+    // @PostConstruct
     public void init() {
 
         HeartBeatConfig config = HeartBeatConfig.builder().delayHandlerTime(heartBeatConfig.getDelayHandlerTime()).intervalTime(heartBeatConfig.getIntervalTime()).build();
