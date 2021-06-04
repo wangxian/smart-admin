@@ -26,7 +26,7 @@ public abstract class AbstractSmartReloadCommand4Spring implements SmartReloadCo
     @Autowired
     protected SmartReloadManager reloadManager;
 
-    //    @PostConstruct
+    // @PostConstruct
     public void init() {
         List<ReloadItem> readTagStatesFromDb = readReloadItem();
         if (readTagStatesFromDb != null) {
@@ -55,10 +55,12 @@ public abstract class AbstractSmartReloadCommand4Spring implements SmartReloadCo
             tag                    = reloadItem.getTag();
             tagIdentifier          = reloadItem.getIdentification();
             preTagChangeIdentifier = currentTags.get(tag);
+
             // 数据不一致
             if (preTagChangeIdentifier == null || !preTagChangeIdentifier.equals(tagIdentifier)) {
                 // 更新map数据
                 currentTags.put(tag, tagIdentifier);
+
                 // 执行重新加载此项的动作
                 handleReloadResult(this.reloadManager.doReload(reloadItem));
             }
